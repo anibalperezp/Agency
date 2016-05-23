@@ -1,0 +1,135 @@
+﻿@model TripAgency.EF.TemporadaPaquete
+
+@{
+    ViewBag.Title = "Editar";
+}
+
+<h2>Editar</h2>
+
+@Scripts.Render("~/bundles/jqueryCost")
+<script language="Javascript" type="text/javascript">
+    $(document).ready(function () {
+        $("#State").prop("disabled", true);
+        $("#idEmpresa").change(function () {
+            if ($("#idEmpresa").val() != "") {
+                var countryOptions = {};
+                countryOptions.url = "/TripAgency/TemporadaPaquete/paquetes";
+                countryOptions.type = "POST";
+                countryOptions.data = JSON.stringify({ idEmpresa: $("#idEmpresa").val() });
+                countryOptions.datatype = "json";
+                countryOptions.contentType = "application/json";
+                countryOptions.success = function (statesList) {
+                    $("#State").empty();
+                    for (var i = 0; i < statesList.length; i++) {
+                        $("#State").append("<option value='" + statesList[i] + "'>" + statesList[i] + "</option>");
+                    }
+
+                    $("#State").prop("disabled", false);
+                };
+                countryOptions.error = function () { alert("Error in Getting States!!"); };
+                $.ajax(countryOptions);
+            }
+            else {
+                $("#State").empty();
+                $("#State").prop("disabled", true);
+            }
+        });
+    });
+</script>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>TemporadaPaquete</h4>
+        <br />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.idtemporadapaquete)
+
+        <div class="form-group">
+            @Html.Label("Empresa", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("idEmpresa", String.Empty)
+                @Html.ValidationMessageFor(model => model.idPaquete)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Paquetes", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select id="State" name="State"></select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Año", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("idanno", String.Empty)
+                @Html.ValidationMessageFor(model => model.idanno)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Estacion", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("idEstacion", String.Empty)
+                @Html.ValidationMessageFor(model => model.idEstacion)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Temporada", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("idTemporada", String.Empty)
+                @Html.ValidationMessageFor(model => model.idTemporada)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Período", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.periodo)
+                @Html.ValidationMessageFor(model => model.periodo)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Fecha Inicio", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.inicio)
+                @Html.ValidationMessageFor(model => model.inicio)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Fecha Fin", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.fin)
+                @Html.ValidationMessageFor(model => model.fin)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Descripción", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.descripcion_periodo, new { @class = "col-md-2" })
+                @Html.ValidationMessageFor(model => model.descripcion_periodo)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Ir atrás", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

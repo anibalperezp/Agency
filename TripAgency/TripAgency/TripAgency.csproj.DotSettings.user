@@ -1,0 +1,8 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/IgnoredPaths/=VIEWS_005CCADENA_005CMODEL_002ELOGO_005FCADENA/@EntryIndexedValue">Views\Cadena\model.logo_cadena</s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/IgnoredPaths/=VIEWS_005CMAINAPP_005CVIEWBAG_002EPHOTO/@EntryIndexedValue">Views\MainApp\ViewBag.photo</s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/MappedPaths/=VIEWS_005CMAINAPP_005CHANDLEPORTLETTOOLS/@EntryIndexedValue"></s:String>
+	
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/PathsInCorrectCasing/=VIEWS_005CCADENA_005CMODEL_002ELOGO_005FCADENA/@EntryIndexedValue">Views\Cadena\model.logo_cadena</s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/PathsInCorrectCasing/=VIEWS_005CMAINAPP_005CHANDLEPORTLETTOOLS/@EntryIndexedValue">Views\MainApp\handlePortletTools</s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/PathsInCorrectCasing/=VIEWS_005CMAINAPP_005CVIEWBAG_002EPHOTO/@EntryIndexedValue">Views\MainApp\ViewBag.photo</s:String></wpf:ResourceDictionary>

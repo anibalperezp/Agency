@@ -1,0 +1,130 @@
+﻿@model  IEnumerable<TripAgency.EF.AspNetUsers>
+@using Microsoft.AspNet.Identity
+@using PagedList.Mvc;
+@using TripAgency.EF
+@Styles.Render("~/Content/pagedlist")
+@Scripts.Render("~/bundles/new")
+
+@{
+    ViewBag.Title = "Usuarios";
+    var idUser = User.Identity.GetUserId();
+    TripAgencyEntities db = new TripAgencyEntities();
+    List<AspNetUsers> list = new List<AspNetUsers>();
+    list = db.AspNetUsers.ToList();
+}
+
+
+<h2>Usuarios</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Register")
+</p>
+<br />
+<div class="row">
+    <div class="col-md-3">
+        <form action="#" method="get">
+            <div class="input-group">
+                <!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
+                <input class="form-control" id="system-search" name="Search_Data" placeholder="Buscar por" required="">
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-default">
+                        <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                </span>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-9">
+        <table class="table table-hover table-list-search">
+            <tr>
+                <th>
+                    @Html.DisplayName("Usuario")
+                </th>
+                <th>
+                    @Html.DisplayName("Rol")
+                </th>
+                <th>
+                    @Html.DisplayName("Eliminar")
+                </th>
+                <th>
+                    @Html.DisplayName("Cambiar Contraseña")
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in list)
+            {
+                var idrol = "";
+                ICollection<AspNetRoles> rol = item.AspNetRoles;
+                foreach (var roles in rol)
+                {
+
+                    idrol = roles.Name;
+                } 
+                
+                <tr>
+                    @if (!User.IsInRole("admin"))
+                    {
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UserName)
+                        </td>
+                        <td>
+                            @Html.DisplayName(idrol)
+                        </td>
+                         if (idUser != item.Id)
+                    {
+                        <td>
+                            @Html.ActionLink("Confirmar", "Remove", new { userId = item.Id })
+                        </td>
+                        <td>
+                            @Html.ActionLink("Editar", "ChangePassword", new { userId = item.Id })
+                        </td>
+                    }
+                    
+                  
+                    }
+                 
+                 
+                    @if (User.IsInRole("admin") && idrol=="worker")
+                    {
+                        if (idrol != "superadmin")
+                        {
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UserName)
+                            </td>
+                            <td>
+                                @Html.DisplayName(idrol)
+                            </td>
+
+                            if (idUser != item.Id)
+                            {
+                                <td>
+                                    @Html.ActionLink("Confirmar", "Remove", new { userId = item.Id })
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Editar", "ChangePassword", new { userId = item.Id })
+                                </td>
+                            }
+                        }
+                    }
+                    
+                    @if (idUser == item.Id)
+                    {
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UserName)
+                        </td>
+                        <td>
+                            @Html.DisplayName(idrol)
+                        </td>
+                        <td>
+                            </td>
+                           <td>
+                            @Html.ActionLink("Editar", "ChangePassword", new { userId = item.Id })
+                        </td>
+                    }
+                 
+                </tr>
+            }
+        </table>
+    </div>
+</div>

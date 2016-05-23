@@ -1,0 +1,135 @@
+﻿@model PagedList.IPagedList<TripAgency.EF.Hotel>
+@using PagedList.Mvc;
+@using TripAgency.Controllers
+@Styles.Render("~/Content/pagedlist")
+@Scripts.Render("~/bundles/new")
+
+@{
+    ViewBag.Title = "Hotel";
+    HotelController hc = new HotelController();
+    
+}
+
+<h2>Hotel</h2>
+
+<p>
+    @Html.ActionLink("Añadir nuevo", "Create")
+</p>
+<br />
+<div class="row">
+    <div class="col-md-3">
+        <form action="#" method="get">
+            <div class="input-group">
+                <!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
+                <input class="form-control" id="system-search" name="Search_Data" placeholder="Buscar por" required="">
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-default">
+                        <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                </span>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-9">
+        <table class="table table-hover table-list-search">
+            <tr>
+                <th>
+                    @Html.ActionLink("Cadena", "Index", new { Sorting_Order = ViewBag.SortingNombre })
+                </th>
+                <th>
+                    @Html.DisplayName("Nombre")
+                </th>
+                <th>
+                    @Html.DisplayName("Destino")
+                </th>
+                <th>
+                    @Html.DisplayName("Dirección")
+                </th>
+                <th>
+                    @Html.DisplayName("Imagen")
+                </th>
+                <th>
+                    @Html.DisplayName("Imagen")
+                </th>
+                <th>
+                    @Html.DisplayName("Imagen")
+                </th>
+                <th>
+                    @Html.DisplayName("Categoría")
+                </th>
+                <th>
+                    @Html.DisplayName("Tipologías")
+                </th>
+                <th>
+                    @Html.DisplayName("Suplementos")
+                </th>
+                <th>
+                    @Html.DisplayName("Reducciones")
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cadena.cadena_)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nombre_hotel)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Destino.destino1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.direccion)
+                    </td>
+                    <td>
+                        <img height="50" src="@item.foto_hotel1" width="50" alt=@item.nombre_hotel />
+                    </td>
+                    <td>
+                        <img height="50" src="@item.foto_hote2" width="50" alt=@item.nombre_hotel />
+                    </td>
+                    <td>
+                        <img height="50" src="@item.foto_hotel3" width="50" alt=@item.nombre_hotel />
+                    </td>
+                    <td align="center">
+                        @Html.DisplayFor(modelItem => item.Categoria.categoria1)
+                    </td>
+                    <td>
+                        @{
+                            foreach (var course in item.Tipol_HotelTipol)
+                            {
+                               @Html.DisplayName("* ") @course.Tipologia.tipologia1 <br />
+                            }
+                        }
+                    </td>
+                    <td>
+                        @{
+                            foreach (var course in item.Suplemento_Hotel)
+                            {
+                                @Html.DisplayName("* ") @course.Suplemento.suplemento1 <br />
+                            }
+                        }
+                    </td>
+                    <td>
+                        @{
+                            foreach (var course in item.Reduccion_Hotel)
+                            {
+                                @Html.DisplayName("* ") @course.Reduccion.reduccion1 <br />
+                            }
+                        }
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "Edit", new { id = item.idHotel })
+                        @Html.ActionLink("Borrar", "Delete", new { id = item.idHotel })
+                    </td>
+                </tr>
+            }
+        </table>
+
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        @Html.PagedListPager(Model, Page_No => Url.Action("Index", new { Page_No, Sorting_Order = ViewBag.CurrentSortOrder, Filter_Value = ViewBag.FilterValue }))
+    </div>
+</div>
+        

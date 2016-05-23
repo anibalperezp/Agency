@@ -1,0 +1,50 @@
+﻿@model TripAgency.EF.TarifaCarro
+
+@{
+    ViewBag.Title = "Borrar";
+}
+
+<h2>Borrar</h2>
+
+<h3>Está seguro que desea borrar este elemento?</h3>
+<div>
+    <h4>Tarifa de Carro</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayName("Empresa")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Empresa.nombre_empresa)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Temporada")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Temporada.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Categoría")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tipologia_Carro.nombre)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Ir atrás", "Index")
+        </div>
+    }
+</div>

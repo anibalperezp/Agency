@@ -1,0 +1,157 @@
+﻿@model TripAgency.EF.Avion
+
+@{
+    ViewBag.Title = "Añadir";
+}
+
+<h2>Añadir nuevo</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Avión</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        
+        <div class="form-group">
+            @Html.Label("Empresa", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("idEmpresa", String.Empty)
+                @Html.ValidationMessageFor(model => model.idEmpresa)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Número de Vuelo", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.numVuelo, new { @class = "form-control", @placeholder = "Número de Vuelo" })
+                @Html.ValidationMessageFor(model => model.numVuelo)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Clases de pasajeros", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <table>
+                    <tr>
+                        @{
+                            int cnt = 0;
+                            List<TripAgency.Models.ClaseModel> courses = ViewBag.Courses;
+                            foreach (var course in courses)
+                            {
+                                if (cnt++ % 3 == 0)
+                                {
+                                    @:</tr><tr>
+                                }
+                                @:<td>
+                                    <input type="checkbox"
+                                           name="selectedCourses"
+                                           value="@course.idClase"
+                                           @(Html.Raw(course.assigned ? "checked=\"checked\"" : "")) />
+                                    @: @course.nombre
+                                    @:</td>
+                            }
+                            @:</tr>
+                        }
+                    </table>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Nombre de Vuelo", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.nombre, new { @class = "form-control", @placeholder = "Nombre de Vuelo" })
+                    @Html.ValidationMessageFor(model => model.nombre)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Tipo de Avión", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("idTipoAvion", String.Empty)
+                    @Html.ValidationMessageFor(model => model.idTipoAvion)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Origen de Traslado", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("idOrigenVuelo", String.Empty)
+                    @Html.ValidationMessageFor(model => model.idOrigenVuelo)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Fecha de salida", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.tsalida)
+                    @Html.ValidationMessageFor(model => model.tsalida)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Hora de salida", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.horasalida, new { @class = "form-control", @placeholder = "-- : --  AM/PM" })
+                    @Html.ValidationMessageFor(model => model.horasalida)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Destino de Traslado", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("idDestinoVuelo", String.Empty)
+                    @Html.ValidationMessageFor(model => model.idDestinoVuelo)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Fecha de llegada", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.tllegada)
+                    @Html.ValidationMessageFor(model => model.tllegada)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Hora de llegada", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.horallegada, new { @class = "form-control", @placeholder = "-- : --  AM/PM" })
+                    @Html.ValidationMessageFor(model => model.horallegada)
+                </div>
+            </div>
+        
+        <div class="form-group">
+            @Html.Label("Pasajeros", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.pasajeros, new { @class = "form-control", @placeholder = "Cantidad de Pasajeros" })
+                @Html.ValidationMessageFor(model => model.pasajeros)
+            </div>
+        </div>
+
+        <div class="form-group">
+                @Html.Label("Descripción", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.descripcion, new { @class = "col-md-2", @placeholder = "Descripción" })
+                    @Html.ValidationMessageFor(model => model.descripcion)
+                </div>
+            </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Ir atrás", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

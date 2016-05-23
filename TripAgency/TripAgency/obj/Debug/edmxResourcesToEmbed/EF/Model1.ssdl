@@ -1,0 +1,2095 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TripAgencyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Anno">
+    <Key>
+      <PropertyRef Name="IdAnno" />
+    </Key>
+    <Property Name="IdAnno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="anno1" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClaimType" Type="nvarchar(max)" />
+    <Property Name="ClaimValue" Type="nvarchar(max)" />
+    <Property Name="User_Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogins">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+    </Key>
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserRoles">
+    <Key>
+      <PropertyRef Name="RoleId" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar(max)" />
+    <Property Name="PasswordHash" Type="nvarchar(max)" />
+    <Property Name="SecurityStamp" Type="nvarchar(max)" />
+    <Property Name="Discriminator" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Avion">
+    <Key>
+      <PropertyRef Name="idVuelo" />
+    </Key>
+    <Property Name="idVuelo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="numVuelo" Type="nvarchar(max)" />
+    <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="descripcion" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="idEmpresa" Type="int" Nullable="false" />
+    <Property Name="tsalida" Type="datetime" Nullable="false" />
+    <Property Name="tllegada" Type="datetime" Nullable="false" />
+    <Property Name="horallegada" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="horasalida" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="idTipoAvion" Type="int" />
+    <Property Name="idOrigenVuelo" Type="int" />
+    <Property Name="idDestinoVuelo" Type="int" />
+    <Property Name="pasajeros" Type="int" />
+  </EntityType>
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Cadena">
+    <Key>
+      <PropertyRef Name="idCadena" />
+    </Key>
+    <Property Name="idCadena" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cadena_" Type="varchar(max)" Nullable="false" />
+    <Property Name="logo_cadena" Type="varchar(max)" Nullable="false" />
+    <Property Name="descrpcion_cadena" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Carro">
+    <Key>
+      <PropertyRef Name="idCarro" />
+    </Key>
+    <Property Name="idCarro" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="foto_carro1" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="foto_carro2" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="foto_carro3" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="idtipologia_carro" Type="int" Nullable="false" />
+    <Property Name="descripcion_carro" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="idempresa" Type="int" Nullable="false" />
+    <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="transmision" Type="nvarchar(max)" />
+    <Property Name="pasajeros" Type="int" />
+  </EntityType>
+  <EntityType Name="Categoria">
+    <Key>
+      <PropertyRef Name="idCategoria" />
+    </Key>
+    <Property Name="idCategoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="categoria1" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CategTarifAvion">
+    <Key>
+      <PropertyRef Name="idCategTarifAvion" />
+    </Key>
+    <Property Name="idCategTarifAvion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="codigocat" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="descripcion" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="oneway" Type="bit" Nullable="false" />
+    <Property Name="roundtrip" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Clase">
+    <Key>
+      <PropertyRef Name="idClase" />
+    </Key>
+    <Property Name="idClase" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="descripcion" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Destino">
+    <Key>
+      <PropertyRef Name="idDestino" />
+    </Key>
+    <Property Name="idDestino" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="destino1" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="decripcion_destino" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="foto_destino1" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="foto_destino2" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="idpais" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DestinoRental">
+    <Key>
+      <PropertyRef Name="idDestinoRental" />
+    </Key>
+    <Property Name="idDestinoRental" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="descripcion" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DestinoVuelo">
+    <Key>
+      <PropertyRef Name="idDestinoVuelo" />
+    </Key>
+    <Property Name="idDestinoVuelo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="descripcion" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Empresa">
+    <Key>
+      <PropertyRef Name="idEmpresa" />
+    </Key>
+    <Property Name="idEmpresa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_empresa" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="foto_empresa" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="direccion_empresa" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="telefono_empresa" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Empresa_TipoEmpresa">
+    <Key>
+      <PropertyRef Name="idunionet" />
+    </Key>
+    <Property Name="idunionet" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idtipoempresa" Type="int" />
+    <Property Name="idEmpresa" Type="int" />
+    <Property Name="asignado" Type="bit" />
+  </EntityType>
+  <EntityType Name="Estacion">
+    <Key>
+      <PropertyRef Name="idEstacion" />
+    </Key>
+    <Property Name="idEstacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="estacion1" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="descripcioon_estacion" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Excursion">
+    <Key>
+      <PropertyRef Name="idExcursion" />
+    </Key>
+    <Property Name="idExcursion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_excursion" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="descrpcion_excursion" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="idempresa" Type="int" Nullable="false" />
+    <Property Name="idDestino" Type="int" />
+    <Property Name="foto1" Type="nvarchar(max)" />
+    <Property Name="foto2" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Hotel">
+    <Key>
+      <PropertyRef Name="idHotel" />
+    </Key>
+    <Property Name="idHotel" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_hotel" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="descripcion_hotel" Type="nvarchar(max)" />
+    <Property Name="direccion" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="foto_hotel1" Type="nvarchar(max)" />
+    <Property Name="foto_hote2" Type="nvarchar(max)" />
+    <Property Name="foto_hotel3" Type="nvarchar(max)" />
+    <Property Name="idCategoria" Type="int" Nullable="false" />
+    <Property Name="idCadena" Type="int" Nullable="false" />
+    <Property Name="idDestino" Type="int" Nullable="false" />
+    <Property Name="telefono" Type="nvarchar(max)" />
+    <Property Name="fax" Type="nvarchar(max)" />
+    <Property Name="sitioWeb" Type="nvarchar(max)" />
+    <Property Name="facilidades" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="NomAvionClase">
+    <Key>
+      <PropertyRef Name="idNomAvionClase" />
+    </Key>
+    <Property Name="idNomAvionClase" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idVuelo" Type="int" />
+    <Property Name="idClase" Type="int" />
+    <Property Name="asignado" Type="bit" />
+  </EntityType>
+  <EntityType Name="NomClaseCatTarAvi">
+    <Key>
+      <PropertyRef Name="idNomClaseCatTarAvi" />
+    </Key>
+    <Property Name="idNomClaseCatTarAvi" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idClase" Type="int" />
+    <Property Name="idCategTarifAvion" Type="int" />
+    <Property Name="asignado" Type="bit" />
+  </EntityType>
+  <EntityType Name="NomTempAvionClase">
+    <Key>
+      <PropertyRef Name="idNomTempAvionClase" />
+    </Key>
+    <Property Name="idNomTempAvionClase" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idVuelo" Type="int" />
+    <Property Name="idTemporadaVuelo" Type="int" />
+    <Property Name="tarifa" Type="float" />
+    <Property Name="idClase" Type="int" />
+  </EntityType>
+  <EntityType Name="NomTempRedHotel">
+    <Key>
+      <PropertyRef Name="idtemphotred" />
+    </Key>
+    <Property Name="idtemphotred" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idTemporada_Reduccion" Type="int" Nullable="false" />
+    <Property Name="idreduccion" Type="int" Nullable="false" />
+    <Property Name="tarifa" Type="float" />
+    <Property Name="idtipotarifa" Type="int" />
+  </EntityType>
+  <EntityType Name="NomTempSupHotel">
+    <Key>
+      <PropertyRef Name="idtemphotsup" />
+    </Key>
+    <Property Name="idtemphotsup" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idSuplementoHotel" Type="int" Nullable="false" />
+    <Property Name="idsuplemento" Type="int" Nullable="false" />
+    <Property Name="tarifa" Type="float" />
+    <Property Name="idtipotarifa" Type="int" />
+  </EntityType>
+  <EntityType Name="NomTempTipHotel">
+    <Key>
+      <PropertyRef Name="idtemphottip" />
+    </Key>
+    <Property Name="idtemphottip" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idTemporadaHotel" Type="int" Nullable="false" />
+    <Property Name="idTiologia" Type="int" Nullable="false" />
+    <Property Name="tarifa" Type="float" />
+    <Property Name="idtipotarifa" Type="int" />
+    <Property Name="maxadult" Type="int" />
+    <Property Name="maxninno" Type="int" />
+    <Property Name="minadult" Type="int" />
+    <Property Name="minninno" Type="int" />
+  </EntityType>
+  <EntityType Name="OficinaRenta">
+    <Key>
+      <PropertyRef Name="idOficina" />
+    </Key>
+    <Property Name="idOficina" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="imagen" Type="nvarchar(max)" />
+    <Property Name="descripcion" Type="nvarchar(max)" />
+    <Property Name="idDestino" Type="int" />
+    <Property Name="idEmpresa" Type="int" />
+  </EntityType>
+  <EntityType Name="OficPerCar">
+    <Key>
+      <PropertyRef Name="idOficCar" />
+    </Key>
+    <Property Name="idOficCar" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idCarro" Type="int" />
+    <Property Name="idOficina" Type="int" />
+  </EntityType>
+  <EntityType Name="OrigenRental">
+    <Key>
+      <PropertyRef Name="idOrigenRental" />
+    </Key>
+    <Property Name="idOrigenRental" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="descripcion" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OrigenVuelo">
+    <Key>
+      <PropertyRef Name="idOrigenVuelo" />
+    </Key>
+    <Property Name="idOrigenVuelo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="descripcion" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Pai">
+    <Key>
+      <PropertyRef Name="idPais" />
+    </Key>
+    <Property Name="idPais" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="pais" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="foto" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Paquete">
+    <Key>
+      <PropertyRef Name="idPaquete" />
+    </Key>
+    <Property Name="idPaquete" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_paquete" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="descripcion_paquete" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="idEmpresa" Type="int" Nullable="false" />
+    <Property Name="foto" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Rango">
+    <Key>
+      <PropertyRef Name="idrango" />
+    </Key>
+    <Property Name="idrango" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="rango1" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Rangos_Tarifa">
+    <Key>
+      <PropertyRef Name="idrangtar" />
+    </Key>
+    <Property Name="idrangtar" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idcondtarifa" Type="int" />
+    <Property Name="idrango" Type="int" />
+    <Property Name="asignado" Type="bit" />
+    <Property Name="tarifa" Type="float" />
+  </EntityType>
+  <EntityType Name="Reduccion">
+    <Key>
+      <PropertyRef Name="idReduccion" />
+    </Key>
+    <Property Name="idReduccion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="reduccion1" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="descripcion_reduccion" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Reduccion_Hotel">
+    <Key>
+      <PropertyRef Name="idReduccionhotel" />
+    </Key>
+    <Property Name="idReduccionhotel" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idhotel" Type="int" />
+    <Property Name="idReduccion" Type="int" />
+    <Property Name="asignado" Type="bit" />
+    <Property Name="precio" Type="float" />
+    <Property Name="porciento" Type="float" />
+  </EntityType>
+  <EntityType Name="Rental">
+    <Key>
+      <PropertyRef Name="idRental" />
+    </Key>
+    <Property Name="idRental" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="foto" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="descripcion" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="idDestinoRental" Type="int" Nullable="false" />
+    <Property Name="idOrigenRental" Type="int" Nullable="false" />
+    <Property Name="idEmpresa" Type="int" />
+  </EntityType>
+  <EntityType Name="Subdestino">
+    <Key>
+      <PropertyRef Name="idSubdestino" />
+    </Key>
+    <Property Name="idSubdestino" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="subdestino1" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="descripcion_subdestino" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="foto_sub1" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="foto_sub2" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="iddestino" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Suplemento">
+    <Key>
+      <PropertyRef Name="idSuplemento" />
+    </Key>
+    <Property Name="idSuplemento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="suplemento1" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="descripcion_suplemento" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Suplemento_Hotel">
+    <Key>
+      <PropertyRef Name="idsuplementohotel" />
+    </Key>
+    <Property Name="idsuplementohotel" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idhotel" Type="int" />
+    <Property Name="idSuplemento" Type="int" />
+    <Property Name="asignado" Type="bit" />
+    <Property Name="precio" Type="float" />
+    <Property Name="porciento" Type="float" />
+  </EntityType>
+  <EntityType Name="TarifaCarro">
+    <Key>
+      <PropertyRef Name="idcondtarifa" />
+    </Key>
+    <Property Name="idcondtarifa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="valor" Type="float" Nullable="false" />
+    <Property Name="seguro" Type="float" Nullable="false" />
+    <Property Name="deposito" Type="float" Nullable="false" />
+    <Property Name="descripcion" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="idAnno" Type="int" Nullable="false" />
+    <Property Name="idTemporada" Type="int" Nullable="false" />
+    <Property Name="idtipologia_carro" Type="int" Nullable="false" />
+    <Property Name="idEmpresa" Type="int" Nullable="false" />
+    <Property Name="idTemporadaEmpresa" Type="int" />
+  </EntityType>
+  <EntityType Name="Tarificacion">
+    <Key>
+      <PropertyRef Name="idTarificacion" />
+    </Key>
+    <Property Name="idTarificacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="pack" Type="bit" Nullable="false" />
+    <Property Name="hab" Type="bit" Nullable="false" />
+    <Property Name="casa" Type="bit" Nullable="false" />
+    <Property Name="descripcion" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Temporada">
+    <Key>
+      <PropertyRef Name="idtemporada" />
+    </Key>
+    <Property Name="idtemporada" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="descripcion" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Temporada_Hotel">
+    <Key>
+      <PropertyRef Name="idTemporadaHotel" />
+    </Key>
+    <Property Name="idTemporadaHotel" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="periodo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="inicio" Type="datetime" Nullable="false" />
+    <Property Name="fin" Type="datetime" Nullable="false" />
+    <Property Name="descripcion_periodo" Type="nvarchar(max)" />
+    <Property Name="idanno" Type="int" Nullable="false" />
+    <Property Name="idhotel" Type="int" Nullable="false" />
+    <Property Name="idEstacion" Type="int" Nullable="false" />
+    <Property Name="idTemporada" Type="int" Nullable="false" />
+    <Property Name="tarifa" Type="float" />
+  </EntityType>
+  <EntityType Name="Temporada_Reduccion">
+    <Key>
+      <PropertyRef Name="idTemporada_Reduccion" />
+    </Key>
+    <Property Name="idTemporada_Reduccion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="periodo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="inicio" Type="datetime" />
+    <Property Name="fin" Type="datetime" />
+    <Property Name="idtemporada" Type="int" Nullable="false" />
+    <Property Name="idanno" Type="int" Nullable="false" />
+    <Property Name="valor" Type="float" />
+    <Property Name="idhotel" Type="int" />
+    <Property Name="idEstacion" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Temporada_Suplemento">
+    <Key>
+      <PropertyRef Name="idSuplementoHotel" />
+    </Key>
+    <Property Name="idSuplementoHotel" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="periodo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="inicio" Type="datetime" Nullable="false" />
+    <Property Name="fin" Type="datetime" Nullable="false" />
+    <Property Name="idanno" Type="int" Nullable="false" />
+    <Property Name="valor" Type="float" />
+    <Property Name="idhotel" Type="int" Nullable="false" />
+    <Property Name="idEstacion" Type="int" Nullable="false" />
+    <Property Name="idTemporada" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TemporadaAvion">
+    <Key>
+      <PropertyRef Name="idTemporadaVuelo" />
+    </Key>
+    <Property Name="idTemporadaVuelo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="periodo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="inicio" Type="datetime" Nullable="false" />
+    <Property Name="fin" Type="datetime" Nullable="false" />
+    <Property Name="descripcion_periodo" Type="nvarchar(max)" />
+    <Property Name="idanno" Type="int" Nullable="false" />
+    <Property Name="idEstacion" Type="int" Nullable="false" />
+    <Property Name="idTemporada" Type="int" Nullable="false" />
+    <Property Name="idEmpresa" Type="int" />
+  </EntityType>
+  <EntityType Name="TemporadaEmpresa">
+    <Key>
+      <PropertyRef Name="idTemporadaEmpresa" />
+    </Key>
+    <Property Name="idTemporadaEmpresa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="periodo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="inicio" Type="datetime" Nullable="false" />
+    <Property Name="fin" Type="datetime" Nullable="false" />
+    <Property Name="descripcion_periodo" Type="nvarchar(max)" />
+    <Property Name="idanno" Type="int" Nullable="false" />
+    <Property Name="idEmpresa" Type="int" Nullable="false" />
+    <Property Name="idEstacion" Type="int" Nullable="false" />
+    <Property Name="idTemporada" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TemporadaExcursion">
+    <Key>
+      <PropertyRef Name="idtemporadaexcursion" />
+    </Key>
+    <Property Name="idtemporadaexcursion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="periodo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="inicio" Type="datetime" Nullable="false" />
+    <Property Name="fin" Type="datetime" Nullable="false" />
+    <Property Name="descripcion_periodo" Type="nvarchar(max)" />
+    <Property Name="idanno" Type="int" Nullable="false" />
+    <Property Name="precio_tarifa" Type="float" />
+    <Property Name="idExcursion" Type="int" />
+    <Property Name="idEstacion" Type="int" Nullable="false" />
+    <Property Name="idTemporada" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TemporadaPaquete">
+    <Key>
+      <PropertyRef Name="idtemporadapaquete" />
+    </Key>
+    <Property Name="idtemporadapaquete" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="periodo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="inicio" Type="datetime" Nullable="false" />
+    <Property Name="fin" Type="datetime" Nullable="false" />
+    <Property Name="descripcion_periodo" Type="nvarchar(max)" />
+    <Property Name="idanno" Type="int" Nullable="false" />
+    <Property Name="precio_tarifa" Type="float" />
+    <Property Name="idPaquete" Type="int" />
+    <Property Name="idEstacion" Type="int" Nullable="false" />
+    <Property Name="idTemporada" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TemporadaRental">
+    <Key>
+      <PropertyRef Name="idTemporadaRental" />
+    </Key>
+    <Property Name="idTemporadaRental" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="periodo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="inicio" Type="datetime" Nullable="false" />
+    <Property Name="fin" Type="datetime" Nullable="false" />
+    <Property Name="descripcion_periodo" Type="nvarchar(max)" />
+    <Property Name="idanno" Type="int" Nullable="false" />
+    <Property Name="precio_tarifa" Type="float" />
+    <Property Name="idRental" Type="int" />
+    <Property Name="idEstacion" Type="int" Nullable="false" />
+    <Property Name="idTemporada" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tipo_Empresa">
+    <Key>
+      <PropertyRef Name="idtipoempresa" />
+    </Key>
+    <Property Name="idtipoempresa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tipo_Tarifa">
+    <Key>
+      <PropertyRef Name="idTipoTarifa" />
+    </Key>
+    <Property Name="idTipoTarifa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tipo_tarifa1" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TipoAvion">
+    <Key>
+      <PropertyRef Name="idTipoAvion" />
+    </Key>
+    <Property Name="idTipoAvion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="descripcion" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Tipol_HotelTipol">
+    <Key>
+      <PropertyRef Name="idtipologiahotel" />
+    </Key>
+    <Property Name="idtipologiahotel" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idhotel" Type="int" />
+    <Property Name="idTiologia" Type="int" />
+    <Property Name="asignado" Type="bit" />
+    <Property Name="descripc" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Tipologia">
+    <Key>
+      <PropertyRef Name="idTiologia" />
+    </Key>
+    <Property Name="idTiologia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tipologia1" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="idTarificacion" Type="int" />
+  </EntityType>
+  <EntityType Name="Tipologia_Carro">
+    <Key>
+      <PropertyRef Name="idtipologia_carro" />
+    </Key>
+    <Property Name="idtipologia_carro" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="descripcion" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_AspNetUserRoles_AspNetRoles">
+    <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1" />
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetRoles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AspNetUserRoles_AspNetUsers">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Avion_ToTable">
+    <End Role="OrigenVuelo" Type="Self.OrigenVuelo" Multiplicity="0..1" />
+    <End Role="Avion" Type="Self.Avion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrigenVuelo">
+        <PropertyRef Name="idOrigenVuelo" />
+      </Principal>
+      <Dependent Role="Avion">
+        <PropertyRef Name="idOrigenVuelo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Avion_ToTable_1">
+    <End Role="DestinoVuelo" Type="Self.DestinoVuelo" Multiplicity="0..1" />
+    <End Role="Avion" Type="Self.Avion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DestinoVuelo">
+        <PropertyRef Name="idDestinoVuelo" />
+      </Principal>
+      <Dependent Role="Avion">
+        <PropertyRef Name="idDestinoVuelo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Carros_ToTable">
+    <End Role="Empresa" Type="Self.Empresa" Multiplicity="1" />
+    <End Role="Carro" Type="Self.Carro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empresa">
+        <PropertyRef Name="idEmpresa" />
+      </Principal>
+      <Dependent Role="Carro">
+        <PropertyRef Name="idempresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Carros_ToTable_2">
+    <End Role="Tipologia_Carro" Type="Self.Tipologia_Carro" Multiplicity="1" />
+    <End Role="Carro" Type="Self.Carro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tipologia_Carro">
+        <PropertyRef Name="idtipologia_carro" />
+      </Principal>
+      <Dependent Role="Carro">
+        <PropertyRef Name="idtipologia_carro" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClaseCatTarAvi_ToTable">
+    <End Role="CategTarifAvion" Type="Self.CategTarifAvion" Multiplicity="0..1" />
+    <End Role="NomClaseCatTarAvi" Type="Self.NomClaseCatTarAvi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CategTarifAvion">
+        <PropertyRef Name="idCategTarifAvion" />
+      </Principal>
+      <Dependent Role="NomClaseCatTarAvi">
+        <PropertyRef Name="idCategTarifAvion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClaseCatTarAvi_ToTable_1">
+    <End Role="Clase" Type="Self.Clase" Multiplicity="0..1" />
+    <End Role="NomClaseCatTarAvi" Type="Self.NomClaseCatTarAvi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clase">
+        <PropertyRef Name="idClase" />
+      </Principal>
+      <Dependent Role="NomClaseCatTarAvi">
+        <PropertyRef Name="idClase" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Destino_Pais">
+    <End Role="Pai" Type="Self.Pai" Multiplicity="1" />
+    <End Role="Destino" Type="Self.Destino" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pai">
+        <PropertyRef Name="idPais" />
+      </Principal>
+      <Dependent Role="Destino">
+        <PropertyRef Name="idpais" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Excursion_ToTable">
+    <End Role="Empresa" Type="Self.Empresa" Multiplicity="1" />
+    <End Role="Excursion" Type="Self.Excursion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empresa">
+        <PropertyRef Name="idEmpresa" />
+      </Principal>
+      <Dependent Role="Excursion">
+        <PropertyRef Name="idempresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Excursion_ToTable2">
+    <End Role="Destino" Type="Self.Destino" Multiplicity="0..1" />
+    <End Role="Excursion" Type="Self.Excursion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Destino">
+        <PropertyRef Name="idDestino" />
+      </Principal>
+      <Dependent Role="Excursion">
+        <PropertyRef Name="idDestino" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Hotel_ToTable">
+    <End Role="Categoria" Type="Self.Categoria" Multiplicity="1" />
+    <End Role="Hotel" Type="Self.Hotel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categoria">
+        <PropertyRef Name="idCategoria" />
+      </Principal>
+      <Dependent Role="Hotel">
+        <PropertyRef Name="idCategoria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Hotel_ToTable_1">
+    <End Role="Cadena" Type="Self.Cadena" Multiplicity="1" />
+    <End Role="Hotel" Type="Self.Hotel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cadena">
+        <PropertyRef Name="idCadena" />
+      </Principal>
+      <Dependent Role="Hotel">
+        <PropertyRef Name="idCadena" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Hotel_ToTable_2">
+    <End Role="Destino" Type="Self.Destino" Multiplicity="1" />
+    <End Role="Hotel" Type="Self.Hotel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Destino">
+        <PropertyRef Name="idDestino" />
+      </Principal>
+      <Dependent Role="Hotel">
+        <PropertyRef Name="idDestino" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Nom_Temp_Hotel_ToTable_6">
+    <End Role="Temporada_Suplemento" Type="Self.Temporada_Suplemento" Multiplicity="1" />
+    <End Role="NomTempSupHotel" Type="Self.NomTempSupHotel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Temporada_Suplemento">
+        <PropertyRef Name="idSuplementoHotel" />
+      </Principal>
+      <Dependent Role="NomTempSupHotel">
+        <PropertyRef Name="idSuplementoHotel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Nom_Temp_Hotel_ToTable_7">
+    <End Role="Suplemento" Type="Self.Suplemento" Multiplicity="1" />
+    <End Role="NomTempSupHotel" Type="Self.NomTempSupHotel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Suplemento">
+        <PropertyRef Name="idSuplemento" />
+      </Principal>
+      <Dependent Role="NomTempSupHotel">
+        <PropertyRef Name="idsuplemento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Nom_Temp_Hotel_ToTable_8">
+    <End Role="Tipo_Tarifa" Type="Self.Tipo_Tarifa" Multiplicity="0..1" />
+    <End Role="NomTempSupHotel" Type="Self.NomTempSupHotel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tipo_Tarifa">
+        <PropertyRef Name="idTipoTarifa" />
+      </Principal>
+      <Dependent Role="NomTempSupHotel">
+        <PropertyRef Name="idtipotarifa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Nom_Temporada_Hotel_ToTable_">
+    <End Role="Reduccion" Type="Self.Reduccion" Multiplicity="1" />
+    <End Role="NomTempRedHotel" Type="Self.NomTempRedHotel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Reduccion">
+        <PropertyRef Name="idReduccion" />
+      </Principal>
+      <Dependent Role="NomTempRedHotel">
+        <PropertyRef Name="idreduccion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Nom_Temporada_Hotel_ToTable_1">
+    <End Role="Temporada_Reduccion" Type="Self.Temporada_Reduccion" Multiplicity="1" />
+    <End Role="NomTempRedHotel" Type="Self.NomTempRedHotel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Temporada_Reduccion">
+        <PropertyRef Name="idTemporada_Reduccion" />
+      </Principal>
+      <Dependent Role="NomTempRedHotel">
+        <PropertyRef Name="idTemporada_Reduccion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Nom_Temporada_Hotel_ToTable_2">
+    <End Role="Tipo_Tarifa" Type="Self.Tipo_Tarifa" Multiplicity="0..1" />
+    <End Role="NomTempRedHotel" Type="Self.NomTempRedHotel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tipo_Tarifa">
+        <PropertyRef Name="idTipoTarifa" />
+      </Principal>
+      <Dependent Role="NomTempRedHotel">
+        <PropertyRef Name="idtipotarifa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Nom_Temporada_Hotel_ToTable_6">
+    <End Role="Temporada_Hotel" Type="Self.Temporada_Hotel" Multiplicity="1" />
+    <End Role="NomTempTipHotel" Type="Self.NomTempTipHotel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Temporada_Hotel">
+        <PropertyRef Name="idTemporadaHotel" />
+      </Principal>
+      <Dependent Role="NomTempTipHotel">
+        <PropertyRef Name="idTemporadaHotel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Nom_Temporada_Hotel_ToTable_7">
+    <End Role="Tipologia" Type="Self.Tipologia" Multiplicity="1" />
+    <End Role="NomTempTipHotel" Type="Self.NomTempTipHotel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tipologia">
+        <PropertyRef Name="idTiologia" />
+      </Principal>
+      <Dependent Role="NomTempTipHotel">
+        <PropertyRef Name="idTiologia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Nom_Temporada_Hotel_ToTable_8">
+    <End Role="Tipo_Tarifa" Type="Self.Tipo_Tarifa" Multiplicity="0..1" />
+    <End Role="NomTempTipHotel" Type="Self.NomTempTipHotel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tipo_Tarifa">
+        <PropertyRef Name="idTipoTarifa" />
+      </Principal>
+      <Dependent Role="NomTempTipHotel">
+        <PropertyRef Name="idtipotarifa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NomAvionClase_ToTable">
+    <End Role="Avion" Type="Self.Avion" Multiplicity="0..1" />
+    <End Role="NomAvionClase" Type="Self.NomAvionClase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Avion">
+        <PropertyRef Name="idVuelo" />
+      </Principal>
+      <Dependent Role="NomAvionClase">
+        <PropertyRef Name="idVuelo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NomAvionClase_ToTable_1">
+    <End Role="Clase" Type="Self.Clase" Multiplicity="0..1" />
+    <End Role="NomAvionClase" Type="Self.NomAvionClase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clase">
+        <PropertyRef Name="idClase" />
+      </Principal>
+      <Dependent Role="NomAvionClase">
+        <PropertyRef Name="idClase" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NomTempClase_ToTable">
+    <End Role="Avion" Type="Self.Avion" Multiplicity="0..1" />
+    <End Role="NomTempAvionClase" Type="Self.NomTempAvionClase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Avion">
+        <PropertyRef Name="idVuelo" />
+      </Principal>
+      <Dependent Role="NomTempAvionClase">
+        <PropertyRef Name="idVuelo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NomTempClase_ToTable_1">
+    <End Role="TemporadaAvion" Type="Self.TemporadaAvion" Multiplicity="0..1" />
+    <End Role="NomTempAvionClase" Type="Self.NomTempAvionClase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TemporadaAvion">
+        <PropertyRef Name="idTemporadaVuelo" />
+      </Principal>
+      <Dependent Role="NomTempAvionClase">
+        <PropertyRef Name="idTemporadaVuelo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NomTempClase_ToTable_2">
+    <End Role="Clase" Type="Self.Clase" Multiplicity="0..1" />
+    <End Role="NomTempAvionClase" Type="Self.NomTempAvionClase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clase">
+        <PropertyRef Name="idClase" />
+      </Principal>
+      <Dependent Role="NomTempAvionClase">
+        <PropertyRef Name="idClase" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OficinaRenta_ToTable">
+    <End Role="Destino" Type="Self.Destino" Multiplicity="0..1" />
+    <End Role="OficinaRenta" Type="Self.OficinaRenta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Destino">
+        <PropertyRef Name="idDestino" />
+      </Principal>
+      <Dependent Role="OficinaRenta">
+        <PropertyRef Name="idDestino" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OficinaRenta_ToTable_1">
+    <End Role="Empresa" Type="Self.Empresa" Multiplicity="0..1" />
+    <End Role="OficinaRenta" Type="Self.OficinaRenta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empresa">
+        <PropertyRef Name="idEmpresa" />
+      </Principal>
+      <Dependent Role="OficinaRenta">
+        <PropertyRef Name="idEmpresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OficPerCar_ToTable">
+    <End Role="Carro" Type="Self.Carro" Multiplicity="0..1" />
+    <End Role="OficPerCar" Type="Self.OficPerCar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Carro">
+        <PropertyRef Name="idCarro" />
+      </Principal>
+      <Dependent Role="OficPerCar">
+        <PropertyRef Name="idCarro" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OficPerCar_ToTable_1">
+    <End Role="OficinaRenta" Type="Self.OficinaRenta" Multiplicity="0..1" />
+    <End Role="OficPerCar" Type="Self.OficPerCar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OficinaRenta">
+        <PropertyRef Name="idOficina" />
+      </Principal>
+      <Dependent Role="OficPerCar">
+        <PropertyRef Name="idOficina" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Paquete_ToTable">
+    <End Role="Empresa" Type="Self.Empresa" Multiplicity="1" />
+    <End Role="Paquete" Type="Self.Paquete" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empresa">
+        <PropertyRef Name="idEmpresa" />
+      </Principal>
+      <Dependent Role="Paquete">
+        <PropertyRef Name="idEmpresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rental_ToTable">
+    <End Role="DestinoRental" Type="Self.DestinoRental" Multiplicity="1" />
+    <End Role="Rental" Type="Self.Rental" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DestinoRental">
+        <PropertyRef Name="idDestinoRental" />
+      </Principal>
+      <Dependent Role="Rental">
+        <PropertyRef Name="idDestinoRental" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rental_ToTable_1">
+    <End Role="OrigenRental" Type="Self.OrigenRental" Multiplicity="1" />
+    <End Role="Rental" Type="Self.Rental" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrigenRental">
+        <PropertyRef Name="idOrigenRental" />
+      </Principal>
+      <Dependent Role="Rental">
+        <PropertyRef Name="idOrigenRental" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rental_ToTable_2">
+    <End Role="Empresa" Type="Self.Empresa" Multiplicity="0..1" />
+    <End Role="Rental" Type="Self.Rental" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empresa">
+        <PropertyRef Name="idEmpresa" />
+      </Principal>
+      <Dependent Role="Rental">
+        <PropertyRef Name="idEmpresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Subdestino_ToTable">
+    <End Role="Destino" Type="Self.Destino" Multiplicity="1" />
+    <End Role="Subdestino" Type="Self.Subdestino" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Destino">
+        <PropertyRef Name="idDestino" />
+      </Principal>
+      <Dependent Role="Subdestino">
+        <PropertyRef Name="iddestino" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Table_ToTable">
+    <End Role="Tipo_Empresa" Type="Self.Tipo_Empresa" Multiplicity="0..1" />
+    <End Role="Empresa_TipoEmpresa" Type="Self.Empresa_TipoEmpresa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tipo_Empresa">
+        <PropertyRef Name="idtipoempresa" />
+      </Principal>
+      <Dependent Role="Empresa_TipoEmpresa">
+        <PropertyRef Name="idtipoempresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Table_ToTable_1">
+    <End Role="Empresa" Type="Self.Empresa" Multiplicity="0..1" />
+    <End Role="Empresa_TipoEmpresa" Type="Self.Empresa_TipoEmpresa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empresa">
+        <PropertyRef Name="idEmpresa" />
+      </Principal>
+      <Dependent Role="Empresa_TipoEmpresa">
+        <PropertyRef Name="idEmpresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TarifaCarro_ToTable_1">
+    <End Role="Anno" Type="Self.Anno" Multiplicity="1" />
+    <End Role="TarifaCarro" Type="Self.TarifaCarro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Anno">
+        <PropertyRef Name="IdAnno" />
+      </Principal>
+      <Dependent Role="TarifaCarro">
+        <PropertyRef Name="idAnno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TarifaCarro_ToTable_2">
+    <End Role="Temporada" Type="Self.Temporada" Multiplicity="1" />
+    <End Role="TarifaCarro" Type="Self.TarifaCarro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Temporada">
+        <PropertyRef Name="idtemporada" />
+      </Principal>
+      <Dependent Role="TarifaCarro">
+        <PropertyRef Name="idTemporada" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TarifaCarro_ToTable_3">
+    <End Role="Empresa" Type="Self.Empresa" Multiplicity="1" />
+    <End Role="TarifaCarro" Type="Self.TarifaCarro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empresa">
+        <PropertyRef Name="idEmpresa" />
+      </Principal>
+      <Dependent Role="TarifaCarro">
+        <PropertyRef Name="idEmpresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TarifaCarro_ToTable_5">
+    <End Role="Tipologia_Carro" Type="Self.Tipologia_Carro" Multiplicity="1" />
+    <End Role="TarifaCarro" Type="Self.TarifaCarro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tipologia_Carro">
+        <PropertyRef Name="idtipologia_carro" />
+      </Principal>
+      <Dependent Role="TarifaCarro">
+        <PropertyRef Name="idtipologia_carro" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TarifaCarro_ToTable_7">
+    <End Role="TemporadaEmpresa" Type="Self.TemporadaEmpresa" Multiplicity="0..1" />
+    <End Role="TarifaCarro" Type="Self.TarifaCarro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TemporadaEmpresa">
+        <PropertyRef Name="idTemporadaEmpresa" />
+      </Principal>
+      <Dependent Role="TarifaCarro">
+        <PropertyRef Name="idTemporadaEmpresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Temporada_Avion_ToTable_2">
+    <End Role="Empresa" Type="Self.Empresa" Multiplicity="0..1" />
+    <End Role="TemporadaAvion" Type="Self.TemporadaAvion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empresa">
+        <PropertyRef Name="idEmpresa" />
+      </Principal>
+      <Dependent Role="TemporadaAvion">
+        <PropertyRef Name="idEmpresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Temporada_Avion_ToTable_3">
+    <End Role="Anno" Type="Self.Anno" Multiplicity="1" />
+    <End Role="TemporadaAvion" Type="Self.TemporadaAvion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Anno">
+        <PropertyRef Name="IdAnno" />
+      </Principal>
+      <Dependent Role="TemporadaAvion">
+        <PropertyRef Name="idanno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Temporada_Avion_ToTable_4">
+    <End Role="Estacion" Type="Self.Estacion" Multiplicity="1" />
+    <End Role="TemporadaAvion" Type="Self.TemporadaAvion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Estacion">
+        <PropertyRef Name="idEstacion" />
+      </Principal>
+      <Dependent Role="TemporadaAvion">
+        <PropertyRef Name="idEstacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Temporada_Avion_ToTable_5">
+    <End Role="Temporada" Type="Self.Temporada" Multiplicity="1" />
+    <End Role="TemporadaAvion" Type="Self.TemporadaAvion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Temporada">
+        <PropertyRef Name="idtemporada" />
+      </Principal>
+      <Dependent Role="TemporadaAvion">
+        <PropertyRef Name="idTemporada" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Temporada_Excursion_ToTable">
+    <End Role="Excursion" Type="Self.Excursion" Multiplicity="0..1" />
+    <End Role="TemporadaExcursion" Type="Self.TemporadaExcursion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Excursion">
+        <PropertyRef Name="idExcursion" />
+      </Principal>
+      <Dependent Role="TemporadaExcursion">
+        <PropertyRef Name="idExcursion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Temporada_Excursion_ToTable_1">
+    <End Role="Anno" Type="Self.Anno" Multiplicity="1" />
+    <End Role="TemporadaExcursion" Type="Self.TemporadaExcursion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Anno">
+        <PropertyRef Name="IdAnno" />
+      </Principal>
+      <Dependent Role="TemporadaExcursion">
+        <PropertyRef Name="idanno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Temporada_Excursion_ToTable_2">
+    <End Role="Estacion" Type="Self.Estacion" Multiplicity="1" />
+    <End Role="TemporadaExcursion" Type="Self.TemporadaExcursion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Estacion">
+        <PropertyRef Name="idEstacion" />
+      </Principal>
+      <Dependent Role="TemporadaExcursion">
+        <PropertyRef Name="idEstacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Temporada_Excursion_ToTable_3">
+    <End Role="Temporada" Type="Self.Temporada" Multiplicity="1" />
+    <End Role="TemporadaExcursion" Type="Self.TemporadaExcursion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Temporada">
+        <PropertyRef Name="idtemporada" />
+      </Principal>
+      <Dependent Role="TemporadaExcursion">
+        <PropertyRef Name="idTemporada" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Temporada_Hotel_ToTable">
+    <End Role="Hotel" Type="Self.Hotel" Multiplicity="1" />
+    <End Role="Temporada_Hotel" Type="Self.Temporada_Hotel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="idHotel" />
+      </Principal>
+      <Dependent Role="Temporada_Hotel">
+        <PropertyRef Name="idhotel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Temporada_Hotel_ToTable_3">
+    <End Role="Anno" Type="Self.Anno" Multiplicity="1" />
+    <End Role="Temporada_Hotel" Type="Self.Temporada_Hotel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Anno">
+        <PropertyRef Name="IdAnno" />
+      </Principal>
+      <Dependent Role="Temporada_Hotel">
+        <PropertyRef Name="idanno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Temporada_Hotel_ToTable_4">
+    <End Role="Estacion" Type="Self.Estacion" Multiplicity="1" />
+    <End Role="Temporada_Hotel" Type="Self.Temporada_Hotel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Estacion">
+        <PropertyRef Name="idEstacion" />
+      </Principal>
+      <Dependent Role="Temporada_Hotel">
+        <PropertyRef Name="idEstacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Temporada_Hotel_ToTable_5">
+    <End Role="Temporada" Type="Self.Temporada" Multiplicity="1" />
+    <End Role="Temporada_Hotel" Type="Self.Temporada_Hotel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Temporada">
+        <PropertyRef Name="idtemporada" />
+      </Principal>
+      <Dependent Role="Temporada_Hotel">
+        <PropertyRef Name="idTemporada" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Temporada_Paquete_ToTable">
+    <End Role="Anno" Type="Self.Anno" Multiplicity="1" />
+    <End Role="TemporadaPaquete" Type="Self.TemporadaPaquete" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Anno">
+        <PropertyRef Name="IdAnno" />
+      </Principal>
+      <Dependent Role="TemporadaPaquete">
+        <PropertyRef Name="idanno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Temporada_Paquete_ToTable_1">
+    <End Role="Paquete" Type="Self.Paquete" Multiplicity="0..1" />
+    <End Role="TemporadaPaquete" Type="Self.TemporadaPaquete" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Paquete">
+        <PropertyRef Name="idPaquete" />
+      </Principal>
+      <Dependent Role="TemporadaPaquete">
+        <PropertyRef Name="idPaquete" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Temporada_Paquete_ToTable_2">
+    <End Role="Estacion" Type="Self.Estacion" Multiplicity="1" />
+    <End Role="TemporadaPaquete" Type="Self.TemporadaPaquete" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Estacion">
+        <PropertyRef Name="idEstacion" />
+      </Principal>
+      <Dependent Role="TemporadaPaquete">
+        <PropertyRef Name="idEstacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Temporada_Paquete_ToTable_3">
+    <End Role="Temporada" Type="Self.Temporada" Multiplicity="1" />
+    <End Role="TemporadaPaquete" Type="Self.TemporadaPaquete" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Temporada">
+        <PropertyRef Name="idtemporada" />
+      </Principal>
+      <Dependent Role="TemporadaPaquete">
+        <PropertyRef Name="idTemporada" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Temporada_Reduccion_ToTable">
+    <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1" />
+    <End Role="Temporada_Reduccion" Type="Self.Temporada_Reduccion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="idHotel" />
+      </Principal>
+      <Dependent Role="Temporada_Reduccion">
+        <PropertyRef Name="idhotel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Temporada_Reduccion_ToTable_3">
+    <End Role="Estacion" Type="Self.Estacion" Multiplicity="1" />
+    <End Role="Temporada_Reduccion" Type="Self.Temporada_Reduccion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Estacion">
+        <PropertyRef Name="idEstacion" />
+      </Principal>
+      <Dependent Role="Temporada_Reduccion">
+        <PropertyRef Name="idEstacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Temporada_Reduccion_ToTable_5">
+    <End Role="Temporada" Type="Self.Temporada" Multiplicity="1" />
+    <End Role="Temporada_Reduccion" Type="Self.Temporada_Reduccion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Temporada">
+        <PropertyRef Name="idtemporada" />
+      </Principal>
+      <Dependent Role="Temporada_Reduccion">
+        <PropertyRef Name="idtemporada" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Temporada_Reduccion_ToTable_6">
+    <End Role="Anno" Type="Self.Anno" Multiplicity="1" />
+    <End Role="Temporada_Reduccion" Type="Self.Temporada_Reduccion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Anno">
+        <PropertyRef Name="IdAnno" />
+      </Principal>
+      <Dependent Role="Temporada_Reduccion">
+        <PropertyRef Name="idanno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Temporada_Suplemento_ToTable">
+    <End Role="Anno" Type="Self.Anno" Multiplicity="1" />
+    <End Role="Temporada_Suplemento" Type="Self.Temporada_Suplemento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Anno">
+        <PropertyRef Name="IdAnno" />
+      </Principal>
+      <Dependent Role="Temporada_Suplemento">
+        <PropertyRef Name="idanno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Temporada_Suplemento_ToTable_1">
+    <End Role="Hotel" Type="Self.Hotel" Multiplicity="1" />
+    <End Role="Temporada_Suplemento" Type="Self.Temporada_Suplemento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="idHotel" />
+      </Principal>
+      <Dependent Role="Temporada_Suplemento">
+        <PropertyRef Name="idhotel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Temporada_Suplemento_ToTable_4">
+    <End Role="Estacion" Type="Self.Estacion" Multiplicity="1" />
+    <End Role="Temporada_Suplemento" Type="Self.Temporada_Suplemento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Estacion">
+        <PropertyRef Name="idEstacion" />
+      </Principal>
+      <Dependent Role="Temporada_Suplemento">
+        <PropertyRef Name="idEstacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Temporada_Suplemento_ToTable_5">
+    <End Role="Temporada" Type="Self.Temporada" Multiplicity="1" />
+    <End Role="Temporada_Suplemento" Type="Self.Temporada_Suplemento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Temporada">
+        <PropertyRef Name="idtemporada" />
+      </Principal>
+      <Dependent Role="Temporada_Suplemento">
+        <PropertyRef Name="idTemporada" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TemporadaEmpresa_ToTable_3">
+    <End Role="Anno" Type="Self.Anno" Multiplicity="1" />
+    <End Role="TemporadaEmpresa" Type="Self.TemporadaEmpresa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Anno">
+        <PropertyRef Name="IdAnno" />
+      </Principal>
+      <Dependent Role="TemporadaEmpresa">
+        <PropertyRef Name="idanno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TemporadaEmpresa_ToTable_4">
+    <End Role="Estacion" Type="Self.Estacion" Multiplicity="1" />
+    <End Role="TemporadaEmpresa" Type="Self.TemporadaEmpresa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Estacion">
+        <PropertyRef Name="idEstacion" />
+      </Principal>
+      <Dependent Role="TemporadaEmpresa">
+        <PropertyRef Name="idEstacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TemporadaEmpresa_ToTable_5">
+    <End Role="Temporada" Type="Self.Temporada" Multiplicity="1" />
+    <End Role="TemporadaEmpresa" Type="Self.TemporadaEmpresa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Temporada">
+        <PropertyRef Name="idtemporada" />
+      </Principal>
+      <Dependent Role="TemporadaEmpresa">
+        <PropertyRef Name="idTemporada" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TemporadaEmpresa_ToTable_7">
+    <End Role="Empresa" Type="Self.Empresa" Multiplicity="1" />
+    <End Role="TemporadaEmpresa" Type="Self.TemporadaEmpresa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empresa">
+        <PropertyRef Name="idEmpresa" />
+      </Principal>
+      <Dependent Role="TemporadaEmpresa">
+        <PropertyRef Name="idEmpresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TemporadaRental_ToTable">
+    <End Role="Rental" Type="Self.Rental" Multiplicity="0..1" />
+    <End Role="TemporadaRental" Type="Self.TemporadaRental" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rental">
+        <PropertyRef Name="idRental" />
+      </Principal>
+      <Dependent Role="TemporadaRental">
+        <PropertyRef Name="idRental" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TemporadaRental_ToTable_1">
+    <End Role="Anno" Type="Self.Anno" Multiplicity="1" />
+    <End Role="TemporadaRental" Type="Self.TemporadaRental" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Anno">
+        <PropertyRef Name="IdAnno" />
+      </Principal>
+      <Dependent Role="TemporadaRental">
+        <PropertyRef Name="idanno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TemporadaRental_ToTable_2">
+    <End Role="Estacion" Type="Self.Estacion" Multiplicity="1" />
+    <End Role="TemporadaRental" Type="Self.TemporadaRental" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Estacion">
+        <PropertyRef Name="idEstacion" />
+      </Principal>
+      <Dependent Role="TemporadaRental">
+        <PropertyRef Name="idEstacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TemporadaRental_ToTable_3">
+    <End Role="Temporada" Type="Self.Temporada" Multiplicity="1" />
+    <End Role="TemporadaRental" Type="Self.TemporadaRental" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Temporada">
+        <PropertyRef Name="idtemporada" />
+      </Principal>
+      <Dependent Role="TemporadaRental">
+        <PropertyRef Name="idTemporada" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tipol_HotelTipol_ToTable">
+    <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1" />
+    <End Role="Tipol_HotelTipol" Type="Self.Tipol_HotelTipol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="idHotel" />
+      </Principal>
+      <Dependent Role="Tipol_HotelTipol">
+        <PropertyRef Name="idhotel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tipol_HotelTipol_ToTable_1">
+    <End Role="Tipologia" Type="Self.Tipologia" Multiplicity="0..1" />
+    <End Role="Tipol_HotelTipol" Type="Self.Tipol_HotelTipol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tipologia">
+        <PropertyRef Name="idTiologia" />
+      </Principal>
+      <Dependent Role="Tipol_HotelTipol">
+        <PropertyRef Name="idTiologia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tipol_RangosTarifaCarro_ToTable">
+    <End Role="TarifaCarro" Type="Self.TarifaCarro" Multiplicity="0..1" />
+    <End Role="Rangos_Tarifa" Type="Self.Rangos_Tarifa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TarifaCarro">
+        <PropertyRef Name="idcondtarifa" />
+      </Principal>
+      <Dependent Role="Rangos_Tarifa">
+        <PropertyRef Name="idcondtarifa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tipol_RangosTarifaCarro_ToTable_1">
+    <End Role="Rango" Type="Self.Rango" Multiplicity="0..1" />
+    <End Role="Rangos_Tarifa" Type="Self.Rangos_Tarifa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rango">
+        <PropertyRef Name="idrango" />
+      </Principal>
+      <Dependent Role="Rangos_Tarifa">
+        <PropertyRef Name="idrango" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tipol_ReduccTipol_ToTable">
+    <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1" />
+    <End Role="Reduccion_Hotel" Type="Self.Reduccion_Hotel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="idHotel" />
+      </Principal>
+      <Dependent Role="Reduccion_Hotel">
+        <PropertyRef Name="idhotel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tipol_ReduccTipol_ToTable_1">
+    <End Role="Reduccion" Type="Self.Reduccion" Multiplicity="0..1" />
+    <End Role="Reduccion_Hotel" Type="Self.Reduccion_Hotel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Reduccion">
+        <PropertyRef Name="idReduccion" />
+      </Principal>
+      <Dependent Role="Reduccion_Hotel">
+        <PropertyRef Name="idReduccion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tipol_SupleTipol_ToTable">
+    <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1" />
+    <End Role="Suplemento_Hotel" Type="Self.Suplemento_Hotel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="idHotel" />
+      </Principal>
+      <Dependent Role="Suplemento_Hotel">
+        <PropertyRef Name="idhotel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tipol_SupleTipol_ToTable_1">
+    <End Role="Suplemento" Type="Self.Suplemento" Multiplicity="0..1" />
+    <End Role="Suplemento_Hotel" Type="Self.Suplemento_Hotel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Suplemento">
+        <PropertyRef Name="idSuplemento" />
+      </Principal>
+      <Dependent Role="Suplemento_Hotel">
+        <PropertyRef Name="idSuplemento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tipologia_ToTable">
+    <End Role="Tarificacion" Type="Self.Tarificacion" Multiplicity="0..1" />
+    <End Role="Tipologia" Type="Self.Tipologia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tarificacion">
+        <PropertyRef Name="idTarificacion" />
+      </Principal>
+      <Dependent Role="Tipologia">
+        <PropertyRef Name="idTarificacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vuelo_ToTable2">
+    <End Role="Empresa" Type="Self.Empresa" Multiplicity="1" />
+    <End Role="Avion" Type="Self.Avion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empresa">
+        <PropertyRef Name="idEmpresa" />
+      </Principal>
+      <Dependent Role="Avion">
+        <PropertyRef Name="idEmpresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vuelo_ToTable4">
+    <End Role="TipoAvion" Type="Self.TipoAvion" Multiplicity="0..1" />
+    <End Role="Avion" Type="Self.Avion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoAvion">
+        <PropertyRef Name="idTipoAvion" />
+      </Principal>
+      <Dependent Role="Avion">
+        <PropertyRef Name="idTipoAvion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TripAgencyModelStoreContainer">
+    <EntitySet Name="Anno" EntityType="Self.Anno" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Avion" EntityType="Self.Avion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cadena" EntityType="Self.Cadena" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Carro" EntityType="Self.Carro" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Categoria" EntityType="Self.Categoria" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CategTarifAvion" EntityType="Self.CategTarifAvion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Clase" EntityType="Self.Clase" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Destino" EntityType="Self.Destino" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DestinoRental" EntityType="Self.DestinoRental" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DestinoVuelo" EntityType="Self.DestinoVuelo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Empresa" EntityType="Self.Empresa" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Empresa_TipoEmpresa" EntityType="Self.Empresa_TipoEmpresa" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Estacion" EntityType="Self.Estacion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Excursion" EntityType="Self.Excursion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Hotel" EntityType="Self.Hotel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NomAvionClase" EntityType="Self.NomAvionClase" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NomClaseCatTarAvi" EntityType="Self.NomClaseCatTarAvi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NomTempAvionClase" EntityType="Self.NomTempAvionClase" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NomTempRedHotel" EntityType="Self.NomTempRedHotel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NomTempSupHotel" EntityType="Self.NomTempSupHotel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NomTempTipHotel" EntityType="Self.NomTempTipHotel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OficinaRenta" EntityType="Self.OficinaRenta" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OficPerCar" EntityType="Self.OficPerCar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrigenRental" EntityType="Self.OrigenRental" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrigenVuelo" EntityType="Self.OrigenVuelo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pai" EntityType="Self.Pai" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Paquete" EntityType="Self.Paquete" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rango" EntityType="Self.Rango" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rangos_Tarifa" EntityType="Self.Rangos_Tarifa" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Reduccion" EntityType="Self.Reduccion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Reduccion_Hotel" EntityType="Self.Reduccion_Hotel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rental" EntityType="Self.Rental" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Subdestino" EntityType="Self.Subdestino" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Suplemento" EntityType="Self.Suplemento" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Suplemento_Hotel" EntityType="Self.Suplemento_Hotel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TarifaCarro" EntityType="Self.TarifaCarro" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tarificacion" EntityType="Self.Tarificacion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Temporada" EntityType="Self.Temporada" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Temporada_Hotel" EntityType="Self.Temporada_Hotel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Temporada_Reduccion" EntityType="Self.Temporada_Reduccion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Temporada_Suplemento" EntityType="Self.Temporada_Suplemento" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TemporadaAvion" EntityType="Self.TemporadaAvion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TemporadaEmpresa" EntityType="Self.TemporadaEmpresa" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TemporadaExcursion" EntityType="Self.TemporadaExcursion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TemporadaPaquete" EntityType="Self.TemporadaPaquete" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TemporadaRental" EntityType="Self.TemporadaRental" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tipo_Empresa" EntityType="Self.Tipo_Empresa" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tipo_Tarifa" EntityType="Self.Tipo_Tarifa" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TipoAvion" EntityType="Self.TipoAvion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tipol_HotelTipol" EntityType="Self.Tipol_HotelTipol" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tipologia" EntityType="Self.Tipologia" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tipologia_Carro" EntityType="Self.Tipologia_Carro" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_AspNetUserRoles_AspNetRoles" Association="Self.FK_AspNetUserRoles_AspNetRoles">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AspNetUserRoles_AspNetUsers" Association="Self.FK_AspNetUserRoles_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Avion_ToTable" Association="Self.FK_Avion_ToTable">
+      <End Role="OrigenVuelo" EntitySet="OrigenVuelo" />
+      <End Role="Avion" EntitySet="Avion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Avion_ToTable_1" Association="Self.FK_Avion_ToTable_1">
+      <End Role="DestinoVuelo" EntitySet="DestinoVuelo" />
+      <End Role="Avion" EntitySet="Avion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Carros_ToTable" Association="Self.FK_Carros_ToTable">
+      <End Role="Empresa" EntitySet="Empresa" />
+      <End Role="Carro" EntitySet="Carro" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Carros_ToTable_2" Association="Self.FK_Carros_ToTable_2">
+      <End Role="Tipologia_Carro" EntitySet="Tipologia_Carro" />
+      <End Role="Carro" EntitySet="Carro" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClaseCatTarAvi_ToTable" Association="Self.FK_ClaseCatTarAvi_ToTable">
+      <End Role="CategTarifAvion" EntitySet="CategTarifAvion" />
+      <End Role="NomClaseCatTarAvi" EntitySet="NomClaseCatTarAvi" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClaseCatTarAvi_ToTable_1" Association="Self.FK_ClaseCatTarAvi_ToTable_1">
+      <End Role="Clase" EntitySet="Clase" />
+      <End Role="NomClaseCatTarAvi" EntitySet="NomClaseCatTarAvi" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Destino_Pais" Association="Self.FK_Destino_Pais">
+      <End Role="Pai" EntitySet="Pai" />
+      <End Role="Destino" EntitySet="Destino" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Excursion_ToTable" Association="Self.FK_Excursion_ToTable">
+      <End Role="Empresa" EntitySet="Empresa" />
+      <End Role="Excursion" EntitySet="Excursion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Excursion_ToTable2" Association="Self.FK_Excursion_ToTable2">
+      <End Role="Destino" EntitySet="Destino" />
+      <End Role="Excursion" EntitySet="Excursion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Hotel_ToTable" Association="Self.FK_Hotel_ToTable">
+      <End Role="Categoria" EntitySet="Categoria" />
+      <End Role="Hotel" EntitySet="Hotel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Hotel_ToTable_1" Association="Self.FK_Hotel_ToTable_1">
+      <End Role="Cadena" EntitySet="Cadena" />
+      <End Role="Hotel" EntitySet="Hotel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Hotel_ToTable_2" Association="Self.FK_Hotel_ToTable_2">
+      <End Role="Destino" EntitySet="Destino" />
+      <End Role="Hotel" EntitySet="Hotel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Nom_Temp_Hotel_ToTable_6" Association="Self.FK_Nom_Temp_Hotel_ToTable_6">
+      <End Role="Temporada_Suplemento" EntitySet="Temporada_Suplemento" />
+      <End Role="NomTempSupHotel" EntitySet="NomTempSupHotel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Nom_Temp_Hotel_ToTable_7" Association="Self.FK_Nom_Temp_Hotel_ToTable_7">
+      <End Role="Suplemento" EntitySet="Suplemento" />
+      <End Role="NomTempSupHotel" EntitySet="NomTempSupHotel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Nom_Temp_Hotel_ToTable_8" Association="Self.FK_Nom_Temp_Hotel_ToTable_8">
+      <End Role="Tipo_Tarifa" EntitySet="Tipo_Tarifa" />
+      <End Role="NomTempSupHotel" EntitySet="NomTempSupHotel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Nom_Temporada_Hotel_ToTable_" Association="Self.FK_Nom_Temporada_Hotel_ToTable_">
+      <End Role="Reduccion" EntitySet="Reduccion" />
+      <End Role="NomTempRedHotel" EntitySet="NomTempRedHotel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Nom_Temporada_Hotel_ToTable_1" Association="Self.FK_Nom_Temporada_Hotel_ToTable_1">
+      <End Role="Temporada_Reduccion" EntitySet="Temporada_Reduccion" />
+      <End Role="NomTempRedHotel" EntitySet="NomTempRedHotel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Nom_Temporada_Hotel_ToTable_2" Association="Self.FK_Nom_Temporada_Hotel_ToTable_2">
+      <End Role="Tipo_Tarifa" EntitySet="Tipo_Tarifa" />
+      <End Role="NomTempRedHotel" EntitySet="NomTempRedHotel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Nom_Temporada_Hotel_ToTable_6" Association="Self.FK_Nom_Temporada_Hotel_ToTable_6">
+      <End Role="Temporada_Hotel" EntitySet="Temporada_Hotel" />
+      <End Role="NomTempTipHotel" EntitySet="NomTempTipHotel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Nom_Temporada_Hotel_ToTable_7" Association="Self.FK_Nom_Temporada_Hotel_ToTable_7">
+      <End Role="Tipologia" EntitySet="Tipologia" />
+      <End Role="NomTempTipHotel" EntitySet="NomTempTipHotel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Nom_Temporada_Hotel_ToTable_8" Association="Self.FK_Nom_Temporada_Hotel_ToTable_8">
+      <End Role="Tipo_Tarifa" EntitySet="Tipo_Tarifa" />
+      <End Role="NomTempTipHotel" EntitySet="NomTempTipHotel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NomAvionClase_ToTable" Association="Self.FK_NomAvionClase_ToTable">
+      <End Role="Avion" EntitySet="Avion" />
+      <End Role="NomAvionClase" EntitySet="NomAvionClase" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NomAvionClase_ToTable_1" Association="Self.FK_NomAvionClase_ToTable_1">
+      <End Role="Clase" EntitySet="Clase" />
+      <End Role="NomAvionClase" EntitySet="NomAvionClase" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NomTempClase_ToTable" Association="Self.FK_NomTempClase_ToTable">
+      <End Role="Avion" EntitySet="Avion" />
+      <End Role="NomTempAvionClase" EntitySet="NomTempAvionClase" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NomTempClase_ToTable_1" Association="Self.FK_NomTempClase_ToTable_1">
+      <End Role="TemporadaAvion" EntitySet="TemporadaAvion" />
+      <End Role="NomTempAvionClase" EntitySet="NomTempAvionClase" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NomTempClase_ToTable_2" Association="Self.FK_NomTempClase_ToTable_2">
+      <End Role="Clase" EntitySet="Clase" />
+      <End Role="NomTempAvionClase" EntitySet="NomTempAvionClase" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OficinaRenta_ToTable" Association="Self.FK_OficinaRenta_ToTable">
+      <End Role="Destino" EntitySet="Destino" />
+      <End Role="OficinaRenta" EntitySet="OficinaRenta" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OficinaRenta_ToTable_1" Association="Self.FK_OficinaRenta_ToTable_1">
+      <End Role="Empresa" EntitySet="Empresa" />
+      <End Role="OficinaRenta" EntitySet="OficinaRenta" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OficPerCar_ToTable" Association="Self.FK_OficPerCar_ToTable">
+      <End Role="Carro" EntitySet="Carro" />
+      <End Role="OficPerCar" EntitySet="OficPerCar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OficPerCar_ToTable_1" Association="Self.FK_OficPerCar_ToTable_1">
+      <End Role="OficinaRenta" EntitySet="OficinaRenta" />
+      <End Role="OficPerCar" EntitySet="OficPerCar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Paquete_ToTable" Association="Self.FK_Paquete_ToTable">
+      <End Role="Empresa" EntitySet="Empresa" />
+      <End Role="Paquete" EntitySet="Paquete" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rental_ToTable" Association="Self.FK_Rental_ToTable">
+      <End Role="DestinoRental" EntitySet="DestinoRental" />
+      <End Role="Rental" EntitySet="Rental" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rental_ToTable_1" Association="Self.FK_Rental_ToTable_1">
+      <End Role="OrigenRental" EntitySet="OrigenRental" />
+      <End Role="Rental" EntitySet="Rental" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rental_ToTable_2" Association="Self.FK_Rental_ToTable_2">
+      <End Role="Empresa" EntitySet="Empresa" />
+      <End Role="Rental" EntitySet="Rental" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Subdestino_ToTable" Association="Self.FK_Subdestino_ToTable">
+      <End Role="Destino" EntitySet="Destino" />
+      <End Role="Subdestino" EntitySet="Subdestino" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Table_ToTable" Association="Self.FK_Table_ToTable">
+      <End Role="Tipo_Empresa" EntitySet="Tipo_Empresa" />
+      <End Role="Empresa_TipoEmpresa" EntitySet="Empresa_TipoEmpresa" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Table_ToTable_1" Association="Self.FK_Table_ToTable_1">
+      <End Role="Empresa" EntitySet="Empresa" />
+      <End Role="Empresa_TipoEmpresa" EntitySet="Empresa_TipoEmpresa" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TarifaCarro_ToTable_1" Association="Self.FK_TarifaCarro_ToTable_1">
+      <End Role="Anno" EntitySet="Anno" />
+      <End Role="TarifaCarro" EntitySet="TarifaCarro" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TarifaCarro_ToTable_2" Association="Self.FK_TarifaCarro_ToTable_2">
+      <End Role="Temporada" EntitySet="Temporada" />
+      <End Role="TarifaCarro" EntitySet="TarifaCarro" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TarifaCarro_ToTable_3" Association="Self.FK_TarifaCarro_ToTable_3">
+      <End Role="Empresa" EntitySet="Empresa" />
+      <End Role="TarifaCarro" EntitySet="TarifaCarro" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TarifaCarro_ToTable_5" Association="Self.FK_TarifaCarro_ToTable_5">
+      <End Role="Tipologia_Carro" EntitySet="Tipologia_Carro" />
+      <End Role="TarifaCarro" EntitySet="TarifaCarro" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TarifaCarro_ToTable_7" Association="Self.FK_TarifaCarro_ToTable_7">
+      <End Role="TemporadaEmpresa" EntitySet="TemporadaEmpresa" />
+      <End Role="TarifaCarro" EntitySet="TarifaCarro" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Temporada_Avion_ToTable_2" Association="Self.FK_Temporada_Avion_ToTable_2">
+      <End Role="Empresa" EntitySet="Empresa" />
+      <End Role="TemporadaAvion" EntitySet="TemporadaAvion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Temporada_Avion_ToTable_3" Association="Self.FK_Temporada_Avion_ToTable_3">
+      <End Role="Anno" EntitySet="Anno" />
+      <End Role="TemporadaAvion" EntitySet="TemporadaAvion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Temporada_Avion_ToTable_4" Association="Self.FK_Temporada_Avion_ToTable_4">
+      <End Role="Estacion" EntitySet="Estacion" />
+      <End Role="TemporadaAvion" EntitySet="TemporadaAvion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Temporada_Avion_ToTable_5" Association="Self.FK_Temporada_Avion_ToTable_5">
+      <End Role="Temporada" EntitySet="Temporada" />
+      <End Role="TemporadaAvion" EntitySet="TemporadaAvion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Temporada_Excursion_ToTable" Association="Self.FK_Temporada_Excursion_ToTable">
+      <End Role="Excursion" EntitySet="Excursion" />
+      <End Role="TemporadaExcursion" EntitySet="TemporadaExcursion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Temporada_Excursion_ToTable_1" Association="Self.FK_Temporada_Excursion_ToTable_1">
+      <End Role="Anno" EntitySet="Anno" />
+      <End Role="TemporadaExcursion" EntitySet="TemporadaExcursion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Temporada_Excursion_ToTable_2" Association="Self.FK_Temporada_Excursion_ToTable_2">
+      <End Role="Estacion" EntitySet="Estacion" />
+      <End Role="TemporadaExcursion" EntitySet="TemporadaExcursion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Temporada_Excursion_ToTable_3" Association="Self.FK_Temporada_Excursion_ToTable_3">
+      <End Role="Temporada" EntitySet="Temporada" />
+      <End Role="TemporadaExcursion" EntitySet="TemporadaExcursion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Temporada_Hotel_ToTable" Association="Self.FK_Temporada_Hotel_ToTable">
+      <End Role="Hotel" EntitySet="Hotel" />
+      <End Role="Temporada_Hotel" EntitySet="Temporada_Hotel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Temporada_Hotel_ToTable_3" Association="Self.FK_Temporada_Hotel_ToTable_3">
+      <End Role="Anno" EntitySet="Anno" />
+      <End Role="Temporada_Hotel" EntitySet="Temporada_Hotel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Temporada_Hotel_ToTable_4" Association="Self.FK_Temporada_Hotel_ToTable_4">
+      <End Role="Estacion" EntitySet="Estacion" />
+      <End Role="Temporada_Hotel" EntitySet="Temporada_Hotel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Temporada_Hotel_ToTable_5" Association="Self.FK_Temporada_Hotel_ToTable_5">
+      <End Role="Temporada" EntitySet="Temporada" />
+      <End Role="Temporada_Hotel" EntitySet="Temporada_Hotel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Temporada_Paquete_ToTable" Association="Self.FK_Temporada_Paquete_ToTable">
+      <End Role="Anno" EntitySet="Anno" />
+      <End Role="TemporadaPaquete" EntitySet="TemporadaPaquete" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Temporada_Paquete_ToTable_1" Association="Self.FK_Temporada_Paquete_ToTable_1">
+      <End Role="Paquete" EntitySet="Paquete" />
+      <End Role="TemporadaPaquete" EntitySet="TemporadaPaquete" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Temporada_Paquete_ToTable_2" Association="Self.FK_Temporada_Paquete_ToTable_2">
+      <End Role="Estacion" EntitySet="Estacion" />
+      <End Role="TemporadaPaquete" EntitySet="TemporadaPaquete" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Temporada_Paquete_ToTable_3" Association="Self.FK_Temporada_Paquete_ToTable_3">
+      <End Role="Temporada" EntitySet="Temporada" />
+      <End Role="TemporadaPaquete" EntitySet="TemporadaPaquete" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Temporada_Reduccion_ToTable" Association="Self.FK_Temporada_Reduccion_ToTable">
+      <End Role="Hotel" EntitySet="Hotel" />
+      <End Role="Temporada_Reduccion" EntitySet="Temporada_Reduccion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Temporada_Reduccion_ToTable_3" Association="Self.FK_Temporada_Reduccion_ToTable_3">
+      <End Role="Estacion" EntitySet="Estacion" />
+      <End Role="Temporada_Reduccion" EntitySet="Temporada_Reduccion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Temporada_Reduccion_ToTable_5" Association="Self.FK_Temporada_Reduccion_ToTable_5">
+      <End Role="Temporada" EntitySet="Temporada" />
+      <End Role="Temporada_Reduccion" EntitySet="Temporada_Reduccion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Temporada_Reduccion_ToTable_6" Association="Self.FK_Temporada_Reduccion_ToTable_6">
+      <End Role="Anno" EntitySet="Anno" />
+      <End Role="Temporada_Reduccion" EntitySet="Temporada_Reduccion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Temporada_Suplemento_ToTable" Association="Self.FK_Temporada_Suplemento_ToTable">
+      <End Role="Anno" EntitySet="Anno" />
+      <End Role="Temporada_Suplemento" EntitySet="Temporada_Suplemento" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Temporada_Suplemento_ToTable_1" Association="Self.FK_Temporada_Suplemento_ToTable_1">
+      <End Role="Hotel" EntitySet="Hotel" />
+      <End Role="Temporada_Suplemento" EntitySet="Temporada_Suplemento" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Temporada_Suplemento_ToTable_4" Association="Self.FK_Temporada_Suplemento_ToTable_4">
+      <End Role="Estacion" EntitySet="Estacion" />
+      <End Role="Temporada_Suplemento" EntitySet="Temporada_Suplemento" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Temporada_Suplemento_ToTable_5" Association="Self.FK_Temporada_Suplemento_ToTable_5">
+      <End Role="Temporada" EntitySet="Temporada" />
+      <End Role="Temporada_Suplemento" EntitySet="Temporada_Suplemento" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TemporadaEmpresa_ToTable_3" Association="Self.FK_TemporadaEmpresa_ToTable_3">
+      <End Role="Anno" EntitySet="Anno" />
+      <End Role="TemporadaEmpresa" EntitySet="TemporadaEmpresa" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TemporadaEmpresa_ToTable_4" Association="Self.FK_TemporadaEmpresa_ToTable_4">
+      <End Role="Estacion" EntitySet="Estacion" />
+      <End Role="TemporadaEmpresa" EntitySet="TemporadaEmpresa" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TemporadaEmpresa_ToTable_5" Association="Self.FK_TemporadaEmpresa_ToTable_5">
+      <End Role="Temporada" EntitySet="Temporada" />
+      <End Role="TemporadaEmpresa" EntitySet="TemporadaEmpresa" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TemporadaEmpresa_ToTable_7" Association="Self.FK_TemporadaEmpresa_ToTable_7">
+      <End Role="Empresa" EntitySet="Empresa" />
+      <End Role="TemporadaEmpresa" EntitySet="TemporadaEmpresa" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TemporadaRental_ToTable" Association="Self.FK_TemporadaRental_ToTable">
+      <End Role="Rental" EntitySet="Rental" />
+      <End Role="TemporadaRental" EntitySet="TemporadaRental" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TemporadaRental_ToTable_1" Association="Self.FK_TemporadaRental_ToTable_1">
+      <End Role="Anno" EntitySet="Anno" />
+      <End Role="TemporadaRental" EntitySet="TemporadaRental" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TemporadaRental_ToTable_2" Association="Self.FK_TemporadaRental_ToTable_2">
+      <End Role="Estacion" EntitySet="Estacion" />
+      <End Role="TemporadaRental" EntitySet="TemporadaRental" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TemporadaRental_ToTable_3" Association="Self.FK_TemporadaRental_ToTable_3">
+      <End Role="Temporada" EntitySet="Temporada" />
+      <End Role="TemporadaRental" EntitySet="TemporadaRental" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tipol_HotelTipol_ToTable" Association="Self.FK_Tipol_HotelTipol_ToTable">
+      <End Role="Hotel" EntitySet="Hotel" />
+      <End Role="Tipol_HotelTipol" EntitySet="Tipol_HotelTipol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tipol_HotelTipol_ToTable_1" Association="Self.FK_Tipol_HotelTipol_ToTable_1">
+      <End Role="Tipologia" EntitySet="Tipologia" />
+      <End Role="Tipol_HotelTipol" EntitySet="Tipol_HotelTipol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tipol_RangosTarifaCarro_ToTable" Association="Self.FK_Tipol_RangosTarifaCarro_ToTable">
+      <End Role="TarifaCarro" EntitySet="TarifaCarro" />
+      <End Role="Rangos_Tarifa" EntitySet="Rangos_Tarifa" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tipol_RangosTarifaCarro_ToTable_1" Association="Self.FK_Tipol_RangosTarifaCarro_ToTable_1">
+      <End Role="Rango" EntitySet="Rango" />
+      <End Role="Rangos_Tarifa" EntitySet="Rangos_Tarifa" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tipol_ReduccTipol_ToTable" Association="Self.FK_Tipol_ReduccTipol_ToTable">
+      <End Role="Hotel" EntitySet="Hotel" />
+      <End Role="Reduccion_Hotel" EntitySet="Reduccion_Hotel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tipol_ReduccTipol_ToTable_1" Association="Self.FK_Tipol_ReduccTipol_ToTable_1">
+      <End Role="Reduccion" EntitySet="Reduccion" />
+      <End Role="Reduccion_Hotel" EntitySet="Reduccion_Hotel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tipol_SupleTipol_ToTable" Association="Self.FK_Tipol_SupleTipol_ToTable">
+      <End Role="Hotel" EntitySet="Hotel" />
+      <End Role="Suplemento_Hotel" EntitySet="Suplemento_Hotel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tipol_SupleTipol_ToTable_1" Association="Self.FK_Tipol_SupleTipol_ToTable_1">
+      <End Role="Suplemento" EntitySet="Suplemento" />
+      <End Role="Suplemento_Hotel" EntitySet="Suplemento_Hotel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tipologia_ToTable" Association="Self.FK_Tipologia_ToTable">
+      <End Role="Tarificacion" EntitySet="Tarificacion" />
+      <End Role="Tipologia" EntitySet="Tipologia" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vuelo_ToTable2" Association="Self.FK_Vuelo_ToTable2">
+      <End Role="Empresa" EntitySet="Empresa" />
+      <End Role="Avion" EntitySet="Avion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vuelo_ToTable4" Association="Self.FK_Vuelo_ToTable4">
+      <End Role="TipoAvion" EntitySet="TipoAvion" />
+      <End Role="Avion" EntitySet="Avion" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

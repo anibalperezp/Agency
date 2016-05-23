@@ -1,0 +1,42 @@
+﻿@model TripAgency.EF.Paquete
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Paquete</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre_paquete)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre_paquete)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.descripcion_paquete)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descripcion_paquete)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Empresa.nombre_empresa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Empresa.nombre_empresa)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idPaquete }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

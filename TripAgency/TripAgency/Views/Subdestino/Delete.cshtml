@@ -1,0 +1,64 @@
+﻿@model TripAgency.EF.Subdestino
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Borrar</h2>
+
+<h3>Está seguro que desea borrar este elemento?</h3>
+<div>
+    <h4>Subdestino</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Nombre")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.subdestino1)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Descripción")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descripcion_subdestino)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Imagen 1")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.foto_sub1)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Imagen 2")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.foto_sub2)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Destino")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Destino.destino1)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Borrar" class="btn btn-default" /> |
+            @Html.ActionLink("Ir atrás", "Index")
+        </div>
+    }
+</div>

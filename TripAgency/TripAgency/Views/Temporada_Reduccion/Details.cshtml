@@ -1,0 +1,82 @@
+﻿@model TripAgency.EF.Temporada_Reduccion
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Temporada_Reduccion</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.periodo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.periodo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.inicio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.inicio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.idanno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idanno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.valor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.valor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estacion.estacion1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estacion.estacion1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hotel.nombre_hotel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hotel.nombre_hotel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Temporada.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Temporada.nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idTemporada_Reduccion }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

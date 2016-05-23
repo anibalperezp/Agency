@@ -1,0 +1,165 @@
+﻿@using TripAgency.EF
+@using TripAgency.Models
+@model IEnumerable<TripAgency.EF.Rental>
+@{
+    Layout = "~/Views/Shared/_Layout_Transfer.cshtml";
+    ViewBag.Title = "Transfers ";
+    string destiny1 = ViewBag.destiny;
+    string desc1 = ViewBag.desc;
+    var db = new TripAgencyEntities();
+}
+@Scripts.Render("~/bundles/jqueryCost")
+
+<script language="JavaScript" type="text/JavaScript">
+
+    $(document).ready(function () {
+        $("#dest1").change(function () {
+            if ($("#dest1").val() != "Choose One") {
+                var countryOptions = {};
+                countryOptions.url = "/TripAgency/MainApp/destinTrans";
+                countryOptions.type = "POST";
+                countryOptions.data = JSON.stringify({
+                    destiny1: $("#dest1").val()
+                });
+                countryOptions.datatype = "json";
+                countryOptions.contentType = "application/json";
+                countryOptions.success = function (statesList) {
+                    var row = "<option selected='selected'>Choose One</option>";
+                    $("#origin").empty();
+                    $.each(statesList, function (index, item) {
+                        row += "<option>" + item + "</option>";
+                    });
+                    $("#origin").append(row);
+                };
+                $.ajax(countryOptions);
+            } else
+                if ($("#dest1").val() == "Choose One") {
+                    $("#btnsearchtrans").attr('disabled', true);
+                }
+        });
+    });
+
+    $(document).ready(function () {
+        $("#origin").change(function () {
+            if ($("#origin").val() != "Choose One" && $("#dest1").val() != "Choose One") {
+                $("#btnsearchtrans").attr('disabled', false);
+            } else
+                if ($("#origin").val() == "Choose One" || $("#dest1").val() == "Choose One") {
+                    $("#btnsearchtrans").attr('disabled', true);
+                }
+        });
+    });
+
+</script>
+<br />
+<div class="container">
+    <br />
+    <ul class="breadcrumb">
+        <li>
+            <a href="@Url.Action("Index","MainApp")">Home</a>
+        </li>
+        <li class="active">@Html.DisplayName(destiny1) - Transfers</li>
+    </ul>
+    
+    <div class="mfp-with-anim mfp-hide mfp-dialog mfp-search-dialog" id="search-dialog">
+        <h2>Search for Transfers</h2>
+        <form>
+            <div class="input-daterange" data-date-format="M d, D">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group form-group-lg form-group-select-plus">
+                            <label>Transfer</label>
+                            <select class="form-control" id="dest1" name="dest1">
+                                <option selected="selected">Choose One</option>
+                                @foreach (var item in db.Rental)
+                                {
+                                        <option>@item.DestinoRental.nombre</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group form-group-lg form-group-select-plus">
+                            <label>Transfer</label>
+                            <select class="form-control" id="origin" name="origin">
+                                <option selected="selected">Choose One</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group form-group-lg form-group-icon-left">
+                            <i class="fa fa-calendar input-icon input-icon-highlight"></i>
+                            <label>Date</label>
+                            <input class="form-control" name="end" type="text" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-primary btn-lg" id="btnsearchtrans" disabled="disabled" type="submit">Search for Excursions</button>
+        </form>
+    </div>
+
+    <br />
+    <h3 class="booking-title">Transfers in @Html.DisplayName(destiny1)<small><a class="popup-text" href="#search-dialog" data-effect="mfp-zoom-out">Search</a></small></h3>
+    <div class="row">
+        <div class="col-md-3">
+            <aside class="booking-filters text-white">
+                <h3>Information</h3>
+                <ul class="list booking-filters-list">
+                    <li>
+                        <h5 class="booking-filters-title">Destiny: @Html.DisplayName(destiny1)</h5>
+                    </li>
+                    <li>
+                        <h6>Description: </h6><label> @Html.DisplayName(desc1) </label>
+                    </li>
+                </ul>
+            </aside>
+        </div>
+        <div class="col-md-9">
+            <ul class="booking-list">
+                @foreach (var item in Model)
+                {
+                    <li>
+                        <form method="POST">
+                            @{
+                                var hotel = new TransferModel();
+                                var price = hotel.Min(@item.idRental, DateTime.Now);
+                                <a class="booking-item" href="@Url.Action("PaymentTransfer", "Payment", new {excM = @item.idRental, priceE = @price})">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="booking-item-img-wrap">
+                                                <img src=@item.foto alt=@item.foto title=@item.nombre>
+                                                <div class="booking-item-img-num">
+                                                    <i class="fa fa-picture-o"></i>1
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div hidden="true">
+                                            <select class="form-control" id="origin" name="origin">
+                                                <option selected="selected">@item.OrigenRental.nombre</option>
+                                            </select>
+                                            <select class="form-control" id="dest1" name="dest1">
+                                                <option selected="selected">@item.DestinoRental.nombre</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h4 class="booking-item-title">@item.nombre</h4>
+                                            <h5 class="booking-item-address"><i class="fa fa-map-marker"></i> @item.OrigenRental.nombre - @item.DestinoRental.nombre</h5>
+                                            <span class="text-small lh1em text-color">Description: </span><small>@item.descripcion</small>
+                                            </div>
+                                        <div class="col-md-3">
+                                            <br />
+                                            <span class="booking-item-price">$@price </span><span> / person</span>
+                                            <button class="btn btn-primary">Book</button>
+                                        </div>
+                                    </div>
+                                </a>
+                            }
+                        </form>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+    <div class="gap"></div>
+</div>

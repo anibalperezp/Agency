@@ -1,0 +1,83 @@
+﻿@using TripAgency.EF
+@using TripAgency.Models
+@model TripAgency.EF.Paquete
+@{
+    Layout = "~/Views/Shared/_Layout_Package.cshtml";
+    TripAgencyEntities db = new TripAgencyEntities();
+    ViewBag.Title = "Package";
+    var destiny1 = ViewBag.destiny;
+    var nameh = ViewBag.nameh;
+    var count = 0;
+    var dS = DateTime.Now;
+    var dE = ViewBag.dE;
+    var date1 = "";
+    var date2 = "";
+    var rPrice = 0;
+}
+@Scripts.Render("~/bundles/jqueryCost")
+<script language="Javascript" type="text/javascript">
+
+</script>
+    <div class="container">
+        <ul class="breadcrumb">
+            <li>
+                <a href="@Url.Action("Index","MainApp")">Home</a>
+            </li>
+            <li>
+                <a href="@Url.Action("Packages","MainApp")">Packages</a>
+            </li>
+            <li class="active">@Model.nombre_paquete</li>
+        </ul>
+        <br />
+        <div class="booking-item-details">
+            <header class="booking-item-header">
+                <div class="row">
+                    <div class="col-md-9">
+                        <h2 class="lh1em" title="hola"> @Model.nombre_paquete</h2>
+                        <h2 class="lh1em" id="namehotelA" hidden="true">@Model.nombre_paquete</h2>
+                    </div>
+                    <div class="col-md-3">
+                        @{
+                            var hotelModel = new TemporadaPaq();
+                            var price = hotelModel.Min(@Model.idPaquete, DateTime.Now);
+                            <p class="booking-item-header-price"><small>price </small>  <span class="text-lg">$@price</span>/person</p>
+                        }
+                    </div>
+                </div>
+            </header>
+            <div class="row">
+                <div class="col-md-6">
+                    <div id="myCarousel" class="carousel slide">
+                        <!-- Carousel indicators -->
+                        <ol class="carousel-indicators">
+                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        </ol> <!-- Carousel items -->
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <img src=@Model.foto alt="First slide">
+                                <div class="carousel-caption">@Model.nombre_paquete</div>
+                            </div>
+                        </div> <!-- Carousel nav -->
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <div class="tabbable ">
+                        <h2 class="lh1em mt40">Information</h2>
+                        <p>
+                            <span class="text-lg lh1em text-color">Supplier:</span> @Model.Empresa.nombre_empresa
+                        </p>
+                        <div class="booking-item-rating">
+                            <p> </p>
+                            <h4>Description:</h4>
+                            <p class="mb30">
+                                @Model.descripcion_paquete
+                            </p>
+                        </div>
+                    </div>
+                    <a href="@Url.Action("PaymentPackage", "Payment", new { paqM = @Model.idPaquete, priceE = @rPrice })" class="btn btn-primary">Checkout</a>
+                </div>
+            </div>
+            <div class="gap"></div>
+        </div>
+        <div class="gap gap-small"></div>
+    </div>

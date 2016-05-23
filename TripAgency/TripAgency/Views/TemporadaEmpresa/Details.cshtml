@@ -1,0 +1,103 @@
+﻿@model TripAgency.EF.TemporadaEmpresa
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>@Model.Empresa.nombre_empresa</h2>
+<form method="post" enctype="multipart/form-data">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+    <div>
+        <h4>@Model.periodo</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayName("Nombre de Empresa")
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Empresa.nombre_empresa)
+            </dd>
+            <dt>
+                @Html.DisplayName("Año")
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Anno.anno1)
+            </dd>
+            <dt>
+                @Html.DisplayName("Inicio")
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.inicio)
+            </dd>
+            <dt>
+                @Html.DisplayName("Fin")
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.fin)
+            </dd>
+            <dt>
+                @Html.DisplayName("Nombre del Período")
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.periodo)
+            </dd>
+            <dt>
+                @Html.DisplayName("Estación del Año")
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Estacion.estacion1)
+            </dd>
+            <dt>
+                @Html.DisplayName("Temporada del Año")
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Temporada.nombre)
+            </dd>
+            <dt>
+                @Html.DisplayName("Descripción")
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.descripcion_periodo)
+            </dd>
+
+        </dl>
+        <div class="form-group">
+            <div class="col-md-12">
+                <table class="table table-hover" id="dev-table">
+                    <thead>
+                        <tr>
+                            <th>Empresas Transportistas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            int cn = 0;
+                            List<TripAgency.Models.Empresa_Asigned> suplements = ViewBag.Empresas;
+                            foreach (var supl in suplements)
+                            {
+                                @:<tr style="display: table-row">
+                                @:<td>
+                                <input type="checkbox" name="selectedEmpresas" value="@supl.idEmpresa" @(Html.Raw(supl.assigned ? "checked=\"checked\"" : "")) />
+                                @: @supl.empresa1 <br />
+                                @:</td>
+                                @:</tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Ejecutar Copia" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+        <p>
+            @Html.ActionLink("Editar", "Edit", new { id = Model.idTemporadaEmpresa }) |
+            @Html.ActionLink("Ir atrás", "Index")
+        </p>
+    }
+</form>

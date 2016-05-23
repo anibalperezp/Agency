@@ -1,0 +1,464 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+    @Html.AntiForgeryToken()
+        if (User.IsInRole("worker"))
+        {
+            <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("TrawebQlick", "Index", "MainApp", null, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Principal", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Empresa", "Index", "Empresa")</li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Nomencladores <span class="caret"></span></a> 
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+                                <li class="dropdown-submenu">
+                                    <a tabindex="-1" href="#">Generales</a>
+                                    <ul class="dropdown-menu">
+                                        <li>@Html.ActionLink("Año", "Index", "Anno")</li>
+                                        <li>@Html.ActionLink("Estación", "Index", "Estacion")</li>
+                                        <li>@Html.ActionLink("País", "Index", "Pais")</li>
+                                        <li>@Html.ActionLink("Temporada", "Index", "Temporada")</li>
+                                        <li>@Html.ActionLink("Destino", "Index", "Destino")</li>
+                                        <li>@Html.ActionLink("Sub Destino", "Index", "Subdestino")</li>
+                                        <li>@Html.ActionLink("Tipo Tarifa", "Index", "Tipo_Tarifa")</li>
+                                        <li>@Html.ActionLink("Tipo Empresa", "Index", "Tipo_Empresa")</li>
+                                    </ul>
+                                </li>
+                                <li class="divider"></li>
+                                <li class="dropdown-submenu">
+                                    <a tabindex="-1" href="#">Gestión Hoteles</a>
+                                    <ul class="dropdown-menu">
+                                        <li>@Html.ActionLink("Cadena", "Index", "Cadena")</li>
+                                        <li>@Html.ActionLink("Categoría de Hotel", "Index", "Categoria")</li>
+                                        <li class="dropdown-submenu">
+                                            <a tabindex="-1" href="#">Gestión Tipología</a>
+                                            <ul class="dropdown-menu">
+                                                <li>@Html.ActionLink("Tarificación", "Index", "Tarificacion")</li>
+                                                <li>@Html.ActionLink("Tipología", "Index", "Tipologia")</li>
+                                            </ul>
+                                        </li>
+                                        <li>@Html.ActionLink("Suplemento", "Index", "Suplemento")</li>
+                                        <li>@Html.ActionLink("Reducción", "Index", "Reduccion")</li>
+                                        <li>@Html.ActionLink("Hotel", "Index", "Hotel")</li>
+                                    </ul>
+                                </li>
+                                <li class="divider"></li>
+                                <li class="dropdown-submenu">
+                                    <a tabindex="-1" href="#">Gestión Carros</a>
+                                    <ul class="dropdown-menu">
+                                        <li>@Html.ActionLink("Categoría de Carro", "Index", "Tipologia_Carro")</li>
+                                        <li>@Html.ActionLink("Rango", "Index", "Rango")</li>
+                                        <li>@Html.ActionLink("Marca-Modelo", "Index", "Carro")</li>
+                                        <li>@Html.ActionLink("Oficina Renta", "Index", "OficinaRenta")</li>
+                                    </ul>
+                                </li>
+                                <li class="divider"></li>
+                                <li>@Html.ActionLink("Gestión Paquetes", "Index", "Paquete")</li>
+                                <li class="divider"></li>
+                                <li>@Html.ActionLink("Gestión Excursiones", "Index", "Excursion")</li>
+                                <li class="divider"></li>
+                                <li class="dropdown-submenu">
+                                    <a tabindex="-1" href="#">Gestión Vuelos</a>
+                                    <ul class="dropdown-menu">
+                                        <li>@Html.ActionLink("Categoría de Tarifa de Avión", "Index", "CategTarifAvion")</li>
+                                        <li>@Html.ActionLink("Clase de Pasajeros", "Index", "Clase")</li>
+                                        <li>@Html.ActionLink("Tipo de Avión", "Index", "TipoAvion")</li>
+                                        <li>@Html.ActionLink("Origen Vuelo", "Index", "OrigenVuelo")</li>
+                                        <li>@Html.ActionLink("Destino Vuelo", "Index", "DestinoVuelo")</li>
+                                        <li>@Html.ActionLink("Vuelo", "Index", "Avion")</li>
+                                    </ul>
+                                </li>    
+                                <li class="divider"></li>
+                                <li class="dropdown-submenu">
+                                    <a tabindex="-1" href="#">Gestión Traslados</a>
+                                    <ul class="dropdown-menu">
+                                        <li>@Html.ActionLink("Destino Transfer", "Index", "DestinoRental")</li>
+                                        <li>@Html.ActionLink("Origen Transfer", "Index", "OrigenRental")</li>
+                                        <li>@Html.ActionLink("Traslado", "Index", "Rental")</li>
+                                    </ul>
+                                </li>    
+                            </ul> 
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Temporada <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown-submenu">
+                                    <a tabindex="-1" href="#">Hoteles</a>
+                                    <ul class="dropdown-menu">
+                                        <li>@Html.ActionLink("Hotel", "Index", "Temporada_Hotel")</li>
+                                        <li>@Html.ActionLink("Reducción", "Index", "Temporada_Reduccion")</li>
+                                        <li>@Html.ActionLink("Suplemento", "Index", "Temporada_Suplemento")</li>
+                                    </ul>
+                                </li>
+                                <li class="divider"></li>
+                                <li>@Html.ActionLink("Empresas Transportistas", "Index", "TemporadaEmpresa")</li>
+                                <li class="divider"></li>
+                                <li>@Html.ActionLink("Paquetes", "Index", "TemporadaPaquete")</li>
+                                <li class="divider"></li>
+                                <li>@Html.ActionLink("Excursiones", "Index", "TemporadaExcursion")</li>
+                                <li class="divider"></li>
+                                <li>@Html.ActionLink("Vuelos", "Index", "TemporadaAvion")</li>
+                                <li class="divider"></li>
+                                <li>@Html.ActionLink("Traslados", "Index", "TemporadaRental")</li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Tarifa <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Hoteles", "Tarifa_Hotel", "Temporada_Hotel")</li>
+                                <li class="divider"></li>
+                                <li>@Html.ActionLink("Carros", "Index", "TarifaCarro")</li>
+                                <li class="divider"></li>
+                                <li>@Html.ActionLink("Paquetes", "Tarifa_Paquete", "TemporadaPaquete")</li>
+                                <li class="divider"></li>
+                                <li>@Html.ActionLink("Excursiones", "Tarifa_Excursion", "TemporadaExcursion")</li>
+                                <li class="divider"></li>
+                                <li>@Html.ActionLink("Vuelos", "Tarifa_Avion", "TemporadaAvion")</li>
+                                <li class="divider"></li>
+                                <li>@Html.ActionLink("Traslados", "Tarifa_Rental", "TemporadaRental")</li>
+
+                            </ul>
+                        </li>
+                    </ul>
+                    @if (Request.IsAuthenticated)
+                    {
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                @Html.ActionLink("Bienvenido: " + User.Identity.GetUserName(), "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Cambiar Contraseña" })
+                            <li><a href="javascript:document.getElementById('logoutForm').submit()">Salir</a></li>
+                            </li>
+                        </ul>
+                    }
+                </div>
+            </div>
+        </div>   
+        }
+    else
+        if (User.IsInRole("admin"))
+        {
+            <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("TrawebQlick", "Index", "MainApp", null, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Principal", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Empresa", "Index", "Empresa")</li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Nomencladores <span class="caret"></span></a> 
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+                            <li class="dropdown-submenu">
+                                <a tabindex="-1" href="#">Generales</a>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("Año", "Index", "Anno")</li>
+                                    <li>@Html.ActionLink("Estación", "Index", "Estacion")</li>
+                                    <li>@Html.ActionLink("País", "Index", "Pais")</li>
+                                    <li>@Html.ActionLink("Temporada", "Index", "Temporada")</li>
+                                    <li>@Html.ActionLink("Destino", "Index", "Destino")</li>
+                                    <li>@Html.ActionLink("Sub Destino", "Index", "Subdestino")</li>
+                                    <li>@Html.ActionLink("Tipo Tarifa", "Index", "Tipo_Tarifa")</li>
+                                    <li>@Html.ActionLink("Tipo Empresa", "Index", "Tipo_Empresa")</li>
+                                </ul>
+                            </li>
+                            <li class="divider"></li>
+                            <li class="dropdown-submenu">
+                                <a tabindex="-1" href="#">Gestión Hoteles</a>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("Cadena", "Index", "Cadena")</li>
+                                    <li>@Html.ActionLink("Categoría de Hotel", "Index", "Categoria")</li>
+                                    <li class="dropdown-submenu">
+                                        <a tabindex="-1" href="#">Gestión Tipología</a>
+                                        <ul class="dropdown-menu">
+                                            <li>@Html.ActionLink("Tarificación", "Index", "Tarificacion")</li>
+                                            <li>@Html.ActionLink("Tipología", "Index", "Tipologia")</li>
+                                        </ul>
+                                    </li>
+                                    <li>@Html.ActionLink("Suplemento", "Index", "Suplemento")</li>
+                                    <li>@Html.ActionLink("Reducción", "Index", "Reduccion")</li>
+                                    <li>@Html.ActionLink("Hotel", "Index", "Hotel")</li>
+                                </ul>
+                            </li>
+                            <li class="divider"></li>
+                            <li class="dropdown-submenu">
+                                <a tabindex="-1" href="#">Gestión Carros</a>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("Categoría de Carro", "Index", "Tipologia_Carro")</li>
+                                    <li>@Html.ActionLink("Rango", "Index", "Rango")</li>
+                                    <li>@Html.ActionLink("Marca-Modelo", "Index", "Carro")</li>
+                                    <li>@Html.ActionLink("Oficina Renta", "Index", "OficinaRenta")</li>
+                                </ul>
+                            </li>
+                            <li class="divider"></li>
+                            <li>@Html.ActionLink("Gestión Paquetes", "Index", "Paquete")</li>
+                            <li class="divider"></li>
+                            <li>@Html.ActionLink("Gestión Excursiones", "Index", "Excursion")</li>
+                            <li class="divider"></li>
+                            <li class="dropdown-submenu">
+                                <a tabindex="-1" href="#">Gestión Vuelos</a>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("Categoría de Tarifa de Avión", "Index", "CategTarifAvion")</li>
+                                    <li>@Html.ActionLink("Clase de Pasajeros", "Index", "Clase")</li>
+                                    <li>@Html.ActionLink("Tipo de Avión", "Index", "TipoAvion")</li>
+                                    <li>@Html.ActionLink("Origen Vuelo", "Index", "OrigenVuelo")</li>
+                                    <li>@Html.ActionLink("Destino Vuelo", "Index", "DestinoVuelo")</li>
+                                    <li>@Html.ActionLink("Vuelo", "Index", "Avion")</li>
+                                </ul>
+                            </li>    
+                            <li class="divider"></li>
+                            <li class="dropdown-submenu">
+                                <a tabindex="-1" href="#">Gestión Traslados</a>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("Destino Transfer", "Index", "DestinoRental")</li>
+                                    <li>@Html.ActionLink("Origen Transfer", "Index", "OrigenRental")</li>
+                                    <li>@Html.ActionLink("Traslado", "Index", "Rental")</li>
+                                </ul>
+                            </li>    
+                        </ul> 
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Temporada <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-submenu">
+                                <a tabindex="-1" href="#">Hoteles</a>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("Hotel", "Index", "Temporada_Hotel")</li>
+                                    <li>@Html.ActionLink("Reducción", "Index", "Temporada_Reduccion")</li>
+                                    <li>@Html.ActionLink("Suplemento", "Index", "Temporada_Suplemento")</li>
+                                </ul>
+                            </li>
+                            <li class="divider"></li>
+                            <li>@Html.ActionLink("Empresas Transportistas", "Index", "TemporadaEmpresa")</li>
+                            <li class="divider"></li>
+                            <li>@Html.ActionLink("Paquetes", "Index", "TemporadaPaquete")</li>
+                            <li class="divider"></li>
+                            <li>@Html.ActionLink("Excursiones", "Index", "TemporadaExcursion")</li>
+                            <li class="divider"></li>
+                            <li>@Html.ActionLink("Vuelos", "Index", "TemporadaAvion")</li>
+                            <li class="divider"></li>
+                            <li>@Html.ActionLink("Traslados", "Index", "TemporadaRental")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Tarifa <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Hoteles", "Tarifa_Hotel", "Temporada_Hotel")</li>
+                            <li class="divider"></li>
+                            <li>@Html.ActionLink("Carros", "Index", "TarifaCarro")</li>
+                            <li class="divider"></li>
+                            <li>@Html.ActionLink("Paquetes", "Tarifa_Paquete", "TemporadaPaquete")</li>
+                            <li class="divider"></li>
+                            <li>@Html.ActionLink("Excursiones", "Tarifa_Excursion", "TemporadaExcursion")</li>
+                            <li class="divider"></li>
+                            <li>@Html.ActionLink("Vuelos", "Tarifa_Avion", "TemporadaAvion")</li>
+                            <li class="divider"></li>
+                            <li>@Html.ActionLink("Traslados", "Tarifa_Rental", "TemporadaRental")</li>
+
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Trabajadores <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Trabajadores", "Index", "Account")</li>
+                        </ul>
+                    </li>
+                </ul>
+                @if (Request.IsAuthenticated)
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            @Html.ActionLink("Bienvenido: " + User.Identity.GetUserName(), "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Cambiar Contraseña" })
+                        <li><a href="javascript:document.getElementById('logoutForm').submit()">Salir</a></li>
+                        </li>
+                    </ul>
+                }
+            </div>
+        </div>
+    </div>   
+        }else
+            if (User.IsInRole("superadmin"))
+            {
+                <div class="navbar navbar-inverse navbar-fixed-top">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            @Html.ActionLink("TrawebQlick", "Index", "MainApp", null, new { @class = "navbar-brand" })
+                        </div>
+                        <div class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <li>@Html.ActionLink("Principal", "Index", "Home")</li>
+                                <li>@Html.ActionLink("Empresa", "Index", "Empresa")</li>
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Nomencladores <span class="caret"></span></a> 
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+                                        <li class="dropdown-submenu">
+                                            <a tabindex="-1" href="#">Generales</a>
+                                            <ul class="dropdown-menu">
+                                                <li>@Html.ActionLink("Año", "Index", "Anno")</li>
+                                                <li>@Html.ActionLink("Estación", "Index", "Estacion")</li>
+                                                <li>@Html.ActionLink("País", "Index", "Pais")</li>
+                                                <li>@Html.ActionLink("Temporada", "Index", "Temporada")</li>
+                                                <li>@Html.ActionLink("Destino", "Index", "Destino")</li>
+                                                <li>@Html.ActionLink("Sub Destino", "Index", "Subdestino")</li>
+                                                <li>@Html.ActionLink("Tipo Tarifa", "Index", "Tipo_Tarifa")</li>
+                                                <li>@Html.ActionLink("Tipo Empresa", "Index", "Tipo_Empresa")</li>
+                                            </ul>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li class="dropdown-submenu">
+                                            <a tabindex="-1" href="#">Gestión Hoteles</a>
+                                            <ul class="dropdown-menu">
+                                                <li>@Html.ActionLink("Cadena", "Index", "Cadena")</li>
+                                                <li>@Html.ActionLink("Categoría de Hotel", "Index", "Categoria")</li>
+                                                <li class="dropdown-submenu">
+                                                    <a tabindex="-1" href="#">Gestión Tipología</a>
+                                                    <ul class="dropdown-menu">
+                                                        <li>@Html.ActionLink("Tarificación", "Index", "Tarificacion")</li>
+                                                        <li>@Html.ActionLink("Tipología", "Index", "Tipologia")</li>
+                                                    </ul>
+                                                </li>
+                                                <li>@Html.ActionLink("Suplemento", "Index", "Suplemento")</li>
+                                                <li>@Html.ActionLink("Reducción", "Index", "Reduccion")</li>
+                                                <li>@Html.ActionLink("Hotel", "Index", "Hotel")</li>
+                                            </ul>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li class="dropdown-submenu">
+                                            <a tabindex="-1" href="#">Gestión Carros</a>
+                                            <ul class="dropdown-menu">
+                                                <li>@Html.ActionLink("Categoría de Carro", "Index", "Tipologia_Carro")</li>
+                                                <li>@Html.ActionLink("Rango", "Index", "Rango")</li>
+                                                <li>@Html.ActionLink("Marca-Modelo", "Index", "Carro")</li>
+                                                <li>@Html.ActionLink("Oficina Renta", "Index", "OficinaRenta")</li>
+                                            </ul>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>@Html.ActionLink("Gestión Paquetes", "Index", "Paquete")</li>
+                                        <li class="divider"></li>
+                                        <li>@Html.ActionLink("Gestión Excursiones", "Index", "Excursion")</li>
+                                        <li class="divider"></li>
+                                        <li class="dropdown-submenu">
+                                            <a tabindex="-1" href="#">Gestión Vuelos</a>
+                                            <ul class="dropdown-menu">
+                                                <li>@Html.ActionLink("Categoría de Tarifa de Avión", "Index", "CategTarifAvion")</li>
+                                                <li>@Html.ActionLink("Clase de Pasajeros", "Index", "Clase")</li>
+                                                <li>@Html.ActionLink("Tipo de Avión", "Index", "TipoAvion")</li>
+                                                <li>@Html.ActionLink("Origen Vuelo", "Index", "OrigenVuelo")</li>
+                                                <li>@Html.ActionLink("Destino Vuelo", "Index", "DestinoVuelo")</li>
+                                                <li>@Html.ActionLink("Vuelo", "Index", "Avion")</li>
+                                            </ul>
+                                        </li>    
+                                        <li class="divider"></li>
+                                        <li class="dropdown-submenu">
+                                            <a tabindex="-1" href="#">Gestión Traslados</a>
+                                            <ul class="dropdown-menu">
+                                                <li>@Html.ActionLink("Destino Transfer", "Index", "DestinoRental")</li>
+                                                <li>@Html.ActionLink("Origen Transfer", "Index", "OrigenRental")</li>
+                                                <li>@Html.ActionLink("Traslado", "Index", "Rental")</li>
+                                            </ul>
+                                        </li>    
+                                    </ul> 
+                                </li>
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Temporada <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li class="dropdown-submenu">
+                                            <a tabindex="-1" href="#">Hoteles</a>
+                                            <ul class="dropdown-menu">
+                                                <li>@Html.ActionLink("Hotel", "Index", "Temporada_Hotel")</li>
+                                                <li>@Html.ActionLink("Reducción", "Index", "Temporada_Reduccion")</li>
+                                                <li>@Html.ActionLink("Suplemento", "Index", "Temporada_Suplemento")</li>
+                                            </ul>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>@Html.ActionLink("Empresas Transportistas", "Index", "TemporadaEmpresa")</li>
+                                        <li class="divider"></li>
+                                        <li>@Html.ActionLink("Paquetes", "Index", "TemporadaPaquete")</li>
+                                        <li class="divider"></li>
+                                        <li>@Html.ActionLink("Excursiones", "Index", "TemporadaExcursion")</li>
+                                        <li class="divider"></li>
+                                        <li>@Html.ActionLink("Vuelos", "Index", "TemporadaAvion")</li>
+                                        <li class="divider"></li>
+                                        <li>@Html.ActionLink("Traslados", "Index", "TemporadaRental")</li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Tarifa <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li>@Html.ActionLink("Hoteles", "Tarifa_Hotel", "Temporada_Hotel")</li>
+                                        <li class="divider"></li>
+                                        <li>@Html.ActionLink("Carros", "Index", "TarifaCarro")</li>
+                                        <li class="divider"></li>
+                                        <li>@Html.ActionLink("Paquetes", "Tarifa_Paquete", "TemporadaPaquete")</li>
+                                        <li class="divider"></li>
+                                        <li>@Html.ActionLink("Excursiones", "Tarifa_Excursion", "TemporadaExcursion")</li>
+                                        <li class="divider"></li>
+                                        <li>@Html.ActionLink("Vuelos", "Tarifa_Avion", "TemporadaAvion")</li>
+                                        <li class="divider"></li>
+                                        <li>@Html.ActionLink("Traslados", "Tarifa_Rental", "TemporadaRental")</li>
+
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Trabajadores <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li>@Html.ActionLink("Trabajadores", "Index", "Account")</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            @if (Request.IsAuthenticated)
+                            {
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li>
+                                        @Html.ActionLink("Bienvenido: " + User.Identity.GetUserName(), "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Cambiar Contraseña" })
+                                    <li><a href="javascript:document.getElementById('logoutForm').submit()">Salir</a></li>
+                                    </li>
+                                </ul>
+                            }
+                        </div>
+                    </div>
+                </div>   
+            }
+        
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Manage" })
+        </li>
+        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+    </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+    </ul>
+}

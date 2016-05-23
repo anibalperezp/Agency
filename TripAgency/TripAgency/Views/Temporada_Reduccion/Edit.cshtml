@@ -1,0 +1,90 @@
+﻿@model TripAgency.EF.Temporada_Reduccion
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Editar</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Temporada_Reduccion</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.idTemporada_Reduccion)
+
+        <div class="form-group">
+            @Html.Label("Período", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.periodo)
+                @Html.ValidationMessageFor(model => model.periodo)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Fecha Inicio", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.inicio)
+                @Html.ValidationMessageFor(model => model.inicio)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Fecha Fin", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.fin)
+                @Html.ValidationMessageFor(model => model.fin)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Año", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("idanno", String.Empty)
+                @Html.ValidationMessageFor(model => model.idanno)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Hotel", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("idhotel", String.Empty)
+                @Html.ValidationMessageFor(model => model.idhotel)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Estación", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("idEstacion", String.Empty)
+                @Html.ValidationMessageFor(model => model.idEstacion)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Temporada", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("idTemporada", String.Empty)
+                @Html.ValidationMessageFor(model => model.idtemporada)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Ir atrás", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

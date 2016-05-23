@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2b81232af24344bd9adc77041e116210" Name="Diagram1">
+        <EntityTypeShape EntityType="TripAgencyModel.Anno" Width="1.5" PointX="6.75" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAgencyModel.AspNetUserClaims" Width="1.5" PointX="18.25" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAgencyModel.AspNetUserLogins" Width="1.5" PointX="18.25" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAgencyModel.AspNetUsers" Width="1.5" PointX="16" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAgencyModel.Avion" Width="1.5" PointX="3" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAgencyModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAgencyModel.Cadena" Width="1.5" PointX="6.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAgencyModel.Carro" Width="1.5" PointX="6" PointY="24.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAgencyModel.Categoria" Width="1.5" PointX="6.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAgencyModel.CategTarifAvion" Width="1.5" PointX="12" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAgencyModel.Clase" Width="1.5" PointX="9" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAgencyModel.Destino" Width="1.5" PointX="0.75" PointY="19.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAgencyModel.DestinoRental" Width="1.5" PointX="0.75" PointY="37.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAgencyModel.DestinoVuelo" Width="1.5" PointX="0.75" PointY="29.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAgencyModel.Empresa" Width="1.5" PointX="0.75" PointY="24.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAgencyModel.Empresa_TipoEmpresa" Width="1.5" PointX="6" PointY="21" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAgencyModel.Estacion" Width="1.5" PointX="6.75" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAgencyModel.Excursion" Width="1.5" PointX="6" PointY="28.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAgencyModel.Hotel" Width="1.5" PointX="9" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAgencyModel.NomAvionClase" Width="1.5" PointX="11.25" PointY="25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAgencyModel.NomClaseCatTarAvi" Width="1.5" PointX="14.25" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAgencyModel.NomTempAvionClase" Width="1.5" PointX="11.25" PointY="21.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAgencyModel.NomTempRedHotel" Width="1.5" PointX="16.5" PointY="26.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAgencyModel.NomTempSupHotel" Width="1.5" PointX="19.5" PointY="20.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAgencyModel.NomTempTipHotel" Width="1.5" PointX="19.5" PointY="24" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAgencyModel.OficinaRenta" Width="1.5" PointX="3" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAgencyModel.OficPerCar" Width="1.5" PointX="11.25" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAgencyModel.OrigenRental" Width="1.5" PointX="0.75" PointY="40.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAgencyModel.OrigenVuelo" Width="1.5" PointX="0.75" PointY="32.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAgencyModel.Pai" Width="1.5" PointX="1.5" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAgencyModel.Paquete" Width="1.5" PointX="3" PointY="44.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAgencyModel.Rango" Width="1.5" PointX="9" PointY="34.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAgencyModel.Rangos_Tarifa" Width="1.5" PointX="11.25" PointY="27.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAgencyModel.Reduccion" Width="1.5" PointX="9" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAgencyModel.Reduccion_Hotel" Width="1.5" PointX="11.25" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAgencyModel.Rental" Width="1.5" PointX="3" PointY="29.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAgencyModel.Subdestino" Width="1.5" PointX="3" PointY="34.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAgencyModel.Suplemento" Width="1.5" PointX="12" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAgencyModel.Suplemento_Hotel" Width="1.5" PointX="14.25" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAgencyModel.TarifaCarro" Width="1.5" PointX="9" PointY="24" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAgencyModel.Tarificacion" Width="1.5" PointX="6.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAgencyModel.Temporada" Width="1.5" PointX="6.75" PointY="38.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAgencyModel.Temporada_Hotel" Width="1.5" PointX="14.25" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAgencyModel.Temporada_Reduccion" Width="1.5" PointX="14.25" PointY="25.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAgencyModel.Temporada_Suplemento" Width="1.5" PointX="17.25" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAgencyModel.TemporadaAvion" Width="1.5" PointX="9" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAgencyModel.TemporadaEmpresa" Width="1.5" PointX="9" PointY="29.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAgencyModel.TemporadaExcursion" Width="1.5" PointX="11.25" PointY="31.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAgencyModel.TemporadaPaquete" Width="1.5" PointX="5.25" PointY="44" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAgencyModel.TemporadaRental" Width="1.5" PointX="5.25" PointY="33.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAgencyModel.Tipo_Empresa" Width="1.5" PointX="3.75" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAgencyModel.Tipo_Tarifa" Width="1.5" PointX="17.25" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAgencyModel.TipoAvion" Width="1.5" PointX="0.75" PointY="34.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAgencyModel.Tipologia_Carro" Width="1.5" PointX="3.75" PointY="14.125" IsExpanded="true" />
+        <AssociationConnector Association="TripAgencyModel.FK_TarifaCarro_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_Temporada_Avion_ToTable_3" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_Temporada_Excursion_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_Temporada_Hotel_ToTable_3" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_Temporada_Paquete_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_Temporada_Reduccion_ToTable_6" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_Temporada_Suplemento_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_TemporadaEmpresa_ToTable_3" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_TemporadaRental_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_Avion_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_Avion_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_NomAvionClase_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_NomTempClase_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_Vuelo_ToTable2" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_Vuelo_ToTable4" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_Hotel_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_Carros_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_Carros_ToTable_2" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_OficPerCar_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_Hotel_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_ClaseCatTarAvi_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_ClaseCatTarAvi_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_NomAvionClase_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_NomTempClase_ToTable_2" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_Destino_Pais" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_Excursion_ToTable2" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_Hotel_ToTable_2" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_OficinaRenta_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_Subdestino_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_Rental_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_Excursion_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_OficinaRenta_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_Paquete_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_Rental_ToTable_2" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_Table_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_TarifaCarro_ToTable_3" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_Temporada_Avion_ToTable_2" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_TemporadaEmpresa_ToTable_7" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_Table_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_Temporada_Avion_ToTable_4" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_Temporada_Excursion_ToTable_2" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_Temporada_Hotel_ToTable_4" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_Temporada_Paquete_ToTable_2" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_Temporada_Reduccion_ToTable_3" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_Temporada_Suplemento_ToTable_4" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_TemporadaEmpresa_ToTable_4" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_TemporadaRental_ToTable_2" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_Temporada_Excursion_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_Temporada_Hotel_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_Temporada_Reduccion_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_Temporada_Suplemento_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_Tipol_ReduccTipol_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_Tipol_SupleTipol_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_NomTempClase_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_Nom_Temporada_Hotel_ToTable_" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_Nom_Temporada_Hotel_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_Nom_Temporada_Hotel_ToTable_2" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_Nom_Temp_Hotel_ToTable_6" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_Nom_Temp_Hotel_ToTable_7" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_Nom_Temp_Hotel_ToTable_8" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_Nom_Temporada_Hotel_ToTable_6" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_Nom_Temporada_Hotel_ToTable_8" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_OficPerCar_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_Rental_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_Temporada_Paquete_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_Tipol_RangosTarifaCarro_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_Tipol_RangosTarifaCarro_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_Tipol_ReduccTipol_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_TemporadaRental_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_Tipol_SupleTipol_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_TarifaCarro_ToTable_2" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_TarifaCarro_ToTable_5" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_TarifaCarro_ToTable_7" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_Temporada_Avion_ToTable_5" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_Temporada_Excursion_ToTable_3" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_Temporada_Hotel_ToTable_5" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_Temporada_Paquete_ToTable_3" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_Temporada_Reduccion_ToTable_5" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_Temporada_Suplemento_ToTable_5" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_TemporadaEmpresa_ToTable_5" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAgencyModel.FK_TemporadaRental_ToTable_3" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="TripAgencyModel.AspNetRoles" Width="1.5" PointX="13.75" PointY="4" />
+        <AssociationConnector Association="TripAgencyModel.AspNetUserRoles" />
+        <EntityTypeShape EntityType="TripAgencyModel.Tipol_HotelTipol" Width="1.5" PointX="11.25" PointY="7.25" />
+        <EntityTypeShape EntityType="TripAgencyModel.Tipologia" Width="1.5" PointX="9" PointY="1.25" />
+        <AssociationConnector Association="TripAgencyModel.FK_Tipol_HotelTipol_ToTable" />
+        <AssociationConnector Association="TripAgencyModel.FK_Nom_Temporada_Hotel_ToTable_7" />
+        <AssociationConnector Association="TripAgencyModel.FK_Tipologia_ToTable" />
+        <AssociationConnector Association="TripAgencyModel.FK_Tipol_HotelTipol_ToTable_1" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

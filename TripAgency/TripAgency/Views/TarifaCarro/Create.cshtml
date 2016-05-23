@@ -1,0 +1,264 @@
+﻿@model TripAgency.EF.TarifaCarro
+
+@{
+    ViewBag.Title = "Añadir Tarifa de Carro";
+}
+
+<h2>Añadir Tarifa</h2>
+
+@Scripts.Render("~/bundles/jqueryCost")
+<script language="JavaScript" type="text/JavaScript">
+    var cl = "'alert alert-danger alert-dismissable'";
+    $(document).ready(function () {
+        $("#State").prop("disabled", true);
+        $("#idEmpresa").change(function () {
+            var anno = $("#idAnno").val();
+            var temp = $("#idTemporada").val();
+            var car = $("#idEmpresa").val();
+            if (anno != "" && temp != "" && car != "") {
+                if ($("#idcarro").val() != "") {
+                    var countryOptions = {};
+                    countryOptions.url = "/TripAgency/TarifaCarro/periodos";
+                    countryOptions.type = "POST";
+                    countryOptions.data = JSON.stringify({
+                        idanno: $("#idAnno").val(),
+                        idTemporada: $("#idTemporada").val(),
+                        idEmpresa: $("#idEmpresa").val()
+                    });
+                    countryOptions.datatype = "json";
+                    countryOptions.contentType = "application/json";
+                    countryOptions.success = function (statesList) {
+                        $("#alert1").clear();
+                        $("#State").empty();
+                        for (var i = 0; i < statesList.length; i++) {
+                            $("#State").append("<option value='" + statesList[i] + "'>" + statesList[i] + "</option>");
+                        }
+                        $("#State").prop("disabled", false);
+                    };
+                    countryOptions.error = function () {
+                        $("#alert1").append("<div class=" + cl + "><button type=button class=close data-dismiss=alert aria-hidden=true> &times; </button> Error ! En el Servidor,comuniquese con el administrador.</div>");
+                    };
+                    $.ajax(countryOptions);
+                }
+                else {
+                    $("#State").empty();
+                    $("#State").prop("disabled", true);
+                }
+            }
+        });
+    });
+
+    $(document).ready(function () {
+        $("#State").prop("disabled", true);
+        $("#idTemporada").change(function () {
+            var anno = $("#idAnno").val();
+            var temp = $("#idTemporada").val();
+            var car = $("#idEmpresa").val();
+            if (anno != "" && temp != "" && car != "") {
+                if ($("#idEmpresa").val() != "") {
+                    var countryOptions = {};
+                    countryOptions.url = "/TripAgency/TarifaCarro/periodos";
+                    countryOptions.type = "POST";
+                    countryOptions.data = JSON.stringify({
+                        idanno: $("#idAnno").val(),
+                        idTemporada: $("#idTemporada").val(),
+                        idEmpresa: $("#idEmpresa").val()
+                    });
+                    countryOptions.datatype = "json";
+                    countryOptions.contentType = "application/json";
+                    countryOptions.success = function (statesList) {
+                        $("#State").empty();
+                        $("#alert1").clear();
+                        for (var i = 0; i < statesList.length; i++) {
+                            $("#State").append("<option value='" + statesList[i] + "'>" + statesList[i] + "</option>");
+                        }
+                        $("#State").prop("disabled", false);
+                    };
+                    countryOptions.error = function() {
+                        $("#alert1").append("<div class=" + cl + "><button type=button class=close data-dismiss=alert aria-hidden=true> &times; </button> Error ! En el Servidor,comuniquese con el administrador.</div>");
+                    };
+                    $.ajax(countryOptions);
+                }
+                else {
+                    $("#State").empty();
+                    $("#State").prop("disabled", true);
+                }
+            }
+        });
+    });
+
+    $(document).ready(function () {
+        $("#State").prop("disabled", true);
+        $("#idAnno").change(function () {
+            var anno = $("#idAnno").val();
+            var temp = $("#idTemporada").val();
+            var car = $("#idEmpresa").val();
+            if (anno != "" && temp != "" && car != "") {
+                if ($("#idEmpresa").val() != "") {
+                    var countryOptions = {};
+                    countryOptions.url = "/TripAgency/TarifaCarro/periodos";
+                    countryOptions.type = "POST";
+                    countryOptions.data = JSON.stringify({
+                        idanno: $("#idAnno").val(),
+                        idTemporada: $("#idTemporada").val(),
+                        idEmpresa: $("#idEmpresa").val()
+                    });
+                    countryOptions.datatype = "json";
+                    countryOptions.contentType = "application/json";
+                    countryOptions.success = function (statesList) {
+                        $("#State").empty();
+                        $("#alert1").clear();
+                        for (var i = 0; i < statesList.length; i++) {
+                            $("#State").append("<option value='" + statesList[i] + "'>" + statesList[i] + "</option>");
+                        }
+                        $("#State").prop("disabled", false);
+                    };
+                    countryOptions.error = function() {
+                        $("#alert1").append("<div class=" + cl + "><button type=button class=close data-dismiss=alert aria-hidden=true> &times; </button> Error ! En el Servidor,comuniquese con el administrador.</div>");
+                    };
+                    $.ajax(countryOptions);
+                }
+                else {
+                    $("#State").empty();
+                    $("#State").prop("disabled", true);
+                }
+            }
+        });
+    });
+</script>
+
+
+
+<form method="post" enctype="multipart/form-data">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+    <div id="alert1">
+
+    </div>
+        <div class="form-horizontal">
+            <h4>Tarifa de Carro</h4>
+            <br />
+            @Html.ValidationSummary(true)
+            
+            <div class="form-group">
+                @Html.Label("Empresa", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("idEmpresa", String.Empty)
+                    @Html.ValidationMessageFor(model => model.idEmpresa)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("Año", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("idAnno", String.Empty)
+                    @Html.ValidationMessageFor(model => model.idAnno)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Temporada", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("idTemporada", String.Empty)
+                    @Html.ValidationMessageFor(model => model.idTemporada)
+                </div>
+            </div>
+            
+            <div class="form-group">
+                @Html.Label("Temporada de Empresa", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <select id="State" name="State"></select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Categoría", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("idtipologia_carro", String.Empty)
+                    @Html.ValidationMessageFor(model => model.idtipologia_carro)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Valor", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.valor, new { @class = "form-control", @placeholder = "Cantidad de Dinero" })
+                    @Html.ValidationMessageFor(model => model.valor)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Seguro", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.seguro, new { @class = "form-control", @placeholder = "Cantidad de Dinero" })
+                    @Html.ValidationMessageFor(model => model.seguro)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Depósito", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.deposito, new { @class = "form-control", @placeholder = "Cantidad de Dinero" })
+                    @Html.ValidationMessageFor(model => model.deposito)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Descripción", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.descripcion, new { @class = "col-md-2", @placeholder = "Descripción" })
+                    @Html.ValidationMessageFor(model => model.descripcion)
+                </div>
+            </div>
+            
+            <!------------------------------------------------------------------------------------------------------------------------------>
+
+            <div class="form-group">
+                @Html.Label("Tipoloías", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <table>
+                        <tr>
+                            @{
+                                int cnt = 0;
+                                List<TripAgency.Models.Tarifa_Rangos_Asigned> tarifas = ViewBag.Courses;
+                                foreach (var tarifa in tarifas)
+                                {
+                                    if (cnt++ % 1 == 0)
+                                    {
+                                         @:</tr><tr>
+                                    }
+                                    @:<td>
+                                    <input type="checkbox"
+                                    name="selectedRangos"
+                                    value="@tarifa.idRano"
+                                    @(Html.Raw(tarifa.assigned ? "checked=\"checked\"" : "")) />
+                                    @: @tarifa.rango  
+                                    <text >.     .</text>
+                                    <input type="text" value="@tarifa.tarifa"  name="selectedTarifas" width="6" />
+                                    @:</td>
+                                }       
+                            @:</tr>
+                            }
+                        </table>
+                    </div>
+                </div>
+
+                <!------------------------------------------------------------------------------------------------------------------------------>
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+    </form>

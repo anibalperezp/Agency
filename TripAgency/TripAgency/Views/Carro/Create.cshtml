@@ -1,0 +1,105 @@
+﻿@model TripAgency.EF.Carro
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Añadir elemento</h2>
+
+<form method="post" enctype="multipart/form-data">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Carro</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.Label("Empresa", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("idempresa", String.Empty)
+                @Html.ValidationMessageFor(model => model.idempresa)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Modelo", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.name, new { @class = "form-control", @placeholder = "Marca + Modelo" })
+                @Html.ValidationMessageFor(model => model.name)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Imagen", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="picture" />
+                @Html.ValidationMessageFor(model => model.foto_carro1)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Imagen", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="picture2" />
+                @Html.ValidationMessageFor(model => model.foto_carro2)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Imagen", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="picture3" />
+                @Html.ValidationMessageFor(model => model.foto_carro3)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Categoría", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("idtipologia_carro", String.Empty)
+                @Html.ValidationMessageFor(model => model.idtipologia_carro)
+            </div>
+        </div>
+        
+        <div class="form-group">
+            @Html.Label("Transmisión", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("transmision", new SelectList(new[] { "Automatic", "Manual" }), "Choose")
+                @Html.ValidationMessageFor(model => model.transmision)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Pasajeros", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.pasajeros, new { @class = "form-control", @placeholder = "Número de pasajeros" })
+                @Html.ValidationMessageFor(model => model.pasajeros)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Descripción", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.descripcion_carro, new { @class = "col-md-2", @placeholder = "Descripción" })
+                @Html.ValidationMessageFor(model => model.descripcion_carro)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+    }
+
+    <div>
+        @Html.ActionLink("Ir atrás", "Index")
+    </div>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+    </form>

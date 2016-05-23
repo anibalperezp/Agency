@@ -1,0 +1,663 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TripAgencyModelStoreContainer" CdmEntityContainer="TripAgencyEntities">
+    <EntitySetMapping Name="Anno">
+      <EntityTypeMapping TypeName="TripAgencyModel.Anno">
+        <MappingFragment StoreEntitySet="Anno">
+          <ScalarProperty Name="IdAnno" ColumnName="IdAnno" />
+          <ScalarProperty Name="anno1" ColumnName="anno1" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserClaims">
+      <EntityTypeMapping TypeName="TripAgencyModel.AspNetUserClaims">
+        <MappingFragment StoreEntitySet="AspNetUserClaims">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+          <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserLogins">
+      <EntityTypeMapping TypeName="TripAgencyModel.AspNetUserLogins">
+        <MappingFragment StoreEntitySet="AspNetUserLogins">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+          <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUsers">
+      <EntityTypeMapping TypeName="TripAgencyModel.AspNetUsers">
+        <MappingFragment StoreEntitySet="AspNetUsers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="Discriminator" ColumnName="Discriminator" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Avion">
+      <EntityTypeMapping TypeName="TripAgencyModel.Avion">
+        <MappingFragment StoreEntitySet="Avion">
+          <ScalarProperty Name="idVuelo" ColumnName="idVuelo" />
+          <ScalarProperty Name="numVuelo" ColumnName="numVuelo" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="idEmpresa" ColumnName="idEmpresa" />
+          <ScalarProperty Name="tsalida" ColumnName="tsalida" />
+          <ScalarProperty Name="tllegada" ColumnName="tllegada" />
+          <ScalarProperty Name="horallegada" ColumnName="horallegada" />
+          <ScalarProperty Name="horasalida" ColumnName="horasalida" />
+          <ScalarProperty Name="idTipoAvion" ColumnName="idTipoAvion" />
+          <ScalarProperty Name="idOrigenVuelo" ColumnName="idOrigenVuelo" />
+          <ScalarProperty Name="idDestinoVuelo" ColumnName="idDestinoVuelo" />
+          <ScalarProperty Name="pasajeros" ColumnName="pasajeros" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="C__MigrationHistory">
+      <EntityTypeMapping TypeName="TripAgencyModel.C__MigrationHistory">
+        <MappingFragment StoreEntitySet="C__MigrationHistory">
+          <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+          <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cadena">
+      <EntityTypeMapping TypeName="TripAgencyModel.Cadena">
+        <MappingFragment StoreEntitySet="Cadena">
+          <ScalarProperty Name="idCadena" ColumnName="idCadena" />
+          <ScalarProperty Name="cadena_" ColumnName="cadena_" />
+          <ScalarProperty Name="logo_cadena" ColumnName="logo_cadena" />
+          <ScalarProperty Name="descrpcion_cadena" ColumnName="descrpcion_cadena" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Carro">
+      <EntityTypeMapping TypeName="TripAgencyModel.Carro">
+        <MappingFragment StoreEntitySet="Carro">
+          <ScalarProperty Name="idCarro" ColumnName="idCarro" />
+          <ScalarProperty Name="foto_carro1" ColumnName="foto_carro1" />
+          <ScalarProperty Name="foto_carro2" ColumnName="foto_carro2" />
+          <ScalarProperty Name="foto_carro3" ColumnName="foto_carro3" />
+          <ScalarProperty Name="idtipologia_carro" ColumnName="idtipologia_carro" />
+          <ScalarProperty Name="descripcion_carro" ColumnName="descripcion_carro" />
+          <ScalarProperty Name="idempresa" ColumnName="idempresa" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="transmision" ColumnName="transmision" />
+          <ScalarProperty Name="pasajeros" ColumnName="pasajeros" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categoria">
+      <EntityTypeMapping TypeName="TripAgencyModel.Categoria">
+        <MappingFragment StoreEntitySet="Categoria">
+          <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
+          <ScalarProperty Name="categoria1" ColumnName="categoria1" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CategTarifAvion">
+      <EntityTypeMapping TypeName="TripAgencyModel.CategTarifAvion">
+        <MappingFragment StoreEntitySet="CategTarifAvion">
+          <ScalarProperty Name="idCategTarifAvion" ColumnName="idCategTarifAvion" />
+          <ScalarProperty Name="codigocat" ColumnName="codigocat" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="oneway" ColumnName="oneway" />
+          <ScalarProperty Name="roundtrip" ColumnName="roundtrip" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Clase">
+      <EntityTypeMapping TypeName="TripAgencyModel.Clase">
+        <MappingFragment StoreEntitySet="Clase">
+          <ScalarProperty Name="idClase" ColumnName="idClase" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Destino">
+      <EntityTypeMapping TypeName="TripAgencyModel.Destino">
+        <MappingFragment StoreEntitySet="Destino">
+          <ScalarProperty Name="idDestino" ColumnName="idDestino" />
+          <ScalarProperty Name="destino1" ColumnName="destino1" />
+          <ScalarProperty Name="decripcion_destino" ColumnName="decripcion_destino" />
+          <ScalarProperty Name="foto_destino1" ColumnName="foto_destino1" />
+          <ScalarProperty Name="foto_destino2" ColumnName="foto_destino2" />
+          <ScalarProperty Name="idpais" ColumnName="idpais" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DestinoRental">
+      <EntityTypeMapping TypeName="TripAgencyModel.DestinoRental">
+        <MappingFragment StoreEntitySet="DestinoRental">
+          <ScalarProperty Name="idDestinoRental" ColumnName="idDestinoRental" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DestinoVuelo">
+      <EntityTypeMapping TypeName="TripAgencyModel.DestinoVuelo">
+        <MappingFragment StoreEntitySet="DestinoVuelo">
+          <ScalarProperty Name="idDestinoVuelo" ColumnName="idDestinoVuelo" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Empresa">
+      <EntityTypeMapping TypeName="TripAgencyModel.Empresa">
+        <MappingFragment StoreEntitySet="Empresa">
+          <ScalarProperty Name="idEmpresa" ColumnName="idEmpresa" />
+          <ScalarProperty Name="nombre_empresa" ColumnName="nombre_empresa" />
+          <ScalarProperty Name="foto_empresa" ColumnName="foto_empresa" />
+          <ScalarProperty Name="direccion_empresa" ColumnName="direccion_empresa" />
+          <ScalarProperty Name="telefono_empresa" ColumnName="telefono_empresa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Empresa_TipoEmpresa">
+      <EntityTypeMapping TypeName="TripAgencyModel.Empresa_TipoEmpresa">
+        <MappingFragment StoreEntitySet="Empresa_TipoEmpresa">
+          <ScalarProperty Name="idunionet" ColumnName="idunionet" />
+          <ScalarProperty Name="idtipoempresa" ColumnName="idtipoempresa" />
+          <ScalarProperty Name="idEmpresa" ColumnName="idEmpresa" />
+          <ScalarProperty Name="asignado" ColumnName="asignado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Estacion">
+      <EntityTypeMapping TypeName="TripAgencyModel.Estacion">
+        <MappingFragment StoreEntitySet="Estacion">
+          <ScalarProperty Name="idEstacion" ColumnName="idEstacion" />
+          <ScalarProperty Name="estacion1" ColumnName="estacion1" />
+          <ScalarProperty Name="descripcioon_estacion" ColumnName="descripcioon_estacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Excursion">
+      <EntityTypeMapping TypeName="TripAgencyModel.Excursion">
+        <MappingFragment StoreEntitySet="Excursion">
+          <ScalarProperty Name="idExcursion" ColumnName="idExcursion" />
+          <ScalarProperty Name="nombre_excursion" ColumnName="nombre_excursion" />
+          <ScalarProperty Name="descrpcion_excursion" ColumnName="descrpcion_excursion" />
+          <ScalarProperty Name="idempresa" ColumnName="idempresa" />
+          <ScalarProperty Name="idDestino" ColumnName="idDestino" />
+          <ScalarProperty Name="foto1" ColumnName="foto1" />
+          <ScalarProperty Name="foto2" ColumnName="foto2" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Hotel">
+      <EntityTypeMapping TypeName="TripAgencyModel.Hotel">
+        <MappingFragment StoreEntitySet="Hotel">
+          <ScalarProperty Name="facilidades" ColumnName="facilidades" />
+          <ScalarProperty Name="sitioWeb" ColumnName="sitioWeb" />
+          <ScalarProperty Name="fax" ColumnName="fax" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="idHotel" ColumnName="idHotel" />
+          <ScalarProperty Name="nombre_hotel" ColumnName="nombre_hotel" />
+          <ScalarProperty Name="descripcion_hotel" ColumnName="descripcion_hotel" />
+          <ScalarProperty Name="direccion" ColumnName="direccion" />
+          <ScalarProperty Name="foto_hotel1" ColumnName="foto_hotel1" />
+          <ScalarProperty Name="foto_hote2" ColumnName="foto_hote2" />
+          <ScalarProperty Name="foto_hotel3" ColumnName="foto_hotel3" />
+          <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
+          <ScalarProperty Name="idCadena" ColumnName="idCadena" />
+          <ScalarProperty Name="idDestino" ColumnName="idDestino" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NomAvionClase">
+      <EntityTypeMapping TypeName="TripAgencyModel.NomAvionClase">
+        <MappingFragment StoreEntitySet="NomAvionClase">
+          <ScalarProperty Name="idNomAvionClase" ColumnName="idNomAvionClase" />
+          <ScalarProperty Name="idVuelo" ColumnName="idVuelo" />
+          <ScalarProperty Name="idClase" ColumnName="idClase" />
+          <ScalarProperty Name="asignado" ColumnName="asignado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NomClaseCatTarAvi">
+      <EntityTypeMapping TypeName="TripAgencyModel.NomClaseCatTarAvi">
+        <MappingFragment StoreEntitySet="NomClaseCatTarAvi">
+          <ScalarProperty Name="idNomClaseCatTarAvi" ColumnName="idNomClaseCatTarAvi" />
+          <ScalarProperty Name="idClase" ColumnName="idClase" />
+          <ScalarProperty Name="idCategTarifAvion" ColumnName="idCategTarifAvion" />
+          <ScalarProperty Name="asignado" ColumnName="asignado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NomTempAvionClase">
+      <EntityTypeMapping TypeName="TripAgencyModel.NomTempAvionClase">
+        <MappingFragment StoreEntitySet="NomTempAvionClase">
+          <ScalarProperty Name="idNomTempAvionClase" ColumnName="idNomTempAvionClase" />
+          <ScalarProperty Name="idVuelo" ColumnName="idVuelo" />
+          <ScalarProperty Name="idTemporadaVuelo" ColumnName="idTemporadaVuelo" />
+          <ScalarProperty Name="tarifa" ColumnName="tarifa" />
+          <ScalarProperty Name="idClase" ColumnName="idClase" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NomTempRedHotel">
+      <EntityTypeMapping TypeName="TripAgencyModel.NomTempRedHotel">
+        <MappingFragment StoreEntitySet="NomTempRedHotel">
+          <ScalarProperty Name="idtemphotred" ColumnName="idtemphotred" />
+          <ScalarProperty Name="idTemporada_Reduccion" ColumnName="idTemporada_Reduccion" />
+          <ScalarProperty Name="idreduccion" ColumnName="idreduccion" />
+          <ScalarProperty Name="tarifa" ColumnName="tarifa" />
+          <ScalarProperty Name="idtipotarifa" ColumnName="idtipotarifa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NomTempSupHotel">
+      <EntityTypeMapping TypeName="TripAgencyModel.NomTempSupHotel">
+        <MappingFragment StoreEntitySet="NomTempSupHotel">
+          <ScalarProperty Name="idtemphotsup" ColumnName="idtemphotsup" />
+          <ScalarProperty Name="idSuplementoHotel" ColumnName="idSuplementoHotel" />
+          <ScalarProperty Name="idsuplemento" ColumnName="idsuplemento" />
+          <ScalarProperty Name="tarifa" ColumnName="tarifa" />
+          <ScalarProperty Name="idtipotarifa" ColumnName="idtipotarifa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NomTempTipHotel">
+      <EntityTypeMapping TypeName="TripAgencyModel.NomTempTipHotel">
+        <MappingFragment StoreEntitySet="NomTempTipHotel">
+          <ScalarProperty Name="idtemphottip" ColumnName="idtemphottip" />
+          <ScalarProperty Name="idTemporadaHotel" ColumnName="idTemporadaHotel" />
+          <ScalarProperty Name="idTiologia" ColumnName="idTiologia" />
+          <ScalarProperty Name="tarifa" ColumnName="tarifa" />
+          <ScalarProperty Name="idtipotarifa" ColumnName="idtipotarifa" />
+          <ScalarProperty Name="maxadult" ColumnName="maxadult" />
+          <ScalarProperty Name="maxninno" ColumnName="maxninno" />
+          <ScalarProperty Name="minadult" ColumnName="minadult" />
+          <ScalarProperty Name="minninno" ColumnName="minninno" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OficinaRenta">
+      <EntityTypeMapping TypeName="TripAgencyModel.OficinaRenta">
+        <MappingFragment StoreEntitySet="OficinaRenta">
+          <ScalarProperty Name="idOficina" ColumnName="idOficina" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="imagen" ColumnName="imagen" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="idDestino" ColumnName="idDestino" />
+          <ScalarProperty Name="idEmpresa" ColumnName="idEmpresa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OficPerCar">
+      <EntityTypeMapping TypeName="TripAgencyModel.OficPerCar">
+        <MappingFragment StoreEntitySet="OficPerCar">
+          <ScalarProperty Name="idOficCar" ColumnName="idOficCar" />
+          <ScalarProperty Name="idCarro" ColumnName="idCarro" />
+          <ScalarProperty Name="idOficina" ColumnName="idOficina" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrigenRental">
+      <EntityTypeMapping TypeName="TripAgencyModel.OrigenRental">
+        <MappingFragment StoreEntitySet="OrigenRental">
+          <ScalarProperty Name="idOrigenRental" ColumnName="idOrigenRental" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrigenVuelo">
+      <EntityTypeMapping TypeName="TripAgencyModel.OrigenVuelo">
+        <MappingFragment StoreEntitySet="OrigenVuelo">
+          <ScalarProperty Name="idOrigenVuelo" ColumnName="idOrigenVuelo" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pai">
+      <EntityTypeMapping TypeName="TripAgencyModel.Pai">
+        <MappingFragment StoreEntitySet="Pai">
+          <ScalarProperty Name="idPais" ColumnName="idPais" />
+          <ScalarProperty Name="pais" ColumnName="pais" />
+          <ScalarProperty Name="foto" ColumnName="foto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Paquete">
+      <EntityTypeMapping TypeName="TripAgencyModel.Paquete">
+        <MappingFragment StoreEntitySet="Paquete">
+          <ScalarProperty Name="idPaquete" ColumnName="idPaquete" />
+          <ScalarProperty Name="nombre_paquete" ColumnName="nombre_paquete" />
+          <ScalarProperty Name="descripcion_paquete" ColumnName="descripcion_paquete" />
+          <ScalarProperty Name="idEmpresa" ColumnName="idEmpresa" />
+          <ScalarProperty Name="foto" ColumnName="foto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rango">
+      <EntityTypeMapping TypeName="TripAgencyModel.Rango">
+        <MappingFragment StoreEntitySet="Rango">
+          <ScalarProperty Name="idrango" ColumnName="idrango" />
+          <ScalarProperty Name="rango1" ColumnName="rango1" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rangos_Tarifa">
+      <EntityTypeMapping TypeName="TripAgencyModel.Rangos_Tarifa">
+        <MappingFragment StoreEntitySet="Rangos_Tarifa">
+          <ScalarProperty Name="idrangtar" ColumnName="idrangtar" />
+          <ScalarProperty Name="idcondtarifa" ColumnName="idcondtarifa" />
+          <ScalarProperty Name="idrango" ColumnName="idrango" />
+          <ScalarProperty Name="asignado" ColumnName="asignado" />
+          <ScalarProperty Name="tarifa" ColumnName="tarifa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reduccion">
+      <EntityTypeMapping TypeName="TripAgencyModel.Reduccion">
+        <MappingFragment StoreEntitySet="Reduccion">
+          <ScalarProperty Name="idReduccion" ColumnName="idReduccion" />
+          <ScalarProperty Name="reduccion1" ColumnName="reduccion1" />
+          <ScalarProperty Name="descripcion_reduccion" ColumnName="descripcion_reduccion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reduccion_Hotel">
+      <EntityTypeMapping TypeName="TripAgencyModel.Reduccion_Hotel">
+        <MappingFragment StoreEntitySet="Reduccion_Hotel">
+          <ScalarProperty Name="idReduccionhotel" ColumnName="idReduccionhotel" />
+          <ScalarProperty Name="idhotel" ColumnName="idhotel" />
+          <ScalarProperty Name="idReduccion" ColumnName="idReduccion" />
+          <ScalarProperty Name="asignado" ColumnName="asignado" />
+          <ScalarProperty Name="precio" ColumnName="precio" />
+          <ScalarProperty Name="porciento" ColumnName="porciento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rental">
+      <EntityTypeMapping TypeName="TripAgencyModel.Rental">
+        <MappingFragment StoreEntitySet="Rental">
+          <ScalarProperty Name="idRental" ColumnName="idRental" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="foto" ColumnName="foto" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="idDestinoRental" ColumnName="idDestinoRental" />
+          <ScalarProperty Name="idOrigenRental" ColumnName="idOrigenRental" />
+          <ScalarProperty Name="idEmpresa" ColumnName="idEmpresa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Subdestino">
+      <EntityTypeMapping TypeName="TripAgencyModel.Subdestino">
+        <MappingFragment StoreEntitySet="Subdestino">
+          <ScalarProperty Name="idSubdestino" ColumnName="idSubdestino" />
+          <ScalarProperty Name="subdestino1" ColumnName="subdestino1" />
+          <ScalarProperty Name="descripcion_subdestino" ColumnName="descripcion_subdestino" />
+          <ScalarProperty Name="foto_sub1" ColumnName="foto_sub1" />
+          <ScalarProperty Name="foto_sub2" ColumnName="foto_sub2" />
+          <ScalarProperty Name="iddestino" ColumnName="iddestino" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Suplemento">
+      <EntityTypeMapping TypeName="TripAgencyModel.Suplemento">
+        <MappingFragment StoreEntitySet="Suplemento">
+          <ScalarProperty Name="idSuplemento" ColumnName="idSuplemento" />
+          <ScalarProperty Name="suplemento1" ColumnName="suplemento1" />
+          <ScalarProperty Name="descripcion_suplemento" ColumnName="descripcion_suplemento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Suplemento_Hotel">
+      <EntityTypeMapping TypeName="TripAgencyModel.Suplemento_Hotel">
+        <MappingFragment StoreEntitySet="Suplemento_Hotel">
+          <ScalarProperty Name="idsuplementohotel" ColumnName="idsuplementohotel" />
+          <ScalarProperty Name="idhotel" ColumnName="idhotel" />
+          <ScalarProperty Name="idSuplemento" ColumnName="idSuplemento" />
+          <ScalarProperty Name="asignado" ColumnName="asignado" />
+          <ScalarProperty Name="precio" ColumnName="precio" />
+          <ScalarProperty Name="porciento" ColumnName="porciento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TarifaCarro">
+      <EntityTypeMapping TypeName="TripAgencyModel.TarifaCarro">
+        <MappingFragment StoreEntitySet="TarifaCarro">
+          <ScalarProperty Name="idcondtarifa" ColumnName="idcondtarifa" />
+          <ScalarProperty Name="valor" ColumnName="valor" />
+          <ScalarProperty Name="seguro" ColumnName="seguro" />
+          <ScalarProperty Name="deposito" ColumnName="deposito" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="idAnno" ColumnName="idAnno" />
+          <ScalarProperty Name="idTemporada" ColumnName="idTemporada" />
+          <ScalarProperty Name="idtipologia_carro" ColumnName="idtipologia_carro" />
+          <ScalarProperty Name="idEmpresa" ColumnName="idEmpresa" />
+          <ScalarProperty Name="idTemporadaEmpresa" ColumnName="idTemporadaEmpresa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tarificacion">
+      <EntityTypeMapping TypeName="TripAgencyModel.Tarificacion">
+        <MappingFragment StoreEntitySet="Tarificacion">
+          <ScalarProperty Name="idTarificacion" ColumnName="idTarificacion" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="pack" ColumnName="pack" />
+          <ScalarProperty Name="hab" ColumnName="hab" />
+          <ScalarProperty Name="casa" ColumnName="casa" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Temporada">
+      <EntityTypeMapping TypeName="TripAgencyModel.Temporada">
+        <MappingFragment StoreEntitySet="Temporada">
+          <ScalarProperty Name="idtemporada" ColumnName="idtemporada" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Temporada_Hotel">
+      <EntityTypeMapping TypeName="TripAgencyModel.Temporada_Hotel">
+        <MappingFragment StoreEntitySet="Temporada_Hotel">
+          <ScalarProperty Name="idTemporadaHotel" ColumnName="idTemporadaHotel" />
+          <ScalarProperty Name="periodo" ColumnName="periodo" />
+          <ScalarProperty Name="inicio" ColumnName="inicio" />
+          <ScalarProperty Name="fin" ColumnName="fin" />
+          <ScalarProperty Name="descripcion_periodo" ColumnName="descripcion_periodo" />
+          <ScalarProperty Name="idanno" ColumnName="idanno" />
+          <ScalarProperty Name="idhotel" ColumnName="idhotel" />
+          <ScalarProperty Name="idEstacion" ColumnName="idEstacion" />
+          <ScalarProperty Name="idTemporada" ColumnName="idTemporada" />
+          <ScalarProperty Name="tarifa" ColumnName="tarifa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Temporada_Reduccion">
+      <EntityTypeMapping TypeName="TripAgencyModel.Temporada_Reduccion">
+        <MappingFragment StoreEntitySet="Temporada_Reduccion">
+          <ScalarProperty Name="idTemporada_Reduccion" ColumnName="idTemporada_Reduccion" />
+          <ScalarProperty Name="periodo" ColumnName="periodo" />
+          <ScalarProperty Name="inicio" ColumnName="inicio" />
+          <ScalarProperty Name="fin" ColumnName="fin" />
+          <ScalarProperty Name="idtemporada" ColumnName="idtemporada" />
+          <ScalarProperty Name="idanno" ColumnName="idanno" />
+          <ScalarProperty Name="valor" ColumnName="valor" />
+          <ScalarProperty Name="idhotel" ColumnName="idhotel" />
+          <ScalarProperty Name="idEstacion" ColumnName="idEstacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Temporada_Suplemento">
+      <EntityTypeMapping TypeName="TripAgencyModel.Temporada_Suplemento">
+        <MappingFragment StoreEntitySet="Temporada_Suplemento">
+          <ScalarProperty Name="idSuplementoHotel" ColumnName="idSuplementoHotel" />
+          <ScalarProperty Name="periodo" ColumnName="periodo" />
+          <ScalarProperty Name="inicio" ColumnName="inicio" />
+          <ScalarProperty Name="fin" ColumnName="fin" />
+          <ScalarProperty Name="idanno" ColumnName="idanno" />
+          <ScalarProperty Name="valor" ColumnName="valor" />
+          <ScalarProperty Name="idhotel" ColumnName="idhotel" />
+          <ScalarProperty Name="idEstacion" ColumnName="idEstacion" />
+          <ScalarProperty Name="idTemporada" ColumnName="idTemporada" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TemporadaAvion">
+      <EntityTypeMapping TypeName="TripAgencyModel.TemporadaAvion">
+        <MappingFragment StoreEntitySet="TemporadaAvion">
+          <ScalarProperty Name="idTemporadaVuelo" ColumnName="idTemporadaVuelo" />
+          <ScalarProperty Name="periodo" ColumnName="periodo" />
+          <ScalarProperty Name="inicio" ColumnName="inicio" />
+          <ScalarProperty Name="fin" ColumnName="fin" />
+          <ScalarProperty Name="descripcion_periodo" ColumnName="descripcion_periodo" />
+          <ScalarProperty Name="idanno" ColumnName="idanno" />
+          <ScalarProperty Name="idEstacion" ColumnName="idEstacion" />
+          <ScalarProperty Name="idTemporada" ColumnName="idTemporada" />
+          <ScalarProperty Name="idEmpresa" ColumnName="idEmpresa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TemporadaEmpresa">
+      <EntityTypeMapping TypeName="TripAgencyModel.TemporadaEmpresa">
+        <MappingFragment StoreEntitySet="TemporadaEmpresa">
+          <ScalarProperty Name="idTemporadaEmpresa" ColumnName="idTemporadaEmpresa" />
+          <ScalarProperty Name="periodo" ColumnName="periodo" />
+          <ScalarProperty Name="inicio" ColumnName="inicio" />
+          <ScalarProperty Name="fin" ColumnName="fin" />
+          <ScalarProperty Name="descripcion_periodo" ColumnName="descripcion_periodo" />
+          <ScalarProperty Name="idanno" ColumnName="idanno" />
+          <ScalarProperty Name="idEmpresa" ColumnName="idEmpresa" />
+          <ScalarProperty Name="idEstacion" ColumnName="idEstacion" />
+          <ScalarProperty Name="idTemporada" ColumnName="idTemporada" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TemporadaExcursion">
+      <EntityTypeMapping TypeName="TripAgencyModel.TemporadaExcursion">
+        <MappingFragment StoreEntitySet="TemporadaExcursion">
+          <ScalarProperty Name="idtemporadaexcursion" ColumnName="idtemporadaexcursion" />
+          <ScalarProperty Name="periodo" ColumnName="periodo" />
+          <ScalarProperty Name="inicio" ColumnName="inicio" />
+          <ScalarProperty Name="fin" ColumnName="fin" />
+          <ScalarProperty Name="descripcion_periodo" ColumnName="descripcion_periodo" />
+          <ScalarProperty Name="idanno" ColumnName="idanno" />
+          <ScalarProperty Name="precio_tarifa" ColumnName="precio_tarifa" />
+          <ScalarProperty Name="idExcursion" ColumnName="idExcursion" />
+          <ScalarProperty Name="idEstacion" ColumnName="idEstacion" />
+          <ScalarProperty Name="idTemporada" ColumnName="idTemporada" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TemporadaPaquete">
+      <EntityTypeMapping TypeName="TripAgencyModel.TemporadaPaquete">
+        <MappingFragment StoreEntitySet="TemporadaPaquete">
+          <ScalarProperty Name="idtemporadapaquete" ColumnName="idtemporadapaquete" />
+          <ScalarProperty Name="periodo" ColumnName="periodo" />
+          <ScalarProperty Name="inicio" ColumnName="inicio" />
+          <ScalarProperty Name="fin" ColumnName="fin" />
+          <ScalarProperty Name="descripcion_periodo" ColumnName="descripcion_periodo" />
+          <ScalarProperty Name="idanno" ColumnName="idanno" />
+          <ScalarProperty Name="precio_tarifa" ColumnName="precio_tarifa" />
+          <ScalarProperty Name="idPaquete" ColumnName="idPaquete" />
+          <ScalarProperty Name="idEstacion" ColumnName="idEstacion" />
+          <ScalarProperty Name="idTemporada" ColumnName="idTemporada" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TemporadaRental">
+      <EntityTypeMapping TypeName="TripAgencyModel.TemporadaRental">
+        <MappingFragment StoreEntitySet="TemporadaRental">
+          <ScalarProperty Name="idTemporadaRental" ColumnName="idTemporadaRental" />
+          <ScalarProperty Name="periodo" ColumnName="periodo" />
+          <ScalarProperty Name="inicio" ColumnName="inicio" />
+          <ScalarProperty Name="fin" ColumnName="fin" />
+          <ScalarProperty Name="descripcion_periodo" ColumnName="descripcion_periodo" />
+          <ScalarProperty Name="idanno" ColumnName="idanno" />
+          <ScalarProperty Name="precio_tarifa" ColumnName="precio_tarifa" />
+          <ScalarProperty Name="idRental" ColumnName="idRental" />
+          <ScalarProperty Name="idEstacion" ColumnName="idEstacion" />
+          <ScalarProperty Name="idTemporada" ColumnName="idTemporada" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tipo_Empresa">
+      <EntityTypeMapping TypeName="TripAgencyModel.Tipo_Empresa">
+        <MappingFragment StoreEntitySet="Tipo_Empresa">
+          <ScalarProperty Name="idtipoempresa" ColumnName="idtipoempresa" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tipo_Tarifa">
+      <EntityTypeMapping TypeName="TripAgencyModel.Tipo_Tarifa">
+        <MappingFragment StoreEntitySet="Tipo_Tarifa">
+          <ScalarProperty Name="idTipoTarifa" ColumnName="idTipoTarifa" />
+          <ScalarProperty Name="tipo_tarifa1" ColumnName="tipo_tarifa1" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoAvion">
+      <EntityTypeMapping TypeName="TripAgencyModel.TipoAvion">
+        <MappingFragment StoreEntitySet="TipoAvion">
+          <ScalarProperty Name="idTipoAvion" ColumnName="idTipoAvion" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tipologia_Carro">
+      <EntityTypeMapping TypeName="TripAgencyModel.Tipologia_Carro">
+        <MappingFragment StoreEntitySet="Tipologia_Carro">
+          <ScalarProperty Name="idtipologia_carro" ColumnName="idtipologia_carro" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetRoles">
+      <EntityTypeMapping TypeName="TripAgencyModel.AspNetRoles">
+        <MappingFragment StoreEntitySet="AspNetRoles">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="AspNetUserRoles" TypeName="TripAgencyModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+      <EndProperty Name="AspNetUsers">
+        <ScalarProperty Name="Id" ColumnName="UserId" />
+      </EndProperty>
+      <EndProperty Name="AspNetRoles">
+        <ScalarProperty Name="Id" ColumnName="RoleId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="Tipol_HotelTipol">
+      <EntityTypeMapping TypeName="TripAgencyModel.Tipol_HotelTipol">
+        <MappingFragment StoreEntitySet="Tipol_HotelTipol">
+          <ScalarProperty Name="descripc" ColumnName="descripc" />
+          <ScalarProperty Name="asignado" ColumnName="asignado" />
+          <ScalarProperty Name="idTiologia" ColumnName="idTiologia" />
+          <ScalarProperty Name="idhotel" ColumnName="idhotel" />
+          <ScalarProperty Name="idtipologiahotel" ColumnName="idtipologiahotel" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tipologia">
+      <EntityTypeMapping TypeName="TripAgencyModel.Tipologia">
+        <MappingFragment StoreEntitySet="Tipologia">
+          <ScalarProperty Name="idTarificacion" ColumnName="idTarificacion" />
+          <ScalarProperty Name="tipologia1" ColumnName="tipologia1" />
+          <ScalarProperty Name="idTiologia" ColumnName="idTiologia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,378 @@
+﻿@using TripAgency.EF
+@using TripAgency.Models
+@model IEnumerable<TripAgency.EF.Avion>
+@{
+    Layout = "~/Views/Shared/_Layout_Flights.cshtml";
+    ViewBag.Title = "Flights";
+    var db = new TripAgencyEntities();
+}
+@Scripts.Render("~/bundles/jqueryCost")
+
+<script language="JavaScript" type="text/JavaScript">
+
+    $(document).ready(function() {
+        $("#dsv").change(function() {
+            var anno = $("#orv").val();
+            var est = $("#dsv").val();
+            if (anno == "All" && est != "All") {
+                GetContact(anno, est);
+            } else if (anno != "All" && est != "All") {
+                GetContact(anno, est);
+            } else if (anno == "All" && est == "All") {
+                GetContact(anno, est);
+            }
+        });
+    });
+
+    $(document).ready(function() {
+        $("#orv").change(function() {
+            var anno = $("#orv").val();
+            var est = $("#dsv").val();
+            if (anno != "All" && est == "All") {
+                GetContact(anno, est);
+            } else if (anno != "All" && est != "All") {
+                GetContact(anno, est);
+            } else if (anno == "All" && est == "All") {
+                GetContact(anno, est);
+            }
+        });
+    });
+
+    function GetContact(anno, est) {
+        var countryOptions = {};
+        countryOptions.url = "/TripAgency/MainApp/flightsjson";
+        countryOptions.type = "POST";
+        countryOptions.data = JSON.stringify({
+            destiny1: anno,
+            destiny2: est
+        });
+        countryOptions.datatype = "json";
+        countryOptions.contentType = "application/json";
+        countryOptions.success = function(statesList) {
+            var row = "";
+            $.each(statesList, function(index, item) {
+                var idfl = GetHrefs(item.IdVuelo);
+                row += "<li><div class='booking-item-container'>";
+                row += "<div class='booking-item'>";
+                row += "<div class='row'>";
+                row += "<div class='col-md-2'><div class='booking-item-airline-logo'><img src=" + item.FotoEmpresa + " alt=" + item.FotoEmpresa + " title=" + item.NombreEmpresa + "><p>" + item.NombreEmpresa + " </p></div></div>";
+                row += "<div class='col-md-5'><div class='booking-item-flight-details'><div class='booking-item-departure'><i class='fa fa-plane'></i><h5> " + item.HoraSalida + "</h5><p class='booking-item-date'> " + item.Tsalida + "</p><p class='booking-item-destination'> " + item.OrigenVuelo + "</p></div><div class='booking-item-arrival'><i class='fa fa-plane fa-flip-vertical'></i><h5> " + item.Horallegada + "</h5><p class='booking-item-date'> " + item.Tllegada + "</p><p class='booking-item-destination'> " + item.DestinoVuelo + "</p></div></div></div>";
+                row += "<div class='col-md-2'><h5>Passengers:</h5><select class='form-control' id='paseng' name='paseng'><option selected='selected'>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option></select></div>";
+                row += "<div class='col-md-3'><p class='booking-item-flight-class'>Class:" + item.Clases + "</p><span class='booking-item-price'> " + "$" + item.Precio + "</span><span>/person</span><a id=" + item.IdVuelo + " class='btn btn-primary' href=" + idfl.toString() + ">Select</a></div>";
+                row += "</div>";
+                row += "</div>";
+                row += "</div></li>";
+            });
+            $("#listfl").empty();
+            $("#listfl").html(row);
+        };
+        $.ajax(countryOptions);
+    };
+
+    function GetHrefs(id) {
+        var r = "";
+        var firstLink = document.getElementsByTagName('a');
+        if (firstLink != null) {
+            for (var i = 0; i < firstLink.length; i++) {
+                var ires = firstLink[i].getAttribute('id');
+                if (ires != null) {
+                    if (ires == id) {
+                        r = firstLink[i].href;
+                    }
+                }
+            }
+        } else {
+        }
+        return r;
+    };
+
+    function onClasFiltr(id) {
+        var countryOptions = {};
+        countryOptions.url = "/TripAgency/MainApp/flightsclassjson";
+        countryOptions.type = "POST";
+        countryOptions.data = JSON.stringify({
+            idclass: id
+        });
+        countryOptions.datatype = "json";
+        countryOptions.contentType = "application/json";
+        countryOptions.success = function(statesList) {
+            var row = "";
+            $.each(statesList, function(index, item) {
+                var idfl = GetHrefs(item.IdVuelo);
+                row += "<li><div class='booking-item-container'>";
+                row += "<div class='booking-item'>";
+                row += "<div class='row'>";
+                row += "<div class='col-md-2'><div class='booking-item-airline-logo'><img src=" + item.FotoEmpresa + " alt=" + item.FotoEmpresa + " title=" + item.NombreEmpresa + "><p>" + item.NombreEmpresa + " </p></div></div>";
+                row += "<div class='col-md-5'><div class='booking-item-flight-details'><div class='booking-item-departure'><i class='fa fa-plane'></i><h5> " + item.HoraSalida + "</h5><p class='booking-item-date'> " + item.Tsalida + "</p><p class='booking-item-destination'> " + item.OrigenVuelo + "</p></div><div class='booking-item-arrival'><i class='fa fa-plane fa-flip-vertical'></i><h5> " + item.Horallegada + "</h5><p class='booking-item-date'> " + item.Tllegada + "</p><p class='booking-item-destination'> " + item.DestinoVuelo + "</p></div></div></div>";
+                row += "<div class='col-md-2'><h5>Passengers:</h5><select class='form-control' id='paseng' name='paseng'><option selected='selected'>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option></select></div>";
+                row += "<div class='col-md-3'><p class='booking-item-flight-class'>Class:" + item.Clases + "</p><span class='booking-item-price'> " + "$" + item.Precio + "</span><span>/person</span><a id=" + item.IdVuelo + " class='btn btn-primary' href=" + idfl.toString() + ">Select</a></div>";
+                row += "</div>";
+                row += "</div>";
+                row += "</div></li>";
+            });
+            $("#listfl").empty();
+            $("#listfl").html(row);
+        };
+        $.ajax(countryOptions);
+    };
+
+    function onAirlineFiltr(id) {
+        var countryOptions = {};
+        countryOptions.url = "/TripAgency/MainApp/flightsairlinejson";
+        countryOptions.type = "POST";
+        countryOptions.data = JSON.stringify({
+            idairline: id
+        });
+        countryOptions.datatype = "json";
+        countryOptions.contentType = "application/json";
+        countryOptions.success = function(statesList) {
+            var row = "";
+            $.each(statesList, function(index, item) {
+                var idfl = GetHrefs(item.IdVuelo);
+                row += "<li><div class='booking-item-container'>";
+                row += "<div class='booking-item'>";
+                row += "<div class='row'>";
+                row += "<div class='col-md-2'><div class='booking-item-airline-logo'><img src=" + item.FotoEmpresa + " alt=" + item.FotoEmpresa + " title=" + item.NombreEmpresa + "><p>" + item.NombreEmpresa + " </p></div></div>";
+                row += "<div class='col-md-5'><div class='booking-item-flight-details'><div class='booking-item-departure'><i class='fa fa-plane'></i><h5> " + item.HoraSalida + "</h5><p class='booking-item-date'> " + item.Tsalida + "</p><p class='booking-item-destination'> " + item.OrigenVuelo + "</p></div><div class='booking-item-arrival'><i class='fa fa-plane fa-flip-vertical'></i><h5> " + item.Horallegada + "</h5><p class='booking-item-date'> " + item.Tllegada + "</p><p class='booking-item-destination'> " + item.DestinoVuelo + "</p></div></div></div>";
+                row += "<div class='col-md-2'><h5>Passengers:</h5><select class='form-control' id='paseng' name='paseng'><option selected='selected'>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option></select></div>";
+                row += "<div class='col-md-3'><p class='booking-item-flight-class'>Class:" + item.Clases + "</p><span class='booking-item-price'> " + "$" + item.Precio + "</span><span>/person</span><a id=" + item.IdVuelo + " class='btn btn-primary' href=" + idfl.toString() + ">Select</a></div>";
+                row += "</div>";
+                row += "</div>";
+                row += "</div></li>";
+            });
+            $("#listfl").empty();
+            $("#listfl").html(row);
+        };
+        $.ajax(countryOptions);
+    };
+
+    function onTimeFiltr(id) {
+        var countryOptions = {};
+        countryOptions.url = "/TripAgency/MainApp/flightstimejson";
+        countryOptions.type = "POST";
+        countryOptions.data = JSON.stringify({
+            idtime: id
+        });
+        countryOptions.datatype = "json";
+        countryOptions.contentType = "application/json";
+        countryOptions.success = function (statesList) {
+            var row = "";
+            $.each(statesList, function (index, item) {
+                var idtime = GetHrefs(item.IdVuelo);
+                row += "<li><div class='booking-item-container'>";
+                row += "<div class='booking-item'>";
+                row += "<div class='row'>";
+                row += "<div class='col-md-2'><div class='booking-item-airline-logo'><img src=" + item.FotoEmpresa + " alt=" + item.FotoEmpresa + " title=" + item.NombreEmpresa + "><p>" + item.NombreEmpresa + " </p></div></div>";
+                row += "<div class='col-md-5'><div class='booking-item-flight-details'><div class='booking-item-departure'><i class='fa fa-plane'></i><h5> " + item.HoraSalida + "</h5><p class='booking-item-date'> " + item.Tsalida + "</p><p class='booking-item-destination'> " + item.OrigenVuelo + "</p></div><div class='booking-item-arrival'><i class='fa fa-plane fa-flip-vertical'></i><h5> " + item.Horallegada + "</h5><p class='booking-item-date'> " + item.Tllegada + "</p><p class='booking-item-destination'> " + item.DestinoVuelo + "</p></div></div></div>";
+                row += "<div class='col-md-2'><h5>Passengers:</h5><select class='form-control' id='paseng' name='paseng'><option selected='selected'>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option></select></div>";
+                row += "<div class='col-md-3'><p class='booking-item-flight-class'>Class:" + item.Clases + "</p><span class='booking-item-price'> " + "$" + item.Precio + "</span><span>/person</span><a id=" + item.IdVuelo + " class='btn btn-primary' href=" + idtime.toString() + ">Select</a></div>";
+                row += "</div>";
+                row += "</div>";
+                row += "</div></li>";
+            });
+            $("#listfl").empty();
+            $("#listfl").html(row);
+        };
+        $.ajax(countryOptions);
+    };
+
+</script>
+<br />
+<div class="container">
+    <br />
+    <ul class="breadcrumb">
+        <li>
+            <a href="@Url.Action("Index","MainApp")">Home</a>
+        </li>
+        <li class="active">Flights</li>
+    </ul>
+    <br />
+
+    <h3 class="booking-title"> Flights for vacations</h3>
+    <div class="row">
+        <div class="col-md-3">
+            <aside class="booking-filters text-white">
+                <h3>Filter By:</h3>
+                <ul class="list booking-filters-list">
+                    <li class="icon-list list-category">
+                        <h5 class="booking-filters-title">Flight Class </h5>
+                        <ul class="icon-list list-category">
+                            <li>
+                                <a id="First" href="javascript:onClasFiltr('First');"><i class="fa fa-star"></i><small> First Class  [61]</small></a>
+                            </li>
+                            <li>
+                                <a id="Business" href="javascript:onClasFiltr('Business');"> <i class="fa fa-star"></i><small> Business Class [85] </small></a>
+                            </li>
+                            <li>
+                                <a id="Economy" href="javascript:onClasFiltr('Economy');"><i class="fa fa-star"></i><small> Economy Class [93]</small></a>
+                            </li>
+                            <li>
+                                <a id="All" href="javascript:onClasFiltr('All');"><i class="fa fa-angle-right"> </i> <small> All Flights' Classes </small></a>
+                            </li>
+                        </ul>
+                    </li>
+                        <li>
+                            <h5 class="booking-filters-title">Airlines <small></small></h5>
+                            <ul class="icon-list list-category">
+                                @foreach (var item in db.Empresa.ToList())
+                                {
+                                    foreach (var tipo in item.Empresa_TipoEmpresa.ToList())
+                                    {
+                                        if (tipo.Tipo_Empresa.nombre.Equals("aerotransportista"))
+                                        {
+                                            <li>
+                                                <a id="@item.nombre_empresa" href="javascript:onAirlineFiltr('@item.nombre_empresa');"><i class="fa fa-star"></i> <small> @item.nombre_empresa   [61]</small> </a>
+                                            </li>
+                                        }
+                                    }
+                                }
+                                <li>
+                                    <a id="AllAirLine" href="javascript:onClasFiltr('All');"><i class="fa fa-angle-right"> </i> <small> All Airlines </small></a>
+                                </li>
+                            </ul>
+                        <li>
+                            <h5 class="booking-filters-title">Departure Time</h5>
+                            <ul class="icon-list list-category">
+                                <li>
+                                    <a id="Morning" href="javascript:onTimeFiltr('Morning');"><i class="fa fa-star"></i><small> Morning (5:00 AM - 11:59 AM)</small></a>
+                                </li>
+                                <li>
+                                    <a id="Afternoon" href="javascript:onTimeFiltr('Afternoon');"> <i class="fa fa-star"></i><small> Afternoon (12:00 PM - 5:59 PM) </small></a>
+                                </li>
+                                <li>
+                                    <a id="Evening" href="javascript:onTimeFiltr('Evening');"><i class="fa fa-star"></i><small> Evening (6:00 PM - 11:59 PM) </small></a>
+                                </li>
+                                <li>
+                                    <a id="AllTime" href="javascript:onClasFiltr('All');"><i class="fa fa-angle-right"> </i><small> All</small></a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </aside>
+        </div>
+        <div class="col-md-9">
+            <div class="booking-item-dates-change">
+                <form id="data" action="@Url.Action("Flights")">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group form-group-icon-left">
+                                <i class="fa fa-map-marker input-icon"></i>
+                                <label>From</label>
+                                <select class="form-control" id="orv" name="orv">
+                                    <option selected="selected">All</option>
+                                    @foreach (var item in db.OrigenVuelo)
+                                    {
+                                        <option>@item.nombre</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group form-group-icon-left">
+                                <i class="fa fa-map-marker input-icon"></i>
+                                <label>To</label>
+                                <select class="form-control" id="dsv" name="dsv">
+                                    <option selected="selected">All</option>
+                                    @foreach (var item in db.DestinoVuelo)
+                                    {
+                                        <option>@item.nombre</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-daterange" data-date-format="MM/dd/yyyy">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group form-group-icon-left">
+                                            <i class="fa fa-calendar input-icon input-icon-hightlight"></i>
+                                            <label>Departing</label>
+                                            <input class="form-control" id="startvq" name="start" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group form-group-icon-left">
+                                            <i class="fa fa-calendar input-icon input-icon-highlight"></i>
+                                            <label>Arriving</label>
+                                            <input class="form-control" id="endvq" name="end" type="text" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <br />
+            <div>
+                <ul class="booking-list" id="listfl">
+                    @foreach (var item in Model)
+                    {
+                        var clases = "";
+                        <li>
+                            <div class="booking-item-container">
+                                <div class="booking-item">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <div class="booking-item-airline-logo">
+                                                <img src=@item.Empresa.foto_empresa alt=@item.Empresa.foto_empresa title=@item.Empresa.nombre_empresa>
+                                                <p>@item.Empresa.nombre_empresa</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <div class="booking-item-flight-details">
+                                                <div class="booking-item-departure">
+                                                    <i class="fa fa-plane"></i>
+                                                    <h5>@item.horasalida</h5>
+                                                    <p class="booking-item-date">@item.tsalida.ToString("D")</p>
+                                                    <p class="booking-item-destination">@item.OrigenVuelo.nombre</p>
+                                                </div>
+                                                <div class="booking-item-arrival">
+                                                    <i class="fa fa-plane fa-flip-vertical"></i>
+                                                    <h5>@item.horallegada</h5>
+                                                    <p class="booking-item-date">@item.tllegada.ToString("D")</p>
+                                                    <p class="booking-item-destination">@item.DestinoVuelo.nombre</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @foreach (var item1 in item.NomAvionClase)
+                                        {
+                                            clases +="  " + item1.Clase.nombre;
+                                        }
+                                        <div class="col-md-2">
+                                                <h5>Passengers:</h5>
+                                                <select class="form-control" id="paseng" name="paseng">
+                                                    <option selected="selected">1</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                    <option>4</option>
+                                                    <option>5</option>
+                                                    <option>6</option>
+                                                    <option>7</option>
+                                                    <option>8</option>
+                                                    <option>9</option>
+                                                    <option>10</option>
+                                                    <option>11</option>
+                                                    <option>12</option>
+                                                </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            @{
+                                                var hotel = new FlightModel();
+                                                var price = hotel.Min(@item.idVuelo, DateTime.Now);
+                                                <p class="booking-item-flight-class">Class: @clases</p>
+                                                <span class="booking-item-price">$@price</span><span>/person</span>
+                                            }
+                                            <a id=@item.idVuelo class="btn btn-primary" href="@Url.Action("PaymentFlight", "Payment", new { flig = @item.idVuelo, priceF = @price, d1 = @item.tsalida.ToString("D"), d2 = @item.tllegada.ToString("D") })">Select</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="gap"></div>
+</div>

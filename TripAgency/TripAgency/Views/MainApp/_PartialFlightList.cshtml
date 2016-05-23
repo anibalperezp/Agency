@@ -1,0 +1,75 @@
+﻿@model PagedList.IPagedList<TripAgency.EF.Avion>
+@using PagedList.Mvc;
+@using TripAgency.Models
+@Styles.Render("~/Content/pagedlist")
+
+<ul class="booking-list">
+    @foreach (var item in Model)
+    {
+        var clases = "";
+        <li>
+            <div class="booking-item-container">
+                <div class="booking-item">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="booking-item-airline-logo">
+                                <img src=@item.Empresa.foto_empresa alt=@item.Empresa.foto_empresa title=@item.Empresa.nombre_empresa>
+                                <p>@item.Empresa.nombre_empresa</p>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="booking-item-flight-details">
+                                <div class="booking-item-departure">
+                                    <i class="fa fa-plane"></i>
+                                    <h5>@item.horasalida</h5>
+                                    <p class="booking-item-date">@item.tsalida.ToString("D")</p>
+                                    <p class="booking-item-destination">@item.OrigenVuelo.nombre</p>
+                                </div>
+                                <div class="booking-item-arrival">
+                                    <i class="fa fa-plane fa-flip-vertical"></i>
+                                    <h5>@item.horallegada</h5>
+                                    <p class="booking-item-date">@item.tllegada.ToString("D")</p>
+                                    <p class="booking-item-destination">@item.DestinoVuelo.nombre</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <h5>8h 00m</h5>
+                        </div>
+                        <div class="col-md-3">
+                            @{
+                                var hotel = new FlightModel();
+                                var price = hotel.Min(@item.idVuelo, DateTime.Now);
+                                <span class="booking-item-price">$@price</span><span>/person</span>
+                            }
+                            @foreach (var item1 in item.NomAvionClase)
+                            {
+                                clases += item1.Clase.nombre + " | ";
+                            }
+                            <p class="booking-item-flight-class">Class: @clases</p>
+                            <a class="btn btn-primary" href="@Url.Action("PaymentFlight", "Payment", new { flig = @item.idVuelo, priceF = @price, d1 = @item.tsalida.ToString("D"), d2 = @item.tllegada.ToString("D") })">Select</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="booking-item-details">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <p>Flight Details</p>
+                            <h5 class="list-title">@item.nombre</h5>
+                            <ul class="list">
+                                <li>@clases. Class (M), @item.numVuelo @item.TipoAvion.nombre</li>
+                                <li>Depart- @item.horasalida  Arrive- @item.horallegada</li>
+                                <li>Duration: 8h 00m</li>
+                            </ul>
+                            <p>Total trip time: 8h 00m</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+    }
+</ul>
+<center>
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    @Html.PagedListPager(Model, Page_No => Url.Action("Flights", new { Page_No, Sorting_Order = ViewBag.CurrentSortOrder, Filter_Value = ViewBag.FilterValue }))
+</center>

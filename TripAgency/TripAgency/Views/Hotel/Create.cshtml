@@ -1,0 +1,277 @@
+﻿@using TripAgency.EF
+@model TripAgency.EF.Hotel
+
+@{
+    ViewBag.Title = "Create";
+    var db = new TripAgencyEntities();
+}
+@Scripts.Render("~/bundles/jqueryCost")
+@Scripts.Render("~/bundles/angularjs")
+<h2>Añadir</h2>
+
+<form method="post" enctype="multipart/form-data">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Hotel</h4>
+            <hr />
+            @Html.ValidationSummary(true)
+            <div class="form-group">
+                @Html.Label("Nombre", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.nombre_hotel, new { @class = "form-control", @placeholder = "Nombre del Hotel" })
+                    @Html.ValidationMessageFor(model => model.nombre_hotel)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("Descripción", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.descripcion_hotel, new { @class = "col-md-2", @placeholder = "Descripción del Hotel" })
+                    @Html.ValidationMessageFor(model => model.descripcion_hotel)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("Dirección", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.direccion, new { @class = "col-md-2", @placeholder = "Dirección del Hotel" })
+                    @Html.ValidationMessageFor(model => model.direccion)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("Teléfono", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.telefono, new { @class = "col-md-2", @placeholder = "Teléfono del Hotel" })
+                    @Html.ValidationMessageFor(model => model.telefono)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("Sitio Web", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.sitioWeb, new { @class = "col-md-2", @placeholder = "Sitio Web del Hotel" })
+                    @Html.ValidationMessageFor(model => model.sitioWeb)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("Fax", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.fax, new { @class = "col-md-2", @placeholder = "Fax del Hotel" })
+                    @Html.ValidationMessageFor(model => model.fax)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("Facilidades", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.facilidades, new { @class = "col-md-2", @placeholder = "Facilidades del Hotel" })
+                    @Html.ValidationMessageFor(model => model.facilidades)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("Imagen", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="file" name="picture" />
+                    @Html.ValidationMessageFor(model => model.foto_hotel1)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("Imagen", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="file" name="picture2" />
+                    @Html.ValidationMessageFor(model => model.foto_hote2)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("Imagen", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="file" name="picture3" />
+                    @Html.ValidationMessageFor(model => model.foto_hotel3)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("Categoría", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("idCategoria", String.Empty)
+                    @Html.ValidationMessageFor(model => model.idCategoria)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("Cadena", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("idCadena", String.Empty)
+                    @Html.ValidationMessageFor(model => model.idCadena)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("Destino", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("idDestino", String.Empty)
+                    @Html.ValidationMessageFor(model => model.idDestino)
+                </div>
+            </div>
+            
+            <!------------------------------------------------------------------------------------------------------------------------------>
+            <div class="form-group">
+                @Html.Label("Suplementos", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <table>
+                        <tr>
+                            @{
+                            int cn = 0;
+                            List<TripAgency.Models.Suplemento_Hotel_Asigned> suplements = ViewBag.Suplementos;
+                            foreach (var supl in suplements)
+                            {
+                                if (cn++ % 3 == 0)
+                                {
+                                    @:</tr><tr>
+                                }
+                                @: <td>
+                                <input type="checkbox"
+                                name="selectedSuplements"
+                                value="@supl.idSuplemento"
+                                @(Html.Raw(supl.assigned ? "checked=\"checked\"" : "")) />
+                                @: @supl.suplemento1 <br />
+                                @:<br /> </td> 
+                            }
+                            @:</tr>
+                            }
+                        </table>
+                    </div>
+                </div>
+
+            <!------------------------------------------------------------------------------------------------------------------------------>
+
+            <div class="form-group">
+                @Html.Label("Reducción", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <table>
+                        <tr>
+                            @{
+                            int c = 0;
+                            List<TripAgency.Models.Reduccion_Hotel_Asigned> reduccList = ViewBag.Reduccion;
+                            foreach (var reduc in reduccList)
+                            {
+                                @:<td>
+                                    <input type="checkbox"
+                                           name="selectedReductions"
+                                           value="@reduc.idReduccion"
+                                           @(Html.Raw(reduc.assigned ? "checked=\"checked\"" : "")) />
+                                    @: @reduc.reduccion1
+                                    @: </td>
+                            }
+                            @:</tr>
+                            }
+                        </table>
+                    </div>
+                </div>
+
+                <!------------------------------------------------------------------------------------------------------------------------------>
+            <div class="form-group">
+                @Html.Label("Tipologías", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Seleccione los elementos siguientes con su descripción</h3>
+                        </div>
+                        <table class="table table-hover" id="dev-table">
+                            <thead>
+                                <tr>
+                                    <th>Tipología</th>
+                                    <th>Seleccionar descripción</th>
+                                    <th>Nueva descripción</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    int cnt = 0;
+                                    List<TripAgency.Models.Tipol_HotelTipoAsigned> courses = ViewBag.Courses;
+                                    for (int i=0;i<courses.Count;i++)
+                                    {
+                                        @:<tr style="display: table-row">
+                                        @:<td>
+                                        <input type="checkbox" id="@courses[i].idTipologia.ToString()cd" onclick="doclickDown(this.id);" name="selectedCourses" value="@courses[i].idTipologia"
+                                       @(Html.Raw(courses[i].assigned ? "checked=\"checked\"" : "")) />
+                                        @: @courses[i].tipologia1
+                                        @:</td>
+                                        @:<td>
+                                        <select name="selectedDesc" class="form-control" onchange="doChancheDown(this.id);" id="@courses[i].idTipologia.ToString()od">
+                                            <option selected="selected">@courses[i].desc.ToString()</option>
+                                            @foreach (var item in db.Tipol_HotelTipol)
+                                            {
+                                                if (item.Tipologia.idTiologia == @courses[i].idTipologia)
+                                                {
+                                                    <option>@item.descripc.ToString()</option>
+                                                }
+                                            }
+                                        </select>
+                                        @:</td>
+                                        @:<td> 
+                                        <textarea class="form-control" id="@courses[i].idTipologia.ToString()" onkeydown="dokeyDown(this.id);" rows="3" name="selectedDescNew" placeholder="Nueva Descripción"></textarea>
+                                        @:</td>
+                                        @:</tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <script language="JavaScript" type="text/JavaScript">
+            //onkeypressdown pra el textarea
+            function dokeyDown(id) {
+                var elemento = document.getElementById(id.toString() + "cd");
+                if (($("#" + id.toString()).val().length == 0) && ($("#" + id.toString() + "od").val() != "Choose One")) {
+                    $("#" + id.toString() + "od").append("<option selected=selected>Choose One</option>");
+                   // $("#" + id.toString() + "cd").checked = true;
+                }
+                if(elemento.checked != true) {
+                    elemento.checked = true;
+                }
+            }
+
+            function doclickDown(id) {
+                var elemento = document.getElementById(id.toString());
+                id = id[0] + id[1];
+                var elementondes = document.getElementById(id.toString());
+                if (elemento.checked == false && ($("#" + id.toString() + "od").val() != "Choose One")) {
+                    $("#" + id.toString() + "od").append("<option selected=selected>Choose One</option>");
+                    elementondes.value = "";
+                } else
+                    if (elemento.checked == false && ($("#" + id.toString() + "od").val() == "Choose One")) {
+                        elementondes.value = "";
+                }
+            }
+
+            function doChancheDown(id) {
+                var elementondes;
+                if (($("#" + id.toString()).val() == "Choose One")) {
+                    id = id[0] + id[1];
+                    elementondes = document.getElementById(id.toString());
+                    elementondes.value = "";
+                }
+                if (($("#" + id.toString()).val() != "Choose One") && ($("#" + id.toString()).val().length != 0)) {
+                    id = id[0] + id[1];
+                    elementondes = document.getElementById(id.toString());
+                    elementondes.value = "";
+                }
+            }
+
+            </script>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+    }
+
+    <div>
+        @Html.ActionLink("Ir atrás", "Index")
+    </div>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+    </form>

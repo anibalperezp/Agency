@@ -1,0 +1,82 @@
+﻿@model TripAgency.EF.TarifaCarro
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TarifaCarro</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.valor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.valor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.seguro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.seguro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.deposito)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.deposito)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Anno.anno1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Anno.anno1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Empresa.nombre_empresa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Empresa.nombre_empresa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Temporada.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Temporada.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tipologia_Carro.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tipologia_Carro.nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idcondtarifa }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

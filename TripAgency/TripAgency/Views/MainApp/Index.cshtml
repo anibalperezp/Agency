@@ -1,0 +1,881 @@
+﻿@using TripAgency.EF
+@using TripAgency.Models
+@{
+    Layout = "~/Views/Shared/_Layout_MainApp.cshtml";
+    ViewBag.Title = "Welcome to TraWebClick";
+    TripAgencyEntities db = new TripAgencyEntities();
+    int co = 0;
+    
+}
+@Scripts.Render("~/bundles/jqueryCost")
+<script language="Javascript" type="text/javascript">
+    
+    function groshfriesdriesh() {
+        if ($("#destiny").val() != "Choose One") {
+            
+        } else if ($("#destiny").val() == "Choose One") {
+            alert("Please, Choose one destiny");
+        }
+    };
+
+    function groshfriesdriesx() {
+        if ($("#destinyex").val() != "Choose One") {
+
+        } else if ($("#destinyex").val() == "Choose One") {
+            alert("Please, Choose one destiny");
+        }
+    };
+
+    function groshfriesdriesc() {
+        if ($("#category").val() != "Choose One") {
+            if ($("#model").val() != "Choose One") {
+                if ($("#ofice1").val() != "Choose One" && $("#ofice2").val() != "Choose One") {
+
+                } else 
+                    if ($("#ofice1").val() == "Choose One" || $("#ofice2").val() == "Choose One") {
+                        alert("Please, Choose the locations for pick-up and drop-off rentar car");
+                }
+            } else {
+                
+            }
+
+        } else if ($("#category").val() == "Choose One") {
+            alert("Please, Choose one category for the car.");
+        }
+    };
+
+    $(document).ready(function () {
+        $("#category").change(function () {
+            if ($("#category").val() != "Choose One") {
+                var countryOptions = {};
+                countryOptions.url = "/TripAgency/MainApp/mod";
+                countryOptions.type = "POST";
+                countryOptions.data = JSON.stringify({ category: $("#category").val() });
+                countryOptions.datatype = "json";
+                countryOptions.contentType = "application/json";
+                countryOptions.success = function (statesList) {
+                    $("#model").empty();
+                    if (statesList.length != 0) {
+                        $("#model").append("<option value='" + "Choose One" + "'>" + "Choose One" + "</option>");
+                        for (var i = 0; i < statesList.length; i++) {
+                            $("#model").append("<option value='" + statesList[i] + "'>" + statesList[i] + "</option>");
+                        }
+                    }
+
+                };
+                $.ajax(countryOptions);
+            }
+            else
+                if ($("#category").val() == "Choose One") {
+                    $("#model").empty();
+                    $("#model").append("<option value='" + "Choose One" + "'>" + "Choose One" + "</option>");
+                }
+        });
+    });
+
+    $(document).ready(function () {
+        $("#destinyex").change(function () {
+            if ($("#destinyex").val() != "Choose One") {
+                var countryOptions = {};
+                countryOptions.url = "/TripAgency/MainApp/exc";
+                countryOptions.type = "POST";
+                countryOptions.data = JSON.stringify({ destinyex: $("#destinyex").val() });
+                countryOptions.datatype = "json";
+                countryOptions.contentType = "application/json";
+                countryOptions.success = function (statesList) {
+                    $("#excursion").empty();
+                    if (statesList.length != 0) {
+                        $("#excursion").append("<option value='" + "Choose One" + "'>" + "Choose One" + "</option>");
+                        for (var i = 0; i < statesList.length; i++) {
+                            $("#excursion").append("<option value='" + statesList[i] + "'>" + statesList[i] + "</option>");
+                        }
+                    }
+
+                };
+                $.ajax(countryOptions);
+            }
+            else
+                if ($("#destinyex").val() == "Choose One") {
+                    $("#excursion").empty();
+                    $("#excursion").append("<option value='" + "Choose One" + "'>" + "Choose One" + "</option>");
+                }
+        });
+    });
+</script>
+
+<!-- TOP AREA -->
+    <div class="top-area show-onload">
+        <div class="bg-holder full">
+            <div class="bg-mask"></div>
+            <div class="bg-parallax" style="background-image: url(/TripAgency/Content/images/Varadero.JPG);"></div>
+            <div class="bg-content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="search-tabs search-tabs-bg mt50">
+                                <h1>Find Your Perfect Trip</h1>
+                                <div class="tabbable">
+                                    <ul class="nav nav-tabs" id="myTab">
+                                        <li class="active">
+                                            <a href="#tab-1" data-toggle="tab"><i class="fa fa-building-o"></i> <span>Hotel</span></a>
+                                        </li>
+                                        <li>
+                                            <a href="#tab-3" data-toggle="tab"><i class="fa fa-plane"></i> <span>Flight</span></a>
+                                        </li>
+                                        <li>
+                                            <a href="#tab-4" data-toggle="tab"><i class="fa fa-car"></i> <span>Car</span></a>
+                                        </li>
+                                        <li>
+                                            <a href="#tab-2" data-toggle="tab"><i class="fa fa-bus"></i> <span>Tours</span></a>
+                                        </li>
+                                        <li>
+                                            <a href="#tab-5" data-toggle="tab"><i class="fa fa-briefcase"></i> <span>Package</span></a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div class="tab-pane fade in active" id="tab-1">
+                                            <h2>Search and Save on Hotels</h2>
+                                            <form method="POST">
+                                                <div class="input-daterange" data-date-format="MM/dd/yyyy">
+                                                    <div class="row">
+                                                        <div class="col-md-5">
+                                                            <div class="form-group form-group-lg form-group-icon-left">
+                                                                <i class="fa fa-globe input-icon input-icon-highlight"></i>
+                                                                <label>Destination</label>
+                                                                <select id="destiny" name="destiniy" class="form-control">
+                                                                    <option selected="selected">Choose One</option>
+                                                                    @foreach (var item in db.Destino)
+                                                                    {
+                                                                        <option>@item.destino1</option>
+                                                                    }
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group form-group-lg form-group-icon-left">
+                                                                <i class="fa fa-calendar input-icon input-icon-highlight"></i>
+                                                                <label>Check-in</label>
+                                                                <input class="form-control" name="start" type="text" id="inh" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group form-group-lg form-group-icon-left">
+                                                                <i class="fa fa-calendar input-icon input-icon-highlight"></i>
+                                                                <label>Check-out</label>
+                                                                <input class="form-control" name="end" type="text" id="outh" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <button class="btn btn-primary btn-lg" type="submit" id="btnsearchhotels" name="btnsearchhotels" onclick="groshfriesdriesh();">Search for Hotels</button>
+                                            </form>
+                                        </div>
+                                        <div class="tab-pane fade" id="tab-2">
+                                            <h2>Search for Tours</h2>
+                                            <form method="POST">
+                                                <div class="input-daterange" data-date-format="MM/dd/yyyy">
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <div class="form-group form-group-lg form-group-select-plus">
+                                                                <label>Select City</label>
+                                                                <select class="form-control" id="destinyex" name="destinyex">
+                                                                    <option selected="selected">Choose One</option>
+                                                                    @foreach (var item in db.Destino)
+                                                                    {
+                                                                        <option>@item.destino1</option>
+                                                                    }
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group form-group-lg form-group-select-plus">
+                                                                <label>Tours</label>
+                                                                <select class="form-control" id="excursion" name="excursion">
+                                                                    <option selected="selected">Choose One</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-3">
+                                                            <div class="form-group form-group-lg form-group-icon-left">
+                                                                <i class="fa fa-calendar input-icon input-icon-highlight"></i>
+                                                                <label>Date</label>
+                                                                <input class="form-control" name="end" type="text" id="outh" />
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <button class="btn btn-primary btn-lg" type="submit" id="btnsearchexc" name="btnsearchexc" onclick="groshfriesdriesx();">Search for Tours</button>
+                                            </form>
+                                        </div>
+                                        <div class="tab-pane fade" id="tab-3">
+                                            <h2>Search for Cheap Flights</h2>
+                                            <form>
+                                                <div class="tabbable">
+                                                    <ul class="nav nav-pills nav-sm nav-no-br mb10" id="flightChooseTab">
+                                                        <li class="active">
+                                                            <a href="#flight-search-1" data-toggle="tab">Round Trip</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#flight-search-2" data-toggle="tab">One Way</a>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="tab-content">
+                                                        <div class="tab-pane fade in active" id="flight-search-1">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group form-group-lg form-group-icon-left">
+                                                                        <i class="fa fa-map-marker input-icon"></i>
+                                                                        <label>From</label>
+                                                                        <select class="form-control" id="destinyv" name="destinyvr">
+                                                                            <option selected="selected">Choose One</option>
+                                                                            @foreach (var item in db.OrigenVuelo)
+                                                                            {
+                                                                                <option>@item.nombre</option>
+                                                                            }
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group form-group-lg form-group-icon-left">
+                                                                        <i class="fa fa-map-marker input-icon"></i>
+                                                                        <label>To</label>
+                                                                        <select class="form-control" id="destinyv" name="destinyvr">
+                                                                            <option selected="selected">Choose One</option>
+                                                                            @foreach (var item in db.DestinoVuelo)
+                                                                            {
+                                                                                <option>@item.nombre</option>
+                                                                            }
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="input-daterange" data-date-format="MM/dd/yyyy">
+                                                                <div class="row">
+                                                                    <div class="col-md-3">
+                                                                        <div class="form-group form-group-lg form-group-icon-left">
+                                                                            <i class="fa fa-calendar input-icon input-icon-highlight"></i>
+                                                                            <label>Departing</label>
+                                                                            <input type="text" class="form-control" name="start" />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <div class="form-group form-group-lg form-group-icon-left">
+                                                                            <i class="fa fa-calendar input-icon input-icon-highlight"></i>
+                                                                            <label>Arriving</label>
+                                                                            <input type="text" class="form-control" name="end" />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group form-group-lg form-group-select-plus">
+                                                                            <label>Passengers</label>
+                                                                            <div class="btn-group btn-group-select-num" data-toggle="buttons">
+                                                                                <label class="btn btn-primary active">
+                                                                                    <input name="options" type="radio">1
+                                                                                </label>
+                                                                                <label class="btn btn-primary">
+                                                                                    <input name="options" type="radio">2
+                                                                                </label>
+                                                                                <label class="btn btn-primary">
+                                                                                    <input name="options" type="radio">3
+                                                                                </label>
+                                                                                <label class="btn btn-primary">
+                                                                                    <input name="options" type="radio">3+
+                                                                                </label>
+                                                                            </div>
+                                                                            <select class="form-control hidden">
+                                                                                <option>1</option>
+                                                                                <option>2</option>
+                                                                                <option>3</option>
+                                                                                <option selected="selected">4</option>
+                                                                                <option>5</option>
+                                                                                <option>6</option>
+                                                                                <option>7</option>
+                                                                                <option>8</option>
+                                                                                <option>9</option>
+                                                                                <option>10</option>
+                                                                                <option>11</option>
+                                                                                <option>12</option>
+                                                                                <option>13</option>
+                                                                                <option>14</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="tab-pane fade" id="flight-search-2">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group form-group-lg form-group-icon-left">
+                                                                        <i class="fa fa-map-marker input-icon"></i>
+                                                                        <label>From</label>
+                                                                        <select class="form-control" id="destinyv" name="destinyvo">
+                                                                            <option selected="selected">Choose One</option>
+                                                                            @foreach (var item in db.OrigenVuelo)
+                                                                            {
+                                                                                <option>@item.nombre</option>
+                                                                            }
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group form-group-lg form-group-icon-left">
+                                                                        <i class="fa fa-map-marker input-icon"></i>
+                                                                        <label>To</label>
+                                                                        <select class="form-control" id="destinyv" name="destinyvo">
+                                                                            <option selected="selected">Choose One</option>
+                                                                            @foreach (var item in db.DestinoVuelo)
+                                                                            {
+                                                                                <option>@item.nombre</option>
+                                                                            }
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-3">
+                                                                    <div class="form-group form-group-lg form-group-icon-left">
+                                                                        <i class="fa fa-calendar input-icon input-icon-highlight"></i>
+                                                                        <label>Departing</label>
+                                                                        <input value="Mar 6, Fri" class="date-pick form-control" data-date-format="MM/dd/yyyy" type="text">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group form-group-lg form-group-select-plus">
+                                                                        <label>Passngers</label>
+                                                                        <div class="btn-group btn-group-select-num" data-toggle="buttons">
+                                                                            <label class="btn btn-primary active">
+                                                                                <input name="options" type="radio">1
+                                                                            </label>
+                                                                            <label class="btn btn-primary">
+                                                                                <input name="options" type="radio">2
+                                                                            </label>
+                                                                            <label class="btn btn-primary">
+                                                                                <input name="options" type="radio">3
+                                                                            </label>
+                                                                            <label class="btn btn-primary">
+                                                                                <input name="options" type="radio">3+
+                                                                            </label>
+                                                                        </div>
+                                                                        <select class="form-control hidden">
+                                                                            <option>1</option>
+                                                                            <option>2</option>
+                                                                            <option>3</option>
+                                                                            <option selected="selected">4</option>
+                                                                            <option>5</option>
+                                                                            <option>6</option>
+                                                                            <option>7</option>
+                                                                            <option>8</option>
+                                                                            <option>9</option>
+                                                                            <option>10</option>
+                                                                            <option>11</option>
+                                                                            <option>12</option>
+                                                                            <option>13</option>
+                                                                            <option>14</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <button class="btn btn-primary btn-lg" type="submit">Search for Flights</button>
+                                            </form>
+                                        </div>
+                                        <div class="tab-pane fade" id="tab-4">
+                                            <h2>Search for Cars</h2>
+                                            <form method="POST">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group form-group-lg">
+                                                            <label>Select Category</label>
+                                                            <select class="form-control" id="category" name="category">
+                                                                <option selected="selected">Choose One</option>
+                                                                @foreach (var item in db.Tipologia_Carro)
+                                                                {
+                                                                    <option>@item.nombre</option>
+                                                                }
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group form-group-lg ">
+                                                            <label>Model-Brand</label>
+                                                            <select class="form-control" id="model" name="model">
+                                                                <option selected="selected">Choose One</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group form-group-lg form-group-icon-left">
+                                                            <i class="fa fa-map-marker input-icon"></i>
+                                                            <label>Pick-up Location</label>
+                                                            <select class="form-control" id="ofice1" name="ofice1">
+                                                                <option selected="selected">Choose One</option>
+                                                                @foreach (var item in db.OficinaRenta)
+                                                                {
+                                                                    <option>@item.nombre</option>
+                                                                }
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group form-group-lg form-group-icon-left">
+                                                            <i class="fa fa-map-marker input-icon"></i>
+                                                            <label>Drop-off Location</label>
+                                                            <select class="form-control" id="ofice2" name="ofice2">
+                                                                <option selected="selected">Choose One</option>
+                                                                @foreach (var item in db.OficinaRenta)
+                                                                {
+                                                                    <option>@item.nombre</option>
+                                                                }
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="input-daterange" data-date-format="MM/dd/yyyy">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group form-group-lg form-group-icon-left">
+                                                                <i class="fa fa-calendar input-icon input-icon-highlight"></i>
+                                                                <label>Pick-up Date</label>
+                                                                <input type="text" class="form-control" name="start" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group form-group-lg form-group-icon-left">
+                                                                <i class="fa fa-calendar input-icon input-icon-highlight"></i>
+                                                                <label>Drop-off Date</label>
+                                                                <input type="text" class="form-control" name="end" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <button class="btn btn-primary btn-lg" type="submit" id="btnsearchcars" name="btnsearchcars" onclick="groshfriesdriesc();">Search for Rental Cars</button>
+                                            </form>
+                                        </div>
+                                        <div class="tab-pane fade" id="tab-5">
+                                            <h2>Search for Packages</h2>
+                                            <form>
+                                                <div class="input-daterange" data-date-format="MM/dd/yyyy">
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <div class="form-group form-group-lg form-group-select-plus">
+                                                                <label>Package</label>
+                                                                <select class="form-control">
+                                                                    <option selected="selected">Choose One</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group form-group-lg form-group-icon-left">
+                                                                <i class="fa fa-calendar input-icon input-icon-highlight"></i>
+                                                                <label>From</label>
+                                                                <input class="form-control" name="start" type="text" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group form-group-lg form-group-icon-left">
+                                                                <i class="fa fa-calendar input-icon input-icon-highlight"></i>
+                                                                <label>To</label>
+                                                                <input class="form-control" name="end" type="text" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <button class="btn btn-primary btn-lg" type="submit">Search for Activities</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="loc-info text-center hidden-xs hidden-sm">
+                                <h3 class="loc-info-title"><img src="~/Content/images/client/Cuba2.png" alt="Image Alternative text" title="Cuba">Cuba</h3>
+                                <br />
+                                    <style type="text/css">
+                                        #t-cards {
+                                            padding-top: 80px;
+                                            padding-bottom: 80px;
+                                        }
+
+                                        /********************************/
+                                        /*          Panel cards         */
+                                        /********************************/
+                                        .panel.panel-card {
+                                            position: relative;
+                                            height: 241px;
+                                            border: none;
+                                            overflow: hidden;
+                                            width: 300px;
+                                        }
+
+                                            .panel.panel-card .panel-heading {
+                                                position: relative;
+                                                z-index: 2;
+                                                height: 120px;
+                                                border-bottom-color: #fff;
+                                                overflow: hidden;
+                                                -webkit-transition: height 600ms ease-in-out;
+                                                transition: height 600ms ease-in-out;
+                                            }
+
+                                                .panel.panel-card .panel-heading img {
+                                                    position: absolute;
+                                                    top: 50%;
+                                                    left: 50%;
+                                                    z-index: 1;
+                                                    width: 120%;
+                                                    -webkit-transform: translate3d(-50%,-50%,0);
+                                                    transform: translate3d(-50%,-50%,0);
+                                                }
+
+                                                .panel.panel-card .panel-heading button {
+                                                    position: absolute;
+                                                    top: 10px;
+                                                    right: 15px;
+                                                    z-index: 3;
+                                                }
+
+                                            .panel.panel-card .panel-figure {
+                                                position: absolute;
+                                                top: auto;
+                                                left: 50%;
+                                                z-index: 3;
+                                                width: 70px;
+                                                height: 70px;
+                                                background-color: #fff;
+                                                border-radius: 50%;
+                                                opacity: 1;
+                                                -webkit-box-shadow: 0 0 0 3px #fff;
+                                                box-shadow: 0 0 0 3px #fff;
+                                                -webkit-transform: translate3d(-50%,-50%,0);
+                                                transform: translate3d(-50%,-50%,0);
+                                                -webkit-transition: opacity 400ms ease-in-out;
+                                                transition: opacity 400ms ease-in-out;
+                                            }
+
+                                            .panel.panel-card .panel-body {
+                                                padding-top: 40px;
+                                                padding-bottom: 20px;
+                                                -webkit-transition: padding 400ms ease-in-out;
+                                                transition: padding 400ms ease-in-out;
+                                            }
+
+                                            .panel.panel-card .panel-thumbnails {
+                                                padding: 0 15px 20px;
+                                            }
+
+                                        .panel-thumbnails .thumbnail {
+                                            width: 60px;
+                                            max-width: 100%;
+                                            margin: 0 auto;
+                                            background-color: #fff;
+                                        }
+
+
+                                        .panel.panel-card:hover .panel-heading {
+                                            height: 55px;
+                                            -webkit-transition: height 400ms ease-in-out;
+                                            transition: height 400ms ease-in-out;
+                                        }
+
+                                        .panel.panel-card:hover .panel-figure {
+                                            opacity: 0;
+                                            -webkit-transition: opacity 400ms ease-in-out;
+                                            transition: opacity 400ms ease-in-out;
+                                        }
+
+                                        .panel.panel-card:hover .panel-body {
+                                            padding-top: 20px;
+                                            -webkit-transition: padding 400ms ease-in-out;
+                                            transition: padding 400ms ease-in-out;
+                                        }
+                                    </style>
+                                    
+                                    <div class="row">
+                                        <center>
+                                            <div class="panel panel-default panel-card">
+                                                <div class="panel-heading">
+                                                    <img src="~/Content/images/Home/vara.JPG">
+                                                </div>
+                                                <div class="panel-figure">
+                                                    <img class="img-responsive img-circle" src="~/Content/images/Home/73_2.JPG">
+                                                </div>
+                                                <div class="panel-body text-center">
+                                                    <h4 class="panel-header"><a href=@Url.Action("Hotels", "MainApp", new { destiny = "Matanzas" })>Varadero's Hotels</a></h4>
+                                                    @{
+                                                        var dest = @db.Destino.ToList().Find(h => h.destino1.Equals("Matanzas"));
+                                                        <small>Enjoy the @dest.Hotel.ToList().Count hotels at the best beach in the World</small>
+                                                    }
+                                                </div>
+                                                <div class="panel-thumbnails">
+                                                    <div class="row">
+                                                        <div class="col-xs-4">
+                                                            <div class="thumbnail">
+                                                                <img src="~/Content/images/Home/60x60_2.JPG">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-4">
+                                                            <div class="thumbnail">
+                                                                <img src="~/Content/images/Home/60x60_3.jpg">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-4">
+                                                            <div class="thumbnail">
+                                                                <img src="~/Content/images/Home/60x60_4.JPG">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br />
+                                            <div class="panel panel-default panel-card">
+                                                <div class="panel-heading">
+                                                    <img src="~/Content/images/Home/barley.jpg">
+                                                </div>
+                                                <div class="panel-figure">
+                                                    <img class="img-responsive img-circle" src="~/Content/images/Home/73_003.jpg">
+                                                </div>
+                                                <div class="panel-body text-center">
+                                                    <h4 class="panel-header"><a href=@Url.Action("Hotels", "MainApp", new { destiny = "Havana" })>Havana's Hotels</a></h4>
+                                                    @{
+                                                        var dest1 = @db.Destino.ToList().Find(h=>h.destino1.Equals("Havana"));
+                                                        <small>Enjoy @dest1.Hotel.ToList().Count hotels in the 7th wonder of the World</small>
+                                                    }
+                                                </div>
+                                                <div class="panel-thumbnails">
+                                                    <div class="col-xs-4">
+                                                        <div class="thumbnail">
+                                                            <img src="~/Content/images/Home/60x60_008.jpg">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-4">
+                                                        <div class="thumbnail">
+                                                            <img src="~/Content/images/Home/60x60_002.JPG">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-4">
+                                                        <div class="thumbnail">
+                                                            <img src="~/Content/images/Home/60x60.jpg">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </center>
+                                        <!-- OTROS ENLACES  -->
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END TOP AREA  -->
+    <!--GAP-->
+    <div class="gap"></div>
+    <!-- END GAP  -->
+
+    <div class="container">
+        <div class="row row-wrap" data-gutter="60">
+            <h3 class="mb20">Top Deals</h3>
+            <div class="row row-wrap">
+                @foreach (var hotelTop in db.Hotel.ToList())
+                {
+                    if (co<4)
+                    {
+                        <div class="col-md-3">
+                            <div class="thumb">
+                                <header class="thumb-header">
+                                    <a class="hover-img" href="@Url.Action("Hotel", "MainApp", new { namehD = @hotelTop.nombre_hotel })">
+                                        <img src="@hotelTop.foto_hotel1" alt=@hotelTop.nombre_hotel title=@hotelTop.nombre_hotel>
+                                        <h5 class="hover-title-center">Book Now</h5>
+                                    </a>
+                                </header>
+                                <div class="thumb-caption">
+                                    <ul class="icon-group text-tiny text-color">
+                                        @{
+                                            int catego = int.Parse(@hotelTop.Categoria.categoria1);
+                                             if (catego == 1)
+                                             {
+                                                <li>
+                                                    <i class="fa fa-star"></i>
+                                                </li>
+                                            } 
+                                            if (catego == 2)
+                                             {
+                                                <li>
+                                                    <i class="fa fa-star"></i>
+                                                </li>
+                                                <li>
+                                                    <i class="fa fa-star"></i>
+                                                </li>
+                                            }
+                                            if (catego == 3)
+                                            {
+                                                <li>
+                                                    <i class="fa fa-star"></i>
+                                                </li>
+                                                <li>
+                                                    <i class="fa fa-star"></i>
+                                                </li>
+                                                <li>
+                                                    <i class="fa fa-star"></i>
+                                                </li>
+                                            }
+                                            else
+                                                if (catego == 4)
+                                                {
+                                                    <li>
+                                                        <i class="fa fa-star"></i>
+                                                    </li>
+                                                    <li>
+                                                        <i class="fa fa-star"></i>
+                                                    </li>
+                                                    <li>
+                                                        <i class="fa fa-star"></i>
+                                                    </li>
+                                                    <li>
+                                                        <i class="fa fa-star"></i>
+                                                    </li>
+                                                }
+                                                else
+                                                    if (catego == 5)
+                                                    {
+                                                        <li>
+                                                            <i class="fa fa-star"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-star"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-star"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-star"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-star"></i>
+                                                        </li>
+                                                    }
+                                        }
+                                    </ul>
+                                    <h5 class="thumb-title"><a class="text-darken" href="@Url.Action("Hotel", "MainApp", new { namehD = @hotelTop.nombre_hotel })">@hotelTop.nombre_hotel</a></h5>
+                                    <p class="mb0">
+                                        <small><i class="fa fa-map-marker"></i> @hotelTop.direccion </small>
+                                    </p>
+                                    <p class="mb0 text-darken">
+                                        @{
+                                            var hotel = new HotelModel();
+                                            var priceH = hotel.Min(@hotelTop.idHotel,DateTime.Now);
+                                            <span class="text-lg lh1em text-color">$@priceH</span><small> avg/night</small>
+                                        }
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                     co++;
+                    }
+                }
+            </div>
+        </div>
+        <div class="gap gap-small"></div>
+    </div>
+    <div class="bg-holder">
+        <div class="bg-mask"></div>
+        <div class="bg-parallax" style="background-image: url(/TripAgency/Content/images/Morro3.JPG);"></div>
+        <div class="bg-content">
+            <div class="container">
+                <div class="gap gap-big text-center text-white">
+                    <h2 class="text-uc mb20">Last Minute Deal</h2>
+                    <ul class="icon-list list-inline-block mb0 last-minute-rating">
+                        <li>
+                            <i class="fa fa-star"></i>
+                        </li>
+                        <li>
+                            <i class="fa fa-star"></i>
+                        </li>
+                        <li>
+                            <i class="fa fa-star"></i>
+                        </li>
+                        <li>
+                            <i class="fa fa-star"></i>
+                        </li>
+                        <li>
+                            <i class="fa fa-star"></i>
+                        </li>
+                    </ul>
+                    <h5 class="last-minute-title">400 Years - Havana</h5>
+                    <p class="last-minute-date">Fri 14 Mar - Sun 16 Mar</p>
+                    <p class="mb20"><b>$820</b> / person</p><a class="btn btn-lg btn-white btn-ghost" href="#">Book Now <i class="fa fa-angle-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="gap"></div>
+        <h2 class="text-center">Top Destinations</h2>
+        <div class="gap">
+            <div class="row row-wrap">
+                <div class="col-md-3">
+                    <div class="thumb">
+                        <header class="thumb-header">
+                            <a class="hover-img curved" href="#">
+                                <img src="~/Content/images/client/pin.JPG" alt="Image Alternative text" title="Atractive and Tropical. Pinar del Rio" /><i class="fa fa-plus box-icon-white box-icon-border hover-icon-top-right round"></i>
+                            </a>
+                        </header>
+                        <div class="thumb-caption">
+                            <h4 class="thumb-title">Pinar del Río</h4>
+                            <p class="thumb-desc">Ut blandit pharetra suspendisse montes libero eleifend bibendum</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="thumb">
+                        <header class="thumb-header">
+                            <a class="hover-img curved" href="#">
+                                <img src="~/Content/images/client/hab.JPG" alt="Image Alternative text" title="History and Pasion.Old Havana" /><i class="fa fa-plus box-icon-white box-icon-border hover-icon-top-right round"></i>
+                            </a>
+                        </header>
+                        <div class="thumb-caption">
+                            <h4 class="thumb-title">Havana</h4>
+                            <p class="thumb-desc">Cursus faucibus egestas rutrum mauris vulputate consequat ante</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="thumb">
+                        <header class="thumb-header">
+                            <a class="hover-img curved" href="#">
+                                <img src="~/Content/images/client/var1.JPG" alt="Image Alternative text" title="People on the beach. Varadero" /><i class="fa fa-plus box-icon-white box-icon-border hover-icon-top-right round"></i>
+                            </a>
+                        </header>
+                        <div class="thumb-caption">
+                            <h4 class="thumb-title">Varadero</h4>
+                            <p class="thumb-desc">Senectus hendrerit torquent lorem scelerisque quam a curae</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="thumb">
+                        <header class="thumb-header">
+                            <a class="hover-img curved" href="#">
+                                <img src="~/Content/images/client/cay.JPG" alt="Image Alternative text" title="Wonderful Beach.Cayo Largo" /><i class="fa fa-plus box-icon-white box-icon-border hover-icon-top-right round"></i>
+                            </a>
+                        </header>
+                        <div class="thumb-caption">
+                            <h4 class="thumb-title">Cayo Largo</h4>
+                            <p class="thumb-desc">Penatibus ac lacinia platea cras lobortis nullam dapibus</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+

@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title Traveler - Hotel</title>
+    <meta name="keywords" content="Template, html, premium, themeforest" />
+    <meta name="description" content="Traveler - Premium template for travel companies">
+
+    <link href="@Url.Content("~/Content/ctt041ca/bootstrap.css")" rel="stylesheet">
+    <link href="@Url.Content("~/Content/ctt041ca/font-awesome.css")" rel="stylesheet">
+    <link href="@Url.Content("~/Content/ctt041ca/icomoon.css")" rel="stylesheet">
+    <link href="@Url.Content("~/Content/ctt041ca/styles.css")" rel="stylesheet">
+    <link href="@Url.Content("~/Content/ctt041ca/mystyles.css")" rel="stylesheet">
+    <script src="@Url.Content("~/Scripts/js/modernizr.js")" type="text/javascript"></script>
+    <link href="@Url.Content("~/Content/ctt041ca/switcher.css")" rel="stylesheet">
+
+</head>
+    <body>
+        <header id="main-header">
+            <div class="header-top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <a class="logo" href="@Url.Action("Index","MainApp")">
+                                <img src="/images/client/logo-invert.png" alt="Image Alternative text" title="Image Title">
+                            </a>
+                        </div>
+                        <div class="col-md-3 col-md-offset-2">
+                            <form class="main-header-search">
+                                <div class="form-group form-group-icon-left">
+                                    <i class="fa fa-search input-icon"></i>
+                                    <input class="form-control" type="text">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="top-user-area clearfix">
+                                <ul class="top-user-area-list list list-horizontal list-border">
+                                    <li class="top-user-area-avatar">
+                                        <a href="@Url.Action("Index","Home")">
+                                            <img class="origin round" src="/images/client/amaze_40x40.jpg" alt="Image Alternative text" title="User" />Hi, Anibal
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Sign Out</a>
+                                    </li>
+                                    <li class="nav-drop">
+                                        <a href="#">USD $<i class="fa fa-angle-down"></i><i class="fa fa-angle-up"></i></a>
+                                        <ul class="list nav-drop-menu">
+                                            <li>
+                                                <a href="#">EUR<span class="right">€</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="#">GBP<span class="right">£</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="#">JPY<span class="right">円</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="#">CAD<span class="right">$</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="#">AUD<span class="right">A$</span></a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="top-user-area-lang nav-drop">
+                                        <a href="#">
+                                            <img src="/images/client/uk.png" alt="Image Alternative text" title="Image Title">ENG<i class="fa fa-angle-down"></i><i class="fa fa-angle-up"></i>
+                                        </a>
+                                        <ul class="list nav-drop-menu">
+                                            <li>
+                                                <a title="German" href="#">
+                                                    <img src="/images/client/de.png" alt="Image Alternative text" title="Image Title"><span class="right">GER</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a title="Japanise" href="#">
+                                                    <img src="/images/client/jp.png" alt="Image Alternative text" title="Image Title"><span class="right">JAP</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a title="Italian" href="#">
+                                                    <img src="/images/client/it.png" alt="Image Alternative text" title="Image Title"><span class="right">ITA</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a title="French" href="#">
+                                                    <img src="/images/client/fr.png" alt="Image Alternative text" title="Image Title"><span class="right">FRE</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a title="Russian" href="#">
+                                                    <img src="/images/client/ru.png" alt="Image Alternative text" title="Image Title"><span class="right">RUS</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a title="Korean" href="#">
+                                                    <img src="/images/client/kr.png" alt="Image Alternative text" title="Image Title"><span class="right">KOR</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="nav">
+                    <ul class="slimmenu" id="slimmenu">
+                        <li>
+                            <a href="@Url.Action("Index","MainApp")">Home</a>
+                        </li>
+                        <li class="active">
+                            <a href="#">Hotels</a>
+                            <ul>
+                                <li>
+                                    <a href="#">Destinations</a>
+                                </li>
+                                <li>
+                                    <a href="#">Cadena</a>
+                                </li>
+                                <li>
+                                    <a href="#">Search Hotel</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">Cars</a>
+                            <ul>
+                                <li>
+                                    <a href="#">Search Car</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">Excursions</a>
+                            <ul>
+                                <li>
+                                    <a href="#">Destinations</a>
+                                </li>
+                                <li>
+                                    <a href="#">Search Excursion</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">Packages</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+        @RenderBody()
+    </body>
+</html>

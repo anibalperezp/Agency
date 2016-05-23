@@ -1,0 +1,32 @@
+﻿@model TripAgency.EF.Anno
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Borrar</h2>
+
+<h3>Está seguro que desea borrar este elemento?</h3>
+<div>
+    <h4>Anno</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Año")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.anno1)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Borrar" class="btn btn-default" /> |
+            @Html.ActionLink("Ir Atras", "Index")
+        </div>
+    }
+</div>

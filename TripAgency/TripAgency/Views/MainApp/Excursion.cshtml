@@ -1,0 +1,96 @@
+﻿@using TripAgency.Models
+@model TripAgency.EF.Excursion
+@{
+    Layout = "~/Views/Shared/_Layout_Excursion.cshtml";
+    ViewBag.Title = "Excursion";
+    string destiny1 = ViewBag.destiny;
+    string nameh = ViewBag.nameh;
+    var price = "";
+}
+
+<div class="container">
+
+    <ul class="breadcrumb">
+        <li>
+            <a href="@Url.Action("Index","MainApp")">Home</a>
+        </li>
+        <li>
+            <a href="@Url.Action("Destinies","MainApp")">@Model.Destino.destino1</a>
+        </li>
+        <li>
+            <a href="@Url.Action("ExcursionsSubDestinies", "MainApp", new { subdestiny = @Model.Destino.destino1 })">@Model.Destino.destino1 - Tours</a>
+        </li>
+        <li class="active">@Html.DisplayName(nameh)</li>
+    </ul>
+
+    <br />
+
+    <div class="booking-item-details">
+        <header class="booking-item-header">
+            <div class="row">
+                <div class="col-md-9">
+                    <h2 class="lh1em">Tour @Html.DisplayName(nameh)</h2>
+                </div>
+                <div class="col-md-3">
+                    @{
+                        var hotelModel = new TemporadaExc();
+                        price = hotelModel.Min(@Model.idExcursion, DateTime.Now);
+                        <p class="booking-item-header-price"><small>price </small>  <span class="text-lg">$@price</span>/person</p>
+                    }
+                </div>
+            </div>
+        </header>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div id="myCarousel" class="carousel slide">
+                    <!-- Carousel indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                    </ol> <!-- Carousel items -->
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <img src="@Model.foto1" alt=" first slide">
+                            <div class="carousel-caption">@Model.nombre_excursion</div>
+                        </div>
+                        <div class="item">
+                            <img src="@Model.foto2" alt=" second slide">
+                            <div class="carousel-caption">@Model.nombre_excursion</div>
+                        </div>
+                    </div> <!-- Carousel nav -->
+                    <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+                    <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+                </div>
+                <br />
+                <p>
+                    <span class="text-lg lh1em text-color">Description:</span> @Model.descrpcion_excursion
+                </p>
+            </div>
+            <div class="col-md-6">
+                <div class="booking-item-meta">
+                    <h2 class="lh1em mt40">Information</h2>
+                    <div class="booking-item-rating">
+                        <span class="booking-item-rating-number"><b> @Model.Empresa.nombre_empresa</b> tel: @Model.Empresa.telefono_empresa <small class="text-smaller"></small></span>
+                        <h3>97% <small>of guests recommend</small></h3>
+                            <div class="booking-item-deails-date-location">
+                                <ul>
+                                    <li>
+                                        <h4>Location:</h4>
+                                        <span class="text-lg lh1em text-color">Destination:</span><p class="lh1em text-small"> @Model.Destino.destino1, @Model.Destino.Pai.pais</p>
+                                    </li>
+                                    <li>
+                                        <span class="text-lg lh1em text-color">Date:</span><p> Thursday, 29 march, 2015</p>
+                                    </li>
+                                </ul>
+                                <a href="@Url.Action("PaymentTour", "Payment", new { excM = @Model.idExcursion, priceE = @price})" class="btn btn-primary">Checkout</a>
+                            </div>
+                            <div class="gap gap-small"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="gap"></div>
+    </div>
+    <div class="gap gap-small"></div>
+</div>

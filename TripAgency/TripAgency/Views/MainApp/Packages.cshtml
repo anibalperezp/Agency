@@ -1,0 +1,107 @@
+﻿@using TripAgency.EF
+@using TripAgency.Models
+@model PagedList.IPagedList<TripAgency.EF.Paquete>
+@using PagedList.Mvc;
+@Styles.Render("~/Content/pagedlist")
+@{
+    Layout = "~/Views/Shared/_Layout_Package.cshtml";
+    ViewBag.Title = "Results: Excursions ";
+    var word = "";
+}
+
+<br />
+<div class="container">
+    <br />
+    <ul class="breadcrumb">
+        <li>
+            <a href="@Url.Action("Index","MainApp")">Home</a>
+        </li>
+        <li class="active">Packages</li>
+    </ul>
+
+    <br />
+    <h3 class="booking-title">Packages</h3>
+    <div class="row">
+        <div class="col-md-3">
+            <aside class="sidebar-left">
+                <div class="sidebar-widget">
+                    <h4>Categories</h4>
+                    <ul class="icon-list list-category">
+                        <li>
+                            <a href="#"><i class="fa fa-angle-right"></i>Photos</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-angle-right"></i>Vacation</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-angle-right"></i>Flights</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-angle-right"></i>Travel Advices</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-angle-right"></i>Trending Now></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-angle-right"></i>Hotels</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-angle-right"></i>Places to Go</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-angle-right"></i>Travel Stories <small>(64)</small></a>
+                        </li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+        <div class="col-md-9">
+            <ul class="booking-list">
+                @foreach (var item in Model)
+                {
+                    <li>
+                        <form method="POST">
+                            <a class="booking-item" href="@Url.Action("Package", "MainApp", new { namehD = @item.nombre_paquete})">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="booking-item-img-wrap">
+                                            <img src=@item.foto alt=@item.foto title=@item.nombre_paquete>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h5 class="booking-item-title">@item.nombre_paquete</h5>
+                                        <div class="booking-item-rating">
+                                            <span class="booking-item-rating-number">@item.Empresa.nombre_empresa </span>
+                                        </div>
+                                        <br />
+                                        @{
+                                            var submodel = new DestinoModel();
+                                            word = submodel.GetDescSplitingHotel(@item.descripcion_paquete);
+                                        }
+                                        <span class="text-small lh1em text-color">Description:</span><small> @word</small>
+                                    </div>
+                                    <div class="col-md-2">
+                                        @{
+                                            var hotel = new TemporadaPaq();
+                                            var price = hotel.Min(@item.idPaquete, DateTime.Now);
+                                            <br />
+                                            <span class="booking-item-price-from">from </span><span class="booking-item-price">$@price </span><span>/ person</span>
+                                            <button class="btn btn-primary" type="submit" id="nameh" name="nameh" value="@item.nombre_paquete">Show More</button>
+                                        }
+                                    </div>
+                                </div>
+                            </a>
+
+                        </form>
+                    </li>
+                }
+            </ul>
+            <center>
+                Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                @Html.PagedListPager(Model, Page_No => Url.Action("Packages", new { Page_No, Sorting_Order = ViewBag.CurrentSortOrder, Filter_Value = ViewBag.FilterValue }))
+            </center>
+        </div>
+
+    </div>
+    <div class="gap"></div>
+</div>

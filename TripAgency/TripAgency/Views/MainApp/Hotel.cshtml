@@ -1,0 +1,2248 @@
+﻿@using TripAgency.EF
+@using TripAgency.Models
+@model TripAgency.EF.Hotel
+@{
+    Layout = "~/Views/Shared/_Layout_Hotels.cshtml";
+    TripAgencyEntities db = new TripAgencyEntities();
+    ViewBag.Title = "Hotel";
+    string destiny1 = ViewBag.destiny;
+    string nameh = ViewBag.nameh;
+    int count = 0;
+    DateTime dS = DateTime.Now;
+    DateTime dE = ViewBag.dE;
+    string date1 = "";
+    string date2 = "";
+    int rPrice = 0;
+    var ee = new ScriptCalc();
+    var pr = float.Parse(ee.HotelPrice(@Model.nombre_hotel, @Model.Tipol_HotelTipol.ToList().ElementAt(0).Tipologia.tipologia1, dS.ToString(), dE.ToString()));
+}
+@Scripts.Render("~/bundles/jqueryCost")
+<script language="Javascript" type="text/javascript">
+
+    /*Cargar los precios de los cuartos cuando inicia la pantalla y cuando cambia las fechas*/
+
+    var date = "";
+    var croom = 0;
+    var $price = 0;
+    
+
+    $(document).ready(function() {
+        var countryOptions = {};
+        countryOptions.url = "/TripAgency/MainApp/calc";
+        countryOptions.type = "POST";
+        countryOptions.data = JSON.stringify({
+            hotel: $("#namehotelA").text(),
+            tipology1: $("#tipo1").val(),
+            dates: $("#start").val(),
+            datee: $("#end").val()
+        });
+        countryOptions.datatype = "json";
+        countryOptions.contentType = "application/json";
+        countryOptions.success = function (statesList) {
+            if (statesList.length != 0) {
+                $("#valpric1").append(statesList);
+                $("#valpric2").append(statesList);
+                $("#valpric3").append(statesList);
+                $("#valpric4").append(statesList);
+                $("#valpric5").append(statesList);
+                $("#valpric6").append(statesList);
+                $("#valpric7").append(statesList);
+                $("#valpric8").append(statesList);
+                $("#valpric9").append(statesList);
+                $("#valpric10").append(statesList);
+                $("#valpric11").append(statesList);
+                $("#valpric12").append(statesList);
+                $("#valpric13").append(statesList);
+                $("#valpricRr1").append("$" + statesList);
+                $("#valpricRr2").append("$" + statesList);
+                $("#valpricRr3").append("$" + statesList);
+                $("#valpricRr4").append("$" + statesList);
+                $("#valpricRr5").append("$" + statesList);
+                $("#valpricRr6").append("$" + statesList);
+                $("#valpricRr7").append("$" + statesList);
+                $("#valpricRr8").append("$" + statesList);
+                $("#valpricRr9").append("$" + statesList);
+                $("#valpricRr10").append("$" + statesList);
+                $("#valpricRr11").append("$" + statesList);
+                $("#valpricRr12").append("$" + statesList);
+                $("#valpricRr13").append("$" + statesList);
+                
+            } else if (statesList.length == 0) {
+
+            }
+        };
+        $.ajax(countryOptions);
+    });
+
+    $(document).ready(function () {
+        $("#categoryroom").change(function () {
+            doDateW();
+            if ($("#categoryroom").val() == "1") {
+                $("#core2").prop("hidden", true); $("#core3").prop("hidden", true); $("#core4").prop("hidden", true); $("#core5").prop("hidden", true); $("#core6").prop("hidden", true); $("#core7").prop("hidden", true); $("#core8").prop("hidden", true); $("#core9").prop("hidden", true); $("#core10").prop("hidden", true); $("#core11").prop("hidden", true); $("#core12").prop("hidden", true); $("#core13").prop("hidden", true);
+            }
+            if ($("#categoryroom").val() == "2") {
+                $("#core2").prop("hidden", false); $("#core3").prop("hidden", true); $("#core4").prop("hidden", true); $("#core5").prop("hidden", true); $("#core6").prop("hidden", true); $("#core7").prop("hidden", true); $("#core8").prop("hidden", true); $("#core9").prop("hidden", true); $("#core10").prop("hidden", true); $("#core11").prop("hidden", true); $("#core12").prop("hidden", true); $("#core13").prop("hidden", true);
+            }
+            if ($("#categoryroom").val() == "3") {
+                $("#core2").prop("hidden", false); $("#core3").prop("hidden", false); $("#core4").prop("hidden", true); $("#core5").prop("hidden", true); $("#core6").prop("hidden", true); $("#core7").prop("hidden", true); $("#core8").prop("hidden", true); $("#core9").prop("hidden", true); $("#core10").prop("hidden", true); $("#core11").prop("hidden", true); $("#core12").prop("hidden", true); $("#core13").prop("hidden", true);
+            }
+            if ($("#categoryroom").val() == "4") {
+                $("#core2").prop("hidden", false); $("#core3").prop("hidden", false); $("#core4").prop("hidden", false); $("#core5").prop("hidden", true); $("#core6").prop("hidden", true); $("#core7").prop("hidden", true); $("#core8").prop("hidden", true); $("#core9").prop("hidden", true); $("#core10").prop("hidden", true); $("#core11").prop("hidden", true); $("#core12").prop("hidden", true); $("#core13").prop("hidden", true);
+            }
+            if ($("#categoryroom").val() == "5") {
+                $("#core2").prop("hidden", false); $("#core3").prop("hidden", false); $("#core4").prop("hidden", false); $("#core5").prop("hidden", false); $("#core6").prop("hidden", true); $("#core7").prop("hidden", true); $("#core8").prop("hidden", true); $("#core9").prop("hidden", true); $("#core10").prop("hidden", true); $("#core11").prop("hidden", true); $("#core12").prop("hidden", true); $("#core13").prop("hidden", true);
+            }
+            if ($("#categoryroom").val() == "6") {
+                $("#core2").prop("hidden", false); $("#core3").prop("hidden", false); $("#core4").prop("hidden", false); $("#core5").prop("hidden", false); $("#core6").prop("hidden", false); $("#core7").prop("hidden", true); $("#core8").prop("hidden", true); $("#core9").prop("hidden", true); $("#core10").prop("hidden", true); $("#core11").prop("hidden", true); $("#core12").prop("hidden", true); $("#core13").prop("hidden", true);
+            }
+            if ($("#categoryroom").val() == "7") {
+                $("#core2").prop("hidden", false); $("#core3").prop("hidden", false); $("#core4").prop("hidden", false); $("#core5").prop("hidden", false); $("#core6").prop("hidden", false); $("#core7").prop("hidden", false); $("#core8").prop("hidden", true); $("#core9").prop("hidden", true); $("#core10").prop("hidden", true); $("#core11").prop("hidden", true); $("#core12").prop("hidden", true); $("#core13").prop("hidden", true);
+            }
+            if ($("#categoryroom").val() == "8") {
+                $("#core2").prop("hidden", false); $("#core3").prop("hidden", false); $("#core4").prop("hidden", false); $("#core5").prop("hidden", false); $("#core6").prop("hidden", false); $("#core7").prop("hidden", false); $("#core8").prop("hidden", false); $("#core9").prop("hidden", true); $("#core10").prop("hidden", true); $("#core11").prop("hidden", true); $("#core12").prop("hidden", true); $("#core13").prop("hidden", true);
+            }
+            if ($("#categoryroom").val() == "9") {
+                $("#core2").prop("hidden", false); $("#core3").prop("hidden", false); $("#core4").prop("hidden", false); $("#core5").prop("hidden", false); $("#core6").prop("hidden", false); $("#core7").prop("hidden", false); $("#core8").prop("hidden", false); $("#core9").prop("hidden", false); $("#core10").prop("hidden", true); $("#core11").prop("hidden", true); $("#core12").prop("hidden", true); $("#core13").prop("hidden", true);
+            }
+            if ($("#categoryroom").val() == "10") {
+                $("#core2").prop("hidden", false); $("#core3").prop("hidden", false); $("#core4").prop("hidden", false); $("#core5").prop("hidden", false); $("#core6").prop("hidden", false); $("#core7").prop("hidden", false); $("#core8").prop("hidden", false); $("#core9").prop("hidden", false); $("#core10").prop("hidden", false); $("#core11").prop("hidden", true); $("#core12").prop("hidden", true); $("#core13").prop("hidden", true);
+            }
+            if ($("#categoryroom").val() == "11") {
+                $("#core2").prop("hidden", false); $("#core3").prop("hidden", false); $("#core4").prop("hidden", false); $("#core5").prop("hidden", false); $("#core6").prop("hidden", false); $("#core7").prop("hidden", false); $("#core8").prop("hidden", false); $("#core9").prop("hidden", false); $("#core10").prop("hidden", false); $("#core11").prop("hidden", false); $("#core12").prop("hidden", true); $("#core13").prop("hidden", true);
+            }
+            if ($("#categoryroom").val() == "12") {
+                $("#core2").prop("hidden", false); $("#core3").prop("hidden", false); $("#core4").prop("hidden", false); $("#core5").prop("hidden", false); $("#core6").prop("hidden", false); $("#core7").prop("hidden", false); $("#core8").prop("hidden", false); $("#core9").prop("hidden", false); $("#core10").prop("hidden", false); $("#core11").prop("hidden", false); $("#core12").prop("hidden", false); $("#core13").prop("hidden", true);
+            }
+            if ($("#categoryroom").val() == "13") {
+                $("#core2").prop("hidden", false); $("#core3").prop("hidden", false); $("#core4").prop("hidden", false); $("#core5").prop("hidden", false); $("#core6").prop("hidden", false); $("#core7").prop("hidden", false); $("#core8").prop("hidden", false); $("#core9").prop("hidden", false); $("#core10").prop("hidden", false); $("#core11").prop("hidden", false); $("#core12").prop("hidden", false); $("#core13").prop("hidden", false);
+            }
+        });
+    });
+    
+    $(function () { $("[data-toggle='tooltip']").tooltip(); });
+    $(function () { $('.tooltip-show').tooltip('show'); });
+    $(function () { $('.tooltip-hide').tooltip('hide'); });
+    $(function () { $('.tooltip-destroy').tooltip('destroy'); });
+    $(function () { $('.tooltip-toggle').tooltip('toggle'); });
+    $(function () { $(".tooltip-options a").tooltip({ html: true }); });
+
+    function doDateW() {
+        $("#numdays").empty();
+        caldoeffvr();
+        $("#numdays").append(date);
+    };
+
+    function doDate(tipology) {
+        if (tipology.id == "chk1") {
+            if ($("#tipo1").val() == "Choose One") {
+                alert("Please choose any room");
+            } else
+                if ($("#tipo1").val() != "Choose One") {
+                    $("#numdays").empty();
+                    caldoeffvr();
+                    $("#numdays").append(date);
+                }
+        } else
+            if (tipology.id == "chk2") {
+                if ($("#tipo2").val() == "Choose One") {
+                    alert("Please choose any room");
+                } else
+                    if ($("#tipo2").val() != "Choose One") {
+                        $("#numdays").empty();
+                        caldoeffvr();
+                        $("#numdays").append(date);
+                    }
+
+            } else
+                if (tipology.id == "chk3") {
+                    if ($("#tipo3").val() == "Choose One") {
+                        alert("Please choose any room");
+                    } else
+                        if ($("#tipo3").val() != "Choose One") {
+                            $("#numdays").empty();
+                            caldoeffvr();
+                            $("#numdays").append(date);
+                        }
+
+                } else
+                    if (tipology.id == "chk4") {
+                        if ($("#tipo4").val() == "Choose One") {
+                            alert("Please choose any room");
+                        } else
+                            if ($("#tipo4").val() != "Choose One") {
+                                $("#numdays").empty();
+                                caldoeffvr();
+                                $("#numdays").append(date);
+                            }
+
+                    } else
+                        if (tipology.id == "chk5") {
+                            if ($("#tipo5").val() == "Choose One") {
+                                alert("Please choose any room");
+                            } else
+                                if ($("#tipo5").val() != "Choose One") {
+                                    $("#numdays").empty();
+                                    caldoeffvr();
+                                    $("#numdays").append(date);
+                                }
+
+                        } else
+                            if (tipology.id == "chk6") {
+                                if ($("#tipo6").val() == "Choose One") {
+                                    alert("Please choose any room");
+                                } else
+                                    if ($("#tipo6").val() != "Choose One") {
+                                        $("#numdays").empty();
+                                        caldoeffvr();
+                                        $("#numdays").append(date);
+                                    }
+
+                            } else
+                                if (tipology.id == "chk7") {
+                                    if ($("#tipo7").val() == "Choose One") {
+                                        alert("Please choose any room");
+                                    } else
+                                        if ($("#tipo7").val() != "Choose One") {
+                                            $("#numdays").empty();
+                                            caldoeffvr();
+                                            $("#numdays").append(date);
+                                        }
+                                } else
+                                    if (tipology.id == "chk8") {
+                                        if ($("#tipo8").val() == "Choose One") {
+                                            alert("Please choose any room");
+                                        } else
+                                            if ($("#tipo8").val() != "Choose One") {
+                                                $("#numdays").empty();
+                                                caldoeffvr();
+                                                $("#numdays").append(date);
+                                            }
+
+                                    } else
+                                        if (tipology.id == "chk9") {
+                                            if ($("#tipo9").val() == "Choose One") {
+                                                alert("Please choose any room");
+                                            } else
+                                                if ($("#tipo9").val() != "Choose One") {
+                                                    $("#numdays").empty();
+                                                    caldoeffvr();
+                                                    $("#numdays").append(date);
+                                                }
+
+                                        } else
+                                            if (tipology.id == "chk10") {
+                                                if ($("#tipo10").val() == "Choose One") {
+                                                    alert("Please choose any room");
+                                                } else
+                                                    if ($("#tipo10").val() != "Choose One") {
+                                                        $("#numdays").empty();
+                                                        caldoeffvr();
+                                                        $("#numdays").append(date);
+                                                    }
+
+                                            } else
+                                                if (tipology.id == "chk11") {
+                                                    if ($("#tipo11").val() == "Choose One") {
+                                                        alert("Please choose any room");
+                                                    } else
+                                                        if ($("#tipo11").val() != "Choose One") {
+                                                            $("#numdays").empty();
+                                                            caldoeffvr();
+                                                            $("#numdays").append(date);
+                                                        }
+
+                                                } else
+                                                    if (tipology.id == "chk12") {
+                                                        if ($("#tipo12").val() == "Choose One") {
+                                                            alert("Please choose any room");
+                                                        } else
+                                                            if ($("#tipo12").val() != "Choose One") {
+                                                                $("#numdays").empty();
+                                                                caldoeffvr();
+                                                                $("#numdays").append(date);
+                                                            }
+
+                                                    } else
+                                                        if (tipology.id == "chk13") {
+                                                            if ($("#tipo13").val() == "Choose One") {
+                                                                alert("Please choose any room");
+                                                            } else
+                                                                if ($("#tipo13").val() != "Choose One") {
+                                                                    $("#numdays").empty();
+                                                                    caldoeffvr();
+                                                                    $("#numdays").append(date);
+                                                                }
+                                                        }
+    };
+
+    function caldoeffvr() {
+        var start = $("#start").val();
+        var end = $("#end").val();
+        var endsp = start.split('/');
+        var startsp = end.split('/');
+        var datestart = new Date();
+        var dateend = new Date();
+        datestart.setTime(Date.parse(start));
+        dateend.setTime(Date.parse(end));
+        var dif = dateend - datestart;
+        var iDay = ((dif / (60 * 60 * 24)) / 1000 - 1) + 1;
+        date = iDay.toString() + " days (" + endsp[0].toLowerCase() + " " + endsp[1] + " - " + startsp[0].toLowerCase() + " " + startsp[1] + ")";
+    }
+
+    //***************************
+    $(document).ready(function () {
+        $("#start").change(function () {
+            doDateW();
+                var a = $("#start").val();
+                var countryOptions = {};
+                countryOptions.url = "/TripAgency/MainApp/hottips";
+                countryOptions.type = "POST";
+                countryOptions.data = JSON.stringify({
+                    hot: $("#idhot").val()
+                });
+                countryOptions.datatype = "json";
+                countryOptions.contentType = "application/json";
+                countryOptions.success = function (statesList) {
+                    var row = "";
+                    $.each(statesList, function (index, item) {
+                        for(var q=1;q<14;q++) {
+                            var si = $("#tipo" + q.toString()).val();
+                            if (item == si) {
+                                calco(item,q);
+                            }
+                        }
+                    });
+                };
+                $.ajax(countryOptions);
+        });
+    });
+
+    $(document).ready(function () {
+        $("#end").change(function () {
+            doDateW();
+            var a = $("#end").val();
+            var countryOptions = {};
+            countryOptions.url = "/TripAgency/MainApp/hottips";
+            countryOptions.type = "POST";
+            countryOptions.data = JSON.stringify({
+                hot: $("#idhot").val()
+            });
+            countryOptions.datatype = "json";
+            countryOptions.contentType = "application/json";
+            countryOptions.success = function (statesList) {
+                var row = "";
+                $.each(statesList, function (index, item) {
+                    for (var q = 1; q < 14; q++) {
+                        var si = $("#tipo" + q.toString()).val();
+                        if (item == si) {
+                            calco(item, q);
+                        }
+                    }
+                });
+            };
+            $.ajax(countryOptions);
+        });
+    });
+
+    function calco(tipo,tip) {
+        var countryOptions = {};
+        countryOptions.url = "/TripAgency/MainApp/calc";
+        countryOptions.type = "POST";
+        countryOptions.data = JSON.stringify({
+            hotel: $("#namehotelA").text(),
+            tipology1: tipo,
+            dates: $("#start").val(),
+            datee: $("#end").val()
+        });
+        countryOptions.datatype = "json";
+        countryOptions.contentType = "application/json";
+        countryOptions.success = function (statesList) {
+            if (statesList.length != 0) {
+                $price = statesList;
+                $("#valpricR" + tip).empty();
+                $("#valpricR" + tip).append("1");
+                $("#valpric" + tip).empty();
+                $("#valpric" + tip).append(statesList);
+                $("#valpricRr" + tip).empty();
+                $("#valpricRr" + tip).append("$"+statesList);
+            } else if (statesList.length == 0) {
+                $price = 0;
+            }
+        };
+        $.ajax(countryOptions);
+    };
+
+    function calc(tipology) {
+        doDateW();
+        if (tipology.value != "Choose One") {
+            var countryOptions = {};
+            countryOptions.url = "/TripAgency/MainApp/calc";
+            countryOptions.type = "POST";
+            countryOptions.data = JSON.stringify({
+                hotel: $("#namehotelA").text(),
+                tipology1: tipology.value,
+                dates: $("#start").val(),
+                datee: $("#end").val()
+            });
+            countryOptions.datatype = "json";
+            countryOptions.contentType = "application/json";
+            countryOptions.success = function (statesList) {
+                if (statesList.length != 0) {
+                    if (tipology.id == "tipo1") {
+                        $("#valpricR1").empty();
+                        $("#valpricR1").append("1");
+                        $("#valpric1").empty();
+                        $("#valpric1").append(statesList);
+                        $("#valpricRr1").empty();
+                        $("#valpricRr1").append("$" + statesList);
+                    } else
+                        if (tipology.id == "tipo2") {
+                            $("#valpricR2").empty();
+                            $("#valpricR2").append("1");
+                            $("#valpric2").empty();
+                            $("#valpric2").append(statesList);
+                            $("#valpricRr2").empty();
+                            $("#valpricRr2").append("$" + statesList);
+                        } else
+                            if (tipology.id == "tipo3") {
+                                $("#valpricR3").empty();
+                                $("#valpricR3").append("1");
+                                $("#valpric3").empty();
+                                $("#valpric3").append(statesList);
+                                $("#valpricRr3").empty();
+                                $("#valpricRr3").append("$" + statesList);
+                            } else
+                                if (tipology.id == "tipo4") {
+                                    $("#valpricR4").empty();
+                                    $("#valpricR4").append("1");
+                                    $("#valpric4").empty();
+                                    $("#valpric4").append(statesList);
+                                    $("#valpricRr4").empty();
+                                    $("#valpricRr4").append("$" + statesList);
+                                } else
+                                    if (tipology.id == "tipo5") {
+                                        $("#valpricR5").empty();
+                                        $("#valpricR5").append("1");
+                                        $("#valpric5").empty();
+                                        $("#valpric5").append(statesList);
+                                        $("#valpricRr5").empty();
+                                        $("#valpricRr5").append("$" + statesList);
+                                    } else
+                                        if (tipology.id == "tipo6") {
+                                            $("#valpricR6").empty();
+                                            $("#valpricR6").append("1");
+                                            $("#valpric6").empty();
+                                            $("#valpric6").append(statesList);
+                                            $("#valpricRr6").empty();
+                                            $("#valpricRr6").append("$" + statesList);
+                                        } else
+                                            if (tipology.id == "tipo7") {
+                                                $("#valpric7").empty();
+                                                $("#valpricR7").append("1");
+                                                $("#valpric7").append(statesList);
+                                                $("#valpricRr7").empty();
+                                                $("#valpricRr7").append("$" + statesList);
+                                            } else
+                                                if (tipology.id == "tipo8") {
+                                                    $("#valpricR8").empty();
+                                                    $("#valpricR8").append("1");
+                                                    $("#valpric8").empty();
+                                                    $("#valpric8").append(statesList);
+                                                    $("#valpricRr8").empty();
+                                                    $("#valpricRr8").append("$" + statesList);
+                                                } else
+                                                    if (tipology.id == "tipo9") {
+                                                        $("#valpricR9").empty();
+                                                        $("#valpricR9").append("1");
+                                                        $("#valpric9").empty();
+                                                        $("#valpric9").append(statesList);
+                                                        $("#valpricRr9").empty();
+                                                        $("#valpricRr9").append("$" + statesList);
+                                                    } else
+                                                        if (tipology.id == "tipo10") {
+                                                            $("#valpricR10").empty();
+                                                            $("#valpricR10").append("1");
+                                                            $("#valpric10").empty();
+                                                            $("#valpric10").append(statesList);
+                                                            $("#valpricRr10").empty();
+                                                            $("#valpricRr10").append("$" + statesList);
+                                                        } else
+                                                            if (tipology.id == "tipo11") {
+                                                                $("#valpricR11").empty();
+                                                                $("#valpricR11").append("1");
+                                                                $("#valpric11").empty();
+                                                                $("#valpric11").append(statesList);
+                                                                $("#valpricRr11").empty();
+                                                                $("#valpricRr11").append("$" + statesList);
+                                                            } else
+                                                                if (tipology.id == "tipo12") {
+                                                                    $("#valpricR12").empty();
+                                                                    $("#valpricR12").append("1");
+                                                                    $("#valpric12").empty();
+                                                                    $("#valpric12").append(statesList);
+                                                                    $("#valpricRr12").empty();
+                                                                    $("#valpricRr12").append("$" + statesList);
+                                                                } else
+                                                                    if (tipology.id == "tipo13") {
+                                                                        $("#valpric13").empty();
+                                                                        $("#valpric13").append(statesList);
+                                                                        $("#valpric13").empty();
+                                                                        $("#valpric13").append(statesList);
+                                                                        $("#valpricRr13").empty();
+                                                                        $("#valpricRr13").append("$" + statesList);
+                                                                    }
+                } else if (statesList.length == 0) {
+
+                }
+            };
+            $.ajax(countryOptions);
+        }
+    };
+
+
+</script>
+
+<div class="container">
+    <ul class="breadcrumb">
+        <li>
+            <a href="@Url.Action("Index","MainApp")">Home</a>
+        </li>
+        <li>
+            <a href="@Url.Action("Destinies","MainApp")">@Model.Destino.destino1</a>
+        </li>
+        <li>
+            <a href="@Url.Action("Hotels", "MainApp", new { destiny = @Model.Destino.destino1 })">@Model.Destino.destino1 Hotels</a>
+        </li>
+        <li class="active">@Model.nombre_hotel</li>
+    </ul>
+    <br />
+    <div class="booking-item-details">
+        <header class="booking-item-header">
+            <div class="row">
+                <div class="col-md-9">
+                    <h2 class="lh1em" title="hola">@Model.nombre_hotel</h2>
+                    <h2 class="lh1em" id="namehotelA" hidden="true">@Model.nombre_hotel</h2>
+                </div>
+                <div class="col-md-3">
+                    @{
+                        var hotelModel = new HotelModel();
+                        var price = hotelModel.Min(@Model.idHotel, DateTime.Now);
+                        <p class="booking-item-header-price"><small>price from</small>  <span class="text-lg">$@price</span>/night</p>
+                    }
+                </div>
+            </div>
+        </header>
+        <div class="row">
+            <div class="col-md-6">
+                <div id="myCarousel" class="carousel slide">
+                    <!-- Carousel indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                        <li data-target="#myCarousel" data-slide-to="2"></li>
+                    </ol> <!-- Carousel items -->
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <img src="@Model.foto_hotel1" alt="First slide">
+                            <div class="carousel-caption">This Caption 1</div>
+                        </div>
+                        <div class="item">
+                            <img src="@Model.foto_hote2" alt="Second slide">
+                            <div class="carousel-caption">This Caption 2</div>
+                        </div>
+                        <div class="item">
+                            <img src="@Model.foto_hotel3" alt="Third slide">
+                            <div class="carousel-caption">This Caption 3</div>
+                        </div>
+                    </div> <!-- Carousel nav -->
+                    <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+                    <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="tabbable ">
+                    <ul class="nav nav-tabs" id="myTab">
+                        <li class="active">
+                            <a href="#tab-1" data-toggle="tab"><i class="fa fa-home"></i> <span>Information</span></a>
+                        </li>
+                        <li>
+                            <a href="#tab-2" data-toggle="tab"><i class="fa fa-building-o"></i> <span>Rooms</span></a>
+                        </li>
+                        <li>
+                            <a href="#tab-3" data-toggle="tab"><i class="fa fa-laptop"></i> <span>Facilities</span></a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fade in active" id="tab-1">
+                            <div data-spy="scroll" class="scroller flip-scroll" data-offset="0" style="height: 394px; overflow: auto; position: relative;">
+                                <h2 class="lh1em mt40">Information</h2>
+                                <p>
+                                    <span class="text-lg lh1em text-color">Brand:</span> @Model.Cadena.cadena_
+                                </p>
+                                <div class="booking-item-rating">
+                                    <ul class="icon-group booking-item-rating-stars">
+                                        @{
+                                            int categ = int.Parse(@Model.Categoria.categoria1);
+
+                                            if (categ == 1)
+                                             {
+                                                <li>
+                                                    <i class="fa fa-star"></i>
+                                                </li>
+                                             }
+                                             else
+                                             if (categ == 2)
+                                                 {
+                                                    <li>
+                                                        <i class="fa fa-star"></i>
+                                                    </li>
+                                                    <li>
+                                                        <i class="fa fa-star"></i>
+                                                    </li>
+                                                }
+                                                else
+                                                    if (categ == 3)
+                                                    {
+                                                        <li>
+                                                            <i class="fa fa-star"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-star"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-star"></i>
+                                                        </li>
+                                                    }
+                                                    else
+                                                        if (categ == 4)
+                                                        {
+                                                            <li>
+                                                                <i class="fa fa-star"></i>
+                                                            </li>
+                                                            <li>
+                                                                <i class="fa fa-star"></i>
+                                                            </li>
+                                                            <li>
+                                                                <i class="fa fa-star"></i>
+                                                            </li>
+                                                            <li>
+                                                                <i class="fa fa-star"></i>
+                                                            </li>
+                                                        }
+                                                        else
+                                                            if (categ == 5)
+                                                            {
+                                                                <li>
+                                                                    <i class="fa fa-star"></i>
+                                                                </li>
+                                                                <li>
+                                                                    <i class="fa fa-star"></i>
+                                                                </li>
+                                                                <li>
+                                                                    <i class="fa fa-star"></i>
+                                                                </li>
+                                                                <li>
+                                                                    <i class="fa fa-star"></i>
+                                                                </li>
+                                                                <li>
+                                                                    <i class="fa fa-star"></i>
+                                                                </li>
+                                                            }
+                                        }
+                                    </ul>
+                                    <span class="booking-item-rating-number"><b>@Model.Categoria.categoria1</b> of 5 <small class="text-smaller">starts</small></span>
+                                    <p> </p>
+                                    <h4>About the Hotel</h4>
+                                    <p class="mb30">
+                                        @Model.descripcion_hotel
+                                    </p>
+                                    <p class="lh1em text-small"><i class="fa fa-map-marker"></i> @Model.direccion, @Model.Destino.destino1, @Model.Destino.Pai.pais</p>
+                                    <ul class="list list-inline text-small">
+                                        <li>
+                                            <a href="#"><i class="fa fa-envelope"></i> Hotel E-mail</a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="fa fa-home"></i> Hotel Website</a>
+                                        </li>
+                                        <li><i class="fa fa-phone"></i> @Model.telefono</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="tab-2">
+                            <div data-spy="scroll" class="scroller flip-scroll" data-offset="0" style="height: 394px; overflow: auto; position: relative; ">
+                                <h2 class="lh1em mt40">Rooms Avaibles</h2>
+                                <ul class="booking-list">
+                                    @foreach (var item in @Model.Tipol_HotelTipol)
+                                    {
+                                        <li>
+                                            <a class="booking-item">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <h5 class="booking-item-title">@item.Tipologia.tipologia1</h5>
+                                                        <p class="text-small">@item.descripc</p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="tab-3">
+                            <div data-spy="scroll" class="scroller flip-scroll" data-offset="0" style="height: 394px; overflow: auto; position: relative;">
+                                <h2 class="lh1em mt40">Hotel Facilities</h2>
+                                <br />
+                                @{
+                                    var w1 = "";
+                                    string[] w = Model.facilidades.Split('»');
+                                    for (int i = 1; i < w.Length; i++)
+                                    {
+                                        w1 += w[i] + ", ";
+                                    }
+                                    <p class="mb30">@w1</p>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="gap"></div>
+
+        <h3>Available Rooms</h3>
+        <div class="row booking-item-price-calc">
+            <div class="col-md-9">
+                <div class="booking-item-dates-change">
+                    <form>
+                        <div class="row">
+                            <div class="col-md-9">
+                                <div class="input-daterange" data-date-format="MM/dd/yyyy">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group form-group-icon-left">
+                                                <i class="fa fa-calendar input-icon input-icon-hightlight"></i>
+                                                <label>Check in</label>
+                                                <input class="form-control" id="start" name="start" type="text">
+                                            </div>
+                                        </div>
+                                        <div hidden="true">
+                                            <select class="form-control" id="idhot" name="origin">
+                                                <option selected="selected">@Model.idHotel.ToString()</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group form-group-icon-left">
+                                                <i class="fa fa-calendar input-icon input-icon-hightlight"></i>
+                                                <label>Check out</label>
+                                                <input class="form-control" id="end" name="end" type="text">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group form-group-select-plus">
+                                    <label>Rooms</label>
+                                    <select class="form-control" id="categoryroom">
+                                        <option selected="selected">1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                        <option>7</option>
+                                        <option>8</option>
+                                        <option>9</option>
+                                        <option>10</option>
+                                        <option>11</option>
+                                        <option>12</option>
+                                        <option>13</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="gap gap-small"></div>
+                <ul class="booking-list" id="listrooms">
+                    <li id="core1">
+                        <form method="POST">
+                            <a class="booking-item">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group form-group-select-plus">
+                                            <label>Room Type</label>
+                                            <select class="form-control" id="tipo1" name="tipo1" onchange="calc(this)">
+                                                @foreach (var item1 in @Model.Tipol_HotelTipol)
+                                                {
+                                                    <option>@item1.Tipologia.tipologia1</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group form-group-select-plus">
+                                            <label>Adults</label>
+                                            <div class="btn-group btn-group-select-num" data-toggle="buttons">
+                                                <label class="btn btn-primary active">
+                                                    <input name="options" type="radio">1
+                                                </label>
+                                                <label class="btn btn-primary">
+                                                    <input name="options" type="radio">2
+                                                </label>
+                                                <label class="btn btn-primary">
+                                                    <input name="options" type="radio">3
+                                                </label>
+                                                <label class="btn btn-primary">
+                                                    <input name="options" type="radio">3+
+                                                </label>
+                                            </div>
+                                            <select class="form-control hidden">
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option selected="selected">4</option>
+                                                <option>5</option>
+                                                <option>6</option>
+                                                <option>7</option>
+                                                <option>8</option>
+                                                <option>9</option>
+                                                <option>10</option>
+                                                <option>11</option>
+                                                <option>12</option>
+                                                <option>13</option>
+                                                <option>14</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group form-group-select-plus">
+                                            <label>Children</label>
+                                            <div class="btn-group btn-group-select-num" data-toggle="buttons">
+                                                <label class="btn btn-primary active">
+                                                    <input name="options" type="radio">0
+                                                </label>
+                                                <label class="btn btn-primary">
+                                                    <input name="options" type="radio">1
+                                                </label>
+                                                <label class="btn btn-primary">
+                                                    <input name="options" type="radio">2
+                                                </label>
+                                                <label class="btn btn-primary">
+                                                    <input name="options" type="radio">2+
+                                                </label>
+                                            </div>
+                                            <select class="form-control hidden">
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option selected="selected">3</option>
+                                                <option>4</option>
+                                                <option>5</option>
+                                                <option>6</option>
+                                                <option>7</option>
+                                                <option>8</option>
+                                                <option>9</option>
+                                                <option>10</option>
+                                                <option>11</option>
+                                                <option>12</option>
+                                                <option>13</option>
+                                                <option>14</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="form-group">
+                                            <label>Price</label>
+                                            <label>
+                                                <h5 id="valpricRr1"></h5>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-1">
+                                        <div class="form-group">
+                                            <label>Check</label>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <div class="i-check" id="chk1" onclick="doDate(this);">
+                                                        <input style="position: absolute; opacity: 0;" class="i-check" type="checkbox">
+                                                        <ins style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% rgb(255, 255, 255); border: 0px none; opacity: 0;" class="iCheck-helper"></ins>
+                                                        <span class="pull-right2" id="valpricR1" hidden="true">1</span>
+                                                        <span class="pull-right" id="valpric1"></span>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </form>
+                    </li>
+                    <li id="core2" hidden="true">
+                        <a class="booking-item">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group form-group-select-plus">
+                                        <label>Room Type</label>
+                                        <select class="form-control" name="tipo2" id="tipo2" onchange="calc(this)">
+                                            @foreach (var item1 in @Model.Tipol_HotelTipol)
+                                            {
+                                                <option>@item1.Tipologia.tipologia1</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group form-group-select-plus">
+                                        <label>Adults</label>
+                                        <div class="btn-group btn-group-select-num" data-toggle="buttons">
+                                            <label class="btn btn-primary active">
+                                                <input name="options" type="radio">1
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">2
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">3
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">3+
+                                            </label>
+                                        </div>
+                                        <select class="form-control hidden">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option selected="selected">4</option>
+                                            <option>5</option>
+                                            <option>6</option>
+                                            <option>7</option>
+                                            <option>8</option>
+                                            <option>9</option>
+                                            <option>10</option>
+                                            <option>11</option>
+                                            <option>12</option>
+                                            <option>13</option>
+                                            <option>14</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group form-group-select-plus">
+                                        <label>Children</label>
+                                        <div class="btn-group btn-group-select-num" data-toggle="buttons">
+                                            <label class="btn btn-primary active">
+                                                <input name="options" type="radio">0
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">1
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">2
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">2+
+                                            </label>
+                                        </div>
+                                        <select class="form-control hidden">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option selected="selected">3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                            <option>6</option>
+                                            <option>7</option>
+                                            <option>8</option>
+                                            <option>9</option>
+                                            <option>10</option>
+                                            <option>11</option>
+                                            <option>12</option>
+                                            <option>13</option>
+                                            <option>14</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-group">
+                                        <label>Price</label>
+                                        <label>
+                                            <h5 id="valpricRr2"></h5>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-1">
+                                    <div class="form-group">
+                                        <label>Check</label>
+                                        <div class="checkbox">
+                                            <label>
+                                                <div class="i-check" id="chk2" onclick="doDate(tipo2);">
+                                                    <input style="position: absolute; opacity: 0;" class="i-check" type="checkbox">
+                                                    <ins style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% rgb(255, 255, 255); border: 0px none; opacity: 0;" class="iCheck-helper"></ins>
+                                                    <span class="pull-right2" id="valpricR2" hidden="true">1</span>
+                                                    <span class="pull-right" id="valpric2"></span>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li id="core3" hidden="true">
+                        <a class="booking-item">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group form-group-select-plus">
+                                        <label>Room Type</label>
+                                        <select class="form-control" name="tipo3" id="tipo3" onchange="calc(this)">
+                                            @foreach (var item1 in @Model.Tipol_HotelTipol)
+                                            {
+                                                <option>@item1.Tipologia.tipologia1</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group form-group-select-plus">
+                                        <label>Adults</label>
+                                        <div class="btn-group btn-group-select-num" data-toggle="buttons">
+                                            <label class="btn btn-primary active">
+                                                <input name="options" type="radio">1
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">2
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">3
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">3+
+                                            </label>
+                                        </div>
+                                        <select class="form-control hidden">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option selected="selected">4</option>
+                                            <option>5</option>
+                                            <option>6</option>
+                                            <option>7</option>
+                                            <option>8</option>
+                                            <option>9</option>
+                                            <option>10</option>
+                                            <option>11</option>
+                                            <option>12</option>
+                                            <option>13</option>
+                                            <option>14</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group form-group-select-plus">
+                                        <label>Children</label>
+                                        <div class="btn-group btn-group-select-num" data-toggle="buttons">
+                                            <label class="btn btn-primary active">
+                                                <input name="options" type="radio">0
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">1
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">2
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">2+
+                                            </label>
+                                        </div>
+                                        <select class="form-control hidden">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option selected="selected">3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                            <option>6</option>
+                                            <option>7</option>
+                                            <option>8</option>
+                                            <option>9</option>
+                                            <option>10</option>
+                                            <option>11</option>
+                                            <option>12</option>
+                                            <option>13</option>
+                                            <option>14</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-group">
+                                        <label>Price</label>
+                                        <label>
+                                            <h5 id="valpricRr3"></h5>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-group">
+                                        <label>Check</label>
+                                        <div class="checkbox">
+                                            <label>
+                                                <div class="i-check" id="chk3" onclick="doDate(tipo3);">
+                                                    <input style="position: absolute; opacity: 0;" class="i-check" type="checkbox">
+                                                    <ins style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% rgb(255, 255, 255); border: 0px none; opacity: 0;" class="iCheck-helper"></ins>
+                                                    <span class="pull-right2" id="valpricR3" hidden="true">1</span>
+                                                    <span class="pull-right" id="valpric3"></span>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li id="core4" hidden="true">
+                        <a class="booking-item">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group form-group-select-plus">
+                                        <label>Room Type</label>
+                                        <select class="form-control" name="tipo4" id="tipo4" onchange="calc(this)">
+                                            @foreach (var item1 in @Model.Tipol_HotelTipol)
+                                            {
+                                                <option>@item1.Tipologia.tipologia1</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group form-group-select-plus">
+                                        <label>Adults</label>
+                                        <div class="btn-group btn-group-select-num" data-toggle="buttons">
+                                            <label class="btn btn-primary active">
+                                                <input name="options" type="radio">1
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">2
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">3
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">3+
+                                            </label>
+                                        </div>
+                                        <select class="form-control hidden">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option selected="selected">4</option>
+                                            <option>5</option>
+                                            <option>6</option>
+                                            <option>7</option>
+                                            <option>8</option>
+                                            <option>9</option>
+                                            <option>10</option>
+                                            <option>11</option>
+                                            <option>12</option>
+                                            <option>13</option>
+                                            <option>14</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group form-group-select-plus">
+                                        <label>Children</label>
+                                        <div class="btn-group btn-group-select-num" data-toggle="buttons">
+                                            <label class="btn btn-primary active">
+                                                <input name="options" type="radio">0
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">1
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">2
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">2+
+                                            </label>
+                                        </div>
+                                        <select class="form-control hidden">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option selected="selected">3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                            <option>6</option>
+                                            <option>7</option>
+                                            <option>8</option>
+                                            <option>9</option>
+                                            <option>10</option>
+                                            <option>11</option>
+                                            <option>12</option>
+                                            <option>13</option>
+                                            <option>14</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-group">
+                                        <label>Price</label>
+                                        <label>
+                                            <h5 id="valpricRr4"></h5>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-group">
+                                        <label>Check</label>
+                                        <div class="checkbox">
+                                            <label>
+                                                <div class="i-check" id="chk4" onclick="doDate(tipo4);">
+                                                    <input style="position: absolute; opacity: 0;" class="i-check" type="checkbox">
+                                                    <ins style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% rgb(255, 255, 255); border: 0px none; opacity: 0;" class="iCheck-helper"></ins>
+                                                    <span class="pull-right2" id="valpricR4" hidden="true">1</span>
+                                                    <span class="pull-right" id="valpric4"></span>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li id="core5" hidden="true">
+                        <a class="booking-item">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group form-group-select-plus">
+                                        <label>Room Type</label>
+                                        <select class="form-control" name="tipo5" id="tipo5" onchange="calc(this)">
+                                            @foreach (var item1 in @Model.Tipol_HotelTipol)
+                                            {
+                                                <option>@item1.Tipologia.tipologia1</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group form-group-select-plus">
+                                        <label>Adults</label>
+                                        <div class="btn-group btn-group-select-num" data-toggle="buttons">
+                                            <label class="btn btn-primary active">
+                                                <input name="options" type="radio">1
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">2
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">3
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">3+
+                                            </label>
+                                        </div>
+                                        <select class="form-control hidden">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option selected="selected">4</option>
+                                            <option>5</option>
+                                            <option>6</option>
+                                            <option>7</option>
+                                            <option>8</option>
+                                            <option>9</option>
+                                            <option>10</option>
+                                            <option>11</option>
+                                            <option>12</option>
+                                            <option>13</option>
+                                            <option>14</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group form-group-select-plus">
+                                        <label>Children</label>
+                                        <div class="btn-group btn-group-select-num" data-toggle="buttons">
+                                            <label class="btn btn-primary active">
+                                                <input name="options" type="radio">0
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">1
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">2
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">2+
+                                            </label>
+                                        </div>
+                                        <select class="form-control hidden">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option selected="selected">3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                            <option>6</option>
+                                            <option>7</option>
+                                            <option>8</option>
+                                            <option>9</option>
+                                            <option>10</option>
+                                            <option>11</option>
+                                            <option>12</option>
+                                            <option>13</option>
+                                            <option>14</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-group">
+                                        <label>Price</label>
+                                        <label>
+                                            <h5 id="valpricRr5"></h5>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-1">
+                                    <div class="form-group">
+                                        <label>Check</label>
+                                        <div class="checkbox">
+                                            <label>
+                                                <div class="i-check" id="chk5" onclick="doDate(tipo5);">
+                                                    <input style="position: absolute; opacity: 0;" class="i-check" type="checkbox">
+                                                    <ins style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% rgb(255, 255, 255); border: 0px none; opacity: 0;" class="iCheck-helper"></ins>
+                                                    <span class="pull-right2" id="valpricR5" hidden="true">1</span>
+                                                    <span class="pull-right" id="valpric5"></span>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li id="core6" hidden="true">
+                        <a class="booking-item">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group form-group-select-plus">
+                                        <label>Room Type</label>
+                                        <select class="form-control" name="tipo6" id="tipo6" onchange="calc(this)">
+                                            @foreach (var item1 in @Model.Tipol_HotelTipol)
+                                            {
+                                                <option>@item1.Tipologia.tipologia1</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group form-group-select-plus">
+                                        <label>Adults</label>
+                                        <div class="btn-group btn-group-select-num" data-toggle="buttons">
+                                            <label class="btn btn-primary active">
+                                                <input name="options" type="radio">1
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">2
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">3
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">3+
+                                            </label>
+                                        </div>
+                                        <select class="form-control hidden">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option selected="selected">4</option>
+                                            <option>5</option>
+                                            <option>6</option>
+                                            <option>7</option>
+                                            <option>8</option>
+                                            <option>9</option>
+                                            <option>10</option>
+                                            <option>11</option>
+                                            <option>12</option>
+                                            <option>13</option>
+                                            <option>14</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group form-group-select-plus">
+                                        <label>Children</label>
+                                        <div class="btn-group btn-group-select-num" data-toggle="buttons">
+                                            <label class="btn btn-primary active">
+                                                <input name="options" type="radio">0
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">1
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">2
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">2+
+                                            </label>
+                                        </div>
+                                        <select class="form-control hidden">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option selected="selected">3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                            <option>6</option>
+                                            <option>7</option>
+                                            <option>8</option>
+                                            <option>9</option>
+                                            <option>10</option>
+                                            <option>11</option>
+                                            <option>12</option>
+                                            <option>13</option>
+                                            <option>14</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-group">
+                                        <label>Price</label>
+                                        <label>
+                                            <h5 id="valpricRr6"></h5>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-1">
+                                    <div class="form-group">
+                                        <label>Check</label>
+                                        <div class="checkbox">
+                                            <label>
+                                                <div class="i-check" id="chk6" onclick="doDate(tipo6);">
+                                                    <input style="position: absolute; opacity: 0;" class="i-check" type="checkbox">
+                                                    <ins style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% rgb(255, 255, 255); border: 0px none; opacity: 0;" class="iCheck-helper"></ins>
+                                                    <span class="pull-right2" id="valpricR6" hidden="true">1</span>
+                                                    <span class="pull-right" id="valpric6"></span>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li id="core7" hidden="true">
+                        <a class="booking-item">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group form-group-select-plus">
+                                        <label>Room Type</label>
+                                        <select class="form-control" name="tipo7" id="tipo7" onchange="calc(this)">
+                                            @foreach (var item1 in @Model.Tipol_HotelTipol)
+                                            {
+                                                <option>@item1.Tipologia.tipologia1</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group form-group-select-plus">
+                                        <label>Adults</label>
+                                        <div class="btn-group btn-group-select-num" data-toggle="buttons">
+                                            <label class="btn btn-primary active">
+                                                <input name="options" type="radio">1
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">2
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">3
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">3+
+                                            </label>
+                                        </div>
+                                        <select class="form-control hidden">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option selected="selected">4</option>
+                                            <option>5</option>
+                                            <option>6</option>
+                                            <option>7</option>
+                                            <option>8</option>
+                                            <option>9</option>
+                                            <option>10</option>
+                                            <option>11</option>
+                                            <option>12</option>
+                                            <option>13</option>
+                                            <option>14</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group form-group-select-plus">
+                                        <label>Children</label>
+                                        <div class="btn-group btn-group-select-num" data-toggle="buttons">
+                                            <label class="btn btn-primary active">
+                                                <input name="options" type="radio">0
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">1
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">2
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">2+
+                                            </label>
+                                        </div>
+                                        <select class="form-control hidden">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option selected="selected">3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                            <option>6</option>
+                                            <option>7</option>
+                                            <option>8</option>
+                                            <option>9</option>
+                                            <option>10</option>
+                                            <option>11</option>
+                                            <option>12</option>
+                                            <option>13</option>
+                                            <option>14</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-group">
+                                        <label>Price</label>
+                                        <label>
+                                            <h5 id="valpricRr7"></h5>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-1">
+                                    <div class="form-group">
+                                        <label>Check</label>
+                                        <div class="checkbox">
+                                            <label>
+                                                <div class="i-check" id="chk7" onclick="doDate(tipo7);">
+                                                    <input style="position: absolute; opacity: 0;" class="i-check" type="checkbox">
+                                                    <ins style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% rgb(255, 255, 255); border: 0px none; opacity: 0;" class="iCheck-helper"></ins>
+                                                    <span class="pull-right2" id="valpricR7" hidden="true">1</span>
+                                                    <span class="pull-right" id="valpric7"></span>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li id="core8" hidden="true">
+                        <a class="booking-item">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group form-group-select-plus">
+                                        <label>Room Type</label>
+                                        <select class="form-control" name="tipo8" id="tipo8" onchange="calc(this)">
+                                            @foreach (var item1 in @Model.Tipol_HotelTipol)
+                                            {
+                                                <option>@item1.Tipologia.tipologia1</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group form-group-select-plus">
+                                        <label>Adults</label>
+                                        <div class="btn-group btn-group-select-num" data-toggle="buttons">
+                                            <label class="btn btn-primary active">
+                                                <input name="options" type="radio">1
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">2
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">3
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">3+
+                                            </label>
+                                        </div>
+                                        <select class="form-control hidden">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option selected="selected">4</option>
+                                            <option>5</option>
+                                            <option>6</option>
+                                            <option>7</option>
+                                            <option>8</option>
+                                            <option>9</option>
+                                            <option>10</option>
+                                            <option>11</option>
+                                            <option>12</option>
+                                            <option>13</option>
+                                            <option>14</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group form-group-select-plus">
+                                        <label>Children</label>
+                                        <div class="btn-group btn-group-select-num" data-toggle="buttons">
+                                            <label class="btn btn-primary active">
+                                                <input name="options" type="radio">0
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">1
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">2
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">2+
+                                            </label>
+                                        </div>
+                                        <select class="form-control hidden">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option selected="selected">3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                            <option>6</option>
+                                            <option>7</option>
+                                            <option>8</option>
+                                            <option>9</option>
+                                            <option>10</option>
+                                            <option>11</option>
+                                            <option>12</option>
+                                            <option>13</option>
+                                            <option>14</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label>Price</label>
+                                        <label>
+                                            <h5 id="valpricRr8"></h5>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-1">
+                                    <div class="form-group">
+                                        <label>Check</label>
+                                        <div class="checkbox">
+                                            <label>
+                                                <div class="i-check" id="chk8" onclick="doDate(tipo8);">
+                                                    <input style="position: absolute; opacity: 0;" class="i-check" type="checkbox">
+                                                    <ins style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% rgb(255, 255, 255); border: 0px none; opacity: 0;" class="iCheck-helper"></ins>
+                                                    <span class="pull-right2" id="valpricR8" hidden="true">1</span>
+                                                    <span class="pull-right" id="valpric8"></span>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li id="core9" hidden="true">
+                        <a class="booking-item">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group form-group-select-plus">
+                                        <label>Room Type</label>
+                                        <select class="form-control" name="tipo9" id="tipo9" onchange="calc(this)">
+                                            @foreach (var item1 in @Model.Tipol_HotelTipol)
+                                            {
+                                                <option>@item1.Tipologia.tipologia1</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group form-group-select-plus">
+                                        <label>Adults</label>
+                                        <div class="btn-group btn-group-select-num" data-toggle="buttons">
+                                            <label class="btn btn-primary active">
+                                                <input name="options" type="radio">1
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">2
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">3
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">3+
+                                            </label>
+                                        </div>
+                                        <select class="form-control hidden">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option selected="selected">4</option>
+                                            <option>5</option>
+                                            <option>6</option>
+                                            <option>7</option>
+                                            <option>8</option>
+                                            <option>9</option>
+                                            <option>10</option>
+                                            <option>11</option>
+                                            <option>12</option>
+                                            <option>13</option>
+                                            <option>14</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group form-group-select-plus">
+                                        <label>Children</label>
+                                        <div class="btn-group btn-group-select-num" data-toggle="buttons">
+                                            <label class="btn btn-primary active">
+                                                <input name="options" type="radio">0
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">1
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">2
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">2+
+                                            </label>
+                                        </div>
+                                        <select class="form-control hidden">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option selected="selected">3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                            <option>6</option>
+                                            <option>7</option>
+                                            <option>8</option>
+                                            <option>9</option>
+                                            <option>10</option>
+                                            <option>11</option>
+                                            <option>12</option>
+                                            <option>13</option>
+                                            <option>14</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-group">
+                                        <label>Price</label>
+                                        <label>
+                                            <h5 id="valpricRr9"></h5>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-1">
+                                    <div class="form-group">
+                                        <label>Check</label>
+                                        <div class="checkbox">
+                                            <label>
+                                                <div class="i-check" id="chk9" onclick="doDate(tipo9);">
+                                                    <input style="position: absolute; opacity: 0;" class="i-check" type="checkbox">
+                                                    <ins style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% rgb(255, 255, 255); border: 0px none; opacity: 0;" class="iCheck-helper"></ins>
+                                                    <span class="pull-right2" id="valpricR9" hidden="true">1</span>
+                                                    <span class="pull-right" id="valpric9"></span>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li id="core10" hidden="true">
+                        <a class="booking-item">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group form-group-select-plus">
+                                        <label>Room Type</label>
+                                        <select class="form-control" name="tipo10" id="tipo10" onchange="calc(this)">
+                                            @foreach (var item1 in @Model.Tipol_HotelTipol)
+                                            {
+                                                <option>@item1.Tipologia.tipologia1</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group form-group-select-plus">
+                                        <label>Adults</label>
+                                        <div class="btn-group btn-group-select-num" data-toggle="buttons">
+                                            <label class="btn btn-primary active">
+                                                <input name="options" type="radio">1
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">2
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">3
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">3+
+                                            </label>
+                                        </div>
+                                        <select class="form-control hidden">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option selected="selected">4</option>
+                                            <option>5</option>
+                                            <option>6</option>
+                                            <option>7</option>
+                                            <option>8</option>
+                                            <option>9</option>
+                                            <option>10</option>
+                                            <option>11</option>
+                                            <option>12</option>
+                                            <option>13</option>
+                                            <option>14</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group form-group-select-plus">
+                                        <label>Children</label>
+                                        <div class="btn-group btn-group-select-num" data-toggle="buttons">
+                                            <label class="btn btn-primary active">
+                                                <input name="options" type="radio">0
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">1
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">2
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">2+
+                                            </label>
+                                        </div>
+                                        <select class="form-control hidden">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option selected="selected">3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                            <option>6</option>
+                                            <option>7</option>
+                                            <option>8</option>
+                                            <option>9</option>
+                                            <option>10</option>
+                                            <option>11</option>
+                                            <option>12</option>
+                                            <option>13</option>
+                                            <option>14</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-group">
+                                        <label>Price</label>
+                                        <label>
+                                            <h5 id="valpricRr10"></h5>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-1">
+                                    <div class="form-group">
+                                        <label>Check</label>
+                                        <div class="checkbox">
+                                            <label>
+                                                <div class="i-check" id="chk10" onclick="doDate(tipo10);">
+                                                    <input style="position: absolute; opacity: 0;" class="i-check" type="checkbox">
+                                                    <ins style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% rgb(255, 255, 255); border: 0px none; opacity: 0;" class="iCheck-helper"></ins>
+                                                    <span class="pull-right2" id="valpricR10" hidden="true">1</span>
+                                                    <span class="pull-right" id="valpric10"></span>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li id="core11" hidden="true">
+                        <a class="booking-item">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group form-group-select-plus">
+                                        <label>Room Type</label>
+                                        <select class="form-control" name="tipo11" id="tipo11" onchange="calc(this)">
+                                            @foreach (var item1 in @Model.Tipol_HotelTipol)
+                                            {
+                                                <option>@item1.Tipologia.tipologia1</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group form-group-select-plus">
+                                        <label>Adults</label>
+                                        <div class="btn-group btn-group-select-num" data-toggle="buttons">
+                                            <label class="btn btn-primary active">
+                                                <input name="options" type="radio">1
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">2
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">3
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">3+
+                                            </label>
+                                        </div>
+                                        <select class="form-control hidden">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option selected="selected">4</option>
+                                            <option>5</option>
+                                            <option>6</option>
+                                            <option>7</option>
+                                            <option>8</option>
+                                            <option>9</option>
+                                            <option>10</option>
+                                            <option>11</option>
+                                            <option>12</option>
+                                            <option>13</option>
+                                            <option>14</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group form-group-select-plus">
+                                        <label>Children</label>
+                                        <div class="btn-group btn-group-select-num" data-toggle="buttons">
+                                            <label class="btn btn-primary active">
+                                                <input name="options" type="radio">0
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">1
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">2
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">2+
+                                            </label>
+                                        </div>
+                                        <select class="form-control hidden">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option selected="selected">3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                            <option>6</option>
+                                            <option>7</option>
+                                            <option>8</option>
+                                            <option>9</option>
+                                            <option>10</option>
+                                            <option>11</option>
+                                            <option>12</option>
+                                            <option>13</option>
+                                            <option>14</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-group">
+                                        <label>Price</label>
+                                        <label>
+                                            <h5 id="valpricRr11"></h5>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-1">
+                                    <div class="form-group">
+                                        <label>Check</label>
+                                        <div class="checkbox">
+                                            <label>
+                                                <div class="i-check" id="chk11" onclick="doDate(tipo11);">
+                                                    <input style="position: absolute; opacity: 0;" class="i-check" type="checkbox">
+                                                    <ins style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% rgb(255, 255, 255); border: 0px none; opacity: 0;" class="iCheck-helper"></ins>
+                                                    <span class="pull-right2" id="valpricR11" hidden="true">1</span>
+                                                    <span class="pull-right" id="valpric11"></span>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li id="core12" hidden="true">
+                        <a class="booking-item">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group form-group-select-plus">
+                                        <label>Room Type</label>
+                                        <select class="form-control" name="tipo12" id="tipo12" onchange="calc(this)">
+                                            @foreach (var item1 in @Model.Tipol_HotelTipol)
+                                            {
+                                                <option>@item1.Tipologia.tipologia1</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group form-group-select-plus">
+                                        <label>Adults</label>
+                                        <div class="btn-group btn-group-select-num" data-toggle="buttons">
+                                            <label class="btn btn-primary active">
+                                                <input name="options" type="radio">1
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">2
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">3
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">3+
+                                            </label>
+                                        </div>
+                                        <select class="form-control hidden">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option selected="selected">4</option>
+                                            <option>5</option>
+                                            <option>6</option>
+                                            <option>7</option>
+                                            <option>8</option>
+                                            <option>9</option>
+                                            <option>10</option>
+                                            <option>11</option>
+                                            <option>12</option>
+                                            <option>13</option>
+                                            <option>14</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group form-group-select-plus">
+                                        <label>Children</label>
+                                        <div class="btn-group btn-group-select-num" data-toggle="buttons">
+                                            <label class="btn btn-primary active">
+                                                <input name="options" type="radio">0
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">1
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">2
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">2+
+                                            </label>
+                                        </div>
+                                        <select class="form-control hidden">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option selected="selected">3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                            <option>6</option>
+                                            <option>7</option>
+                                            <option>8</option>
+                                            <option>9</option>
+                                            <option>10</option>
+                                            <option>11</option>
+                                            <option>12</option>
+                                            <option>13</option>
+                                            <option>14</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-group">
+                                        <label>Price</label>
+                                        <label>
+                                            <h5 id="valpricRr12"></h5>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-1">
+                                    <div class="form-group">
+                                        <label>Check</label>
+                                        <div class="checkbox">
+                                            <label>
+                                                <div class="i-check" id="chk12" onclick="doDate(tipo12);">
+                                                    <input style="position: absolute; opacity: 0;" class="i-check" type="checkbox">
+                                                    <ins style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% rgb(255, 255, 255); border: 0px none; opacity: 0;" class="iCheck-helper"></ins>
+                                                    <span class="pull-right2" id="valpricR12" hidden="true">1</span>
+                                                    <span class="pull-right" id="valpric12"></span>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li id="core13" hidden="true">
+                        <a class="booking-item">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group form-group-select-plus">
+                                        <label>Room Type</label>
+                                        <select class="form-control" name="tipo13" id="tipo13" onchange="calc(this)">
+                                            @foreach (var item1 in @Model.Tipol_HotelTipol)
+                                            {
+                                                <option>@item1.Tipologia.tipologia1</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group form-group-select-plus">
+                                        <label>Adults</label>
+                                        <div class="btn-group btn-group-select-num" data-toggle="buttons">
+                                            <label class="btn btn-primary active">
+                                                <input name="options" type="radio">1
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">2
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">3
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">3+
+                                            </label>
+                                        </div>
+                                        <select class="form-control hidden">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option selected="selected">4</option>
+                                            <option>5</option>
+                                            <option>6</option>
+                                            <option>7</option>
+                                            <option>8</option>
+                                            <option>9</option>
+                                            <option>10</option>
+                                            <option>11</option>
+                                            <option>12</option>
+                                            <option>13</option>
+                                            <option>14</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group form-group-select-plus">
+                                        <label>Children</label>
+                                        <div class="btn-group btn-group-select-num" data-toggle="buttons">
+                                            <label class="btn btn-primary active">
+                                                <input name="options" type="radio">0
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">1
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">2
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input name="options" type="radio">2+
+                                            </label>
+                                        </div>
+                                        <select class="form-control hidden">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option selected="selected">3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                            <option>6</option>
+                                            <option>7</option>
+                                            <option>8</option>
+                                            <option>9</option>
+                                            <option>10</option>
+                                            <option>11</option>
+                                            <option>12</option>
+                                            <option>13</option>
+                                            <option>14</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-group">
+                                        <label>Price</label>
+                                        <label>
+                                            <h5 id="valpricRr13"></h5>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-1">
+                                    <div class="form-group">
+                                        <label>Check</label>
+                                        <div class="checkbox">
+                                            <label>
+                                                <div class="i-check" id="chk13" onclick="doDate(tipo13);">
+                                                    <input style="position: absolute; opacity: 0;" class="i-check" type="checkbox">
+                                                    <ins style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% rgb(255, 255, 255); border: 0px none; opacity: 0;" class="iCheck-helper"></ins>
+                                                    <span class="pull-right2" id="valpricR13" hidden="true">1</span>
+                                                    <span class="pull-right" id="valpric13"></span>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <h4>Rooms Prices: @Model.nombre_hotel</h4>
+                <ul class="list">
+                    <li>
+                        @{
+                            rPrice = @count * 70;
+                            date1 = @dS.ToString("M");
+                            date2 = @dE.ToString("M");
+                            var dif = dE-dS;
+                            var dif1 = dif.Days + 1;
+                            <small id="numdays">@Html.DisplayName(@dif1.ToString()) days (@date1 - @date2)</small>
+                        }
+                    </li>
+                    <li>
+                        <p>
+                            Rooms <span><span id="roomcount" data-value="0">0</span></span>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            Tolal Price<span>$<span id="car-total" data-value=@rPrice.ToString()>@rPrice.ToString()</span></span>
+                        </p>
+                    </li>
+                </ul>
+                <a href="@Url.Action("PaymentHotel", "Payment", new { hotM = @Model.idHotel, price = @rPrice, d1 = @dE, d2 = @dS })" class="btn btn-primary">Checkout</a>
+                <br />
+                <br />
+                <br />
+                <br />
+            </div>
+        </div>
+    </div>
+    <div class="gap gap-small"></div>
+</div>

@@ -1,0 +1,58 @@
+﻿@model TripAgency.Models.LoginViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout_Login.cshtml";
+}
+<div class="row row-wrap" data-gutter="60">
+    <div class="col-md-4">
+        <h3 class="mb15">Login</h3>
+        <section id="loginForm">
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                <div class="form-group form-group-ghost form-group-icon-left">
+                    <i class="fa fa-user input-icon input-icon-show"></i>
+                    @Html.LabelFor(m => m.UserName)
+                        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" , @placeholder = "User or Email" })
+                        @Html.ValidationMessageFor(m => m.UserName)
+                </div>
+                <div class="form-group form-group-ghost form-group-icon-left">
+                    <i class="fa fa-lock input-icon input-icon-show"></i>
+                    @Html.LabelFor(m => m.Password)
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Password" })
+                        @Html.ValidationMessageFor(m => m.Password)
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <div class="checkbox">
+                            @Html.CheckBoxFor(m => m.RememberMe)
+                            @Html.LabelFor(m => m.RememberMe)
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Log in" class="btn btn-primary" />
+                    </div>
+                </div>
+            }
+        </section>
+    </div>
+    <div class="col-md-6">
+        <div class="visible-lg">
+            <h3 class="mb15">Welcome to TraWebClick</h3>
+            <p>
+                Est nisl facilisis
+                consectetur eget fermentum rutrum suscipit penatibus ultrices eu
+                bibendum mi volutpat mattis cum facilisis nunc platea tincidunt vehicula
+                laoreet montes parturient urna magnis eu etiam eget integer
+            </p>
+            <p>Nullam consectetur fames erat scelerisque ac conubia orci mauris facilisi</p>
+        </div>
+    </div>
+</div>
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+

@@ -1,0 +1,36 @@
+﻿@model TripAgency.EF.Rango
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Borrar</h2>
+
+<h3>Está seguro que desea borrar este elemento?</h3>
+<div>
+    <h4>Rango</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Rango")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.rango1)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Tarifa")
+        </dt>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Ir atrás", "Index")
+        </div>
+    }
+</div>

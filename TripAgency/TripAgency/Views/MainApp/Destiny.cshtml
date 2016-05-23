@@ -1,0 +1,357 @@
+﻿@using TripAgency.EF
+@using TripAgency.Models
+@model TripAgency.EF.Destino
+@{
+    TripAgencyEntities db=new TripAgencyEntities();
+    Layout = "~/Views/Shared/_Layout_Destinies.cshtml";
+    ViewBag.Title = "TrawebQlick-Destiny";
+    string destiny1 = ViewBag.destiny;
+    string word = "";
+    int co = 0;
+}
+@Scripts.Render("~/bundles/jqueryCost")
+<script language="JavaScript" type="text/JavaScript">
+    $(function () { $("[data-toggle='tooltip']").tooltip(); });
+    $('#identifier').tooltip(options);
+    $(function () { $('.tooltip-show').tooltip('show'); });
+    $(function () { $('.tooltip-hide').tooltip('hide'); });
+    $(function () { $('.tooltip-destroy').tooltip('destroy'); });
+    $(function () { $('.tooltip-toggle').tooltip('toggle'); });
+    $(function () { $(".tooltip-options a").tooltip({ html: true }); });
+</script>
+
+<div class="container">
+    <br />
+    <ul class="breadcrumb">
+        <li>
+            <a href="@Url.Action("Index","MainApp")">Home</a>
+        </li>
+        <li>
+            <a href="@Url.Action("Destinies","MainApp")">Destinies</a>
+        </li>
+        <li class="active">@Model.destino1 - @Model.Pai.pais</li>
+    </ul>  
+    
+    <!--------------------------------------------------------------------------------------->
+    <br />
+    <div class="booking-item-details">
+        <header class="booking-item-header">
+            <div class="row">
+                <div class="col-md-9">
+                    <h2 class="lh1em" title="hola">Destiny: @Model.destino1</h2>
+                    <h2 class="lh1em" id="namehotelA" hidden="true">@Model.destino1</h2>
+                </div>
+                <div class="col-md-3">
+                    <p class="booking-item-header-price"><small>country:</small>  <span class="text-lg">Cuba</span></p>
+                </div>
+            </div>
+        </header>
+        <div class="row">
+            <div class="col-md-6">
+                <div id="myCarousel" class="carousel slide">
+                    <!-- Carousel indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                    </ol> <!-- Carousel items -->
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <img src="@Model.foto_destino1" alt=" first slide">
+                            <div class="carousel-caption">Picture 1</div>
+                        </div>
+                        <div class="item">
+                            <img src="@Model.foto_destino2" alt=" second slide">
+                            <div class="carousel-caption">Picture 2</div>
+                        </div>
+                    </div> <!-- Carousel nav -->
+                    <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+                    <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-8">
+                <div class="tabbable ">
+                    <ul class="nav nav-tabs" id="myTab">
+                        <li class="active">
+                            <a href="#tab-1" data-toggle="tab"><i class="fa fa-home"></i> <span>Information</span></a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fade in active" id="tab-1">
+                            <div data-spy="scroll" class="scroller flip-scroll" data-offset="0" style="height: 394px; overflow: auto; position: relative;">
+                                <div class="booking-item-rating">
+                                    <h2 class="lh1em mt40">Description:</h2>
+                                    <br />
+                                    <p class="mb30">
+                                        @Model.decripcion_destino
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="gap"></div>
+        <div class="row booking-item-price-calc">
+            <div class="col-md-9">
+                <h3>@Model.Hotel.Count Hotels in @Model.destino1</h3>
+                <div class="row row-wrap">
+                    @foreach (var hotelTop in Model.Hotel)
+                    {
+                        <div class="col-md-4">
+                            <div class="thumb">
+                                <header class="thumb-header">
+                                    <a class="hover-img" href="@Url.Action("Hotel", "MainApp", new { namehD = @hotelTop.nombre_hotel })">
+                                        <img src="@hotelTop.foto_hotel1" alt=@hotelTop.nombre_hotel title=@hotelTop.nombre_hotel>
+                                        <h5 class="hover-title-center">Book Now</h5>
+                                    </a>
+                                </header>
+                                <div class="thumb-caption">
+                                    <ul class="icon-group text-tiny text-color">
+                                        @{
+                                            int catego = int.Parse(@hotelTop.Categoria.categoria1);
+                                             if (catego == 1)
+                                             {
+                                                <li>
+                                                    <i class="fa fa-star"></i>
+                                                </li>
+                                            } 
+                                            if (catego == 2)
+                                             {
+                                                <li>
+                                                    <i class="fa fa-star"></i>
+                                                </li>
+                                                <li>
+                                                    <i class="fa fa-star"></i>
+                                                </li>
+                                            }
+                                            if (catego == 3)
+                                            {
+                                                <li>
+                                                    <i class="fa fa-star"></i>
+                                                </li>
+                                                <li>
+                                                    <i class="fa fa-star"></i>
+                                                </li>
+                                                <li>
+                                                    <i class="fa fa-star"></i>
+                                                </li>
+                                            }
+                                            else
+                                                if (catego == 4)
+                                                {
+                                                    <li>
+                                                        <i class="fa fa-star"></i>
+                                                    </li>
+                                                    <li>
+                                                        <i class="fa fa-star"></i>
+                                                    </li>
+                                                    <li>
+                                                        <i class="fa fa-star"></i>
+                                                    </li>
+                                                    <li>
+                                                        <i class="fa fa-star"></i>
+                                                    </li>
+                                                }
+                                                else
+                                                    if (catego == 5)
+                                                    {
+                                                        <li>
+                                                            <i class="fa fa-star"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-star"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-star"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-star"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-star"></i>
+                                                        </li>
+                                                    }
+                                        }
+                                    </ul>
+                                    <h5 class="thumb-title"><a class="text-darken" href="@Url.Action("Hotel", "MainApp", new { namehD = @hotelTop.nombre_hotel })">@hotelTop.nombre_hotel</a></h5>
+                                    @{
+                                            var submodel = new DestinoModel();
+                                            var word2 = submodel.GetDescSplitingDest(@hotelTop.direccion);
+                                            <p class="mb0">
+                                            <small><i class="fa fa-map-marker"></i> @word2 </small>
+                                    </p>
+                                    }
+                                    
+                                    <p class="mb0 text-darken">
+                                        @{
+                                            var hotel = new HotelModel();
+                                            var priceH = hotel.Min(@hotelTop.idHotel,DateTime.Now);
+                                            <span class="text-lg lh1em text-color">$@priceH</span><small> avg/night</small>
+                                        }
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <br />
+                <h3>@Model.Excursion.Count Tours in @Model.destino1</h3>
+                <div class="row row-wrap">
+                    @foreach (var excTop in Model.Excursion)
+                    {
+                        <div class="col-md-3">
+                            <div class="thumb">
+                                <header class="thumb-header">
+                                    <a class="hover-img" href="@Url.Action("Excursion", "MainApp", new { namehD = @excTop.nombre_excursion })">
+                                        <img src="@excTop.foto1" alt=@excTop.nombre_excursion title=@excTop.nombre_excursion>
+                                        <h5 class="hover-title-center">Book Now</h5>
+                                    </a>
+                                </header>
+                                <div class="thumb-caption">
+                                    <h5 class="thumb-title"><a class="text-darken" href="@Url.Action("Excursion", "MainApp", new { namehD = @excTop.nombre_excursion })">@excTop.nombre_excursion</a></h5>
+                                    <p class="mb0">
+                                        <small><i class="fa fa-map-marker"></i> @excTop.Destino.destino1</small>
+                                    </p>
+                                    <p class="mb0 text-darken">
+                                        <span class="text-lg lh1em text-color">$0</span><small> price</small>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="col-md-3">
+                <h4>Destinies in @Model.Pai.pais</h4>
+                <ul class="booking-list">
+                    @foreach (var item in db.Destino)
+                    {
+                        if (item.idDestino != @Model.idDestino)
+                        {
+                            <li>
+                                <a class="booking-item booking-item-small tooltip-toggle" href="@Url.Action("Destiny", "MainApp", new {destiny = @item.destino1})" data-toggle="tooltip" data-placement="bottom" title="@item.decripcion_destino">
+                                    <div class="row">
+                                        <div class="col-xs-5">
+                                            <img src="@item.foto_destino2" alt="@item.foto_destino2" title=@item.destino1>
+                                        </div>
+                                        <div class="col-xs-5">
+                                            <h5 class="booking-item-title">@item.destino1</h5>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+
+            <!--------------------------------------------------------------------------------------->
+            <!--Aqui hacer top para hoteles-->
+
+            <div class="gap"></div>
+            <h3 class="mb20">Top Deals</h3>
+            <div class="row row-wrap">
+                @foreach (var hotelTop in db.Hotel.ToList())
+                {
+                    if (co < 4)
+                    {
+                        <div class="col-md-3">
+                            <div class="thumb">
+                                <header class="thumb-header">
+                                    <a class="hover-img" href="@Url.Action("Hotel", "MainApp", new { namehD = @hotelTop.nombre_hotel })">
+                                        <img src="@hotelTop.foto_hotel1" alt=@hotelTop.nombre_hotel title=@hotelTop.nombre_hotel>
+                                        <h5 class="hover-title-center">Book Now</h5>
+                                    </a>
+                                </header>
+                                <div class="thumb-caption">
+                                    <ul class="icon-group text-tiny text-color">
+                                        @{
+                                            int catego = int.Parse(@hotelTop.Categoria.categoria1);
+                                             if (catego == 1)
+                                             {
+                                                <li>
+                                                    <i class="fa fa-star"></i>
+                                                </li>
+                                            } 
+                                            if (catego == 2)
+                                             {
+                                                <li>
+                                                    <i class="fa fa-star"></i>
+                                                </li>
+                                                <li>
+                                                    <i class="fa fa-star"></i>
+                                                </li>
+                                            }
+                                            if (catego == 3)
+                                            {
+                                                <li>
+                                                    <i class="fa fa-star"></i>
+                                                </li>
+                                                                <li>
+                                                                    <i class="fa fa-star"></i>
+                                                                </li>
+                                                                <li>
+                                                                    <i class="fa fa-star"></i>
+                                                                </li>
+                                            }
+                                            else
+                                                if (catego == 4)
+                                                {
+                                                    <li>
+                                                        <i class="fa fa-star"></i>
+                                                    </li>
+                                                                <li>
+                                                                    <i class="fa fa-star"></i>
+                                                                </li>
+                                                                <li>
+                                                                    <i class="fa fa-star"></i>
+                                                                </li>
+                                                                <li>
+                                                                    <i class="fa fa-star"></i>
+                                                                </li>
+                                                }
+                                                else
+                                                    if (catego == 5)
+                                                    {
+                                                        <li>
+                                                            <i class="fa fa-star"></i>
+                                                        </li>
+                                                                <li>
+                                                                    <i class="fa fa-star"></i>
+                                                                </li>
+                                                                <li>
+                                                                    <i class="fa fa-star"></i>
+                                                                </li>
+                                                                <li>
+                                                                    <i class="fa fa-star"></i>
+                                                                </li>
+                                                                <li>
+                                                                    <i class="fa fa-star"></i>
+                                                                </li>
+                                                    }
+                                        }
+                                    </ul>
+                                    <h5 class="thumb-title"><a class="text-darken" href="@Url.Action("Hotel", "MainApp", new { namehD = @hotelTop.nombre_hotel })">@hotelTop.nombre_hotel</a></h5>
+                                    <p class="mb0">
+                                        <small><i class="fa fa-map-marker"></i> @hotelTop.direccion</small>
+                                    </p>
+                                    <p class="mb0 text-darken">
+                                        @{
+                                            var hotel = new HotelModel();
+                                            var priceH = hotel.Min(@hotelTop.idHotel, DateTime.Now);
+                                            <span class="text-lg lh1em text-color">$@priceH</span><small> avg/night</small>
+                                        }
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        co++;
+                    }
+                }
+            </div>
+        </div>
+        <div class="gap gap-small"></div>
+    </div>

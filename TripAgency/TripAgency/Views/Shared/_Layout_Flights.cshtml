@@ -1,0 +1,194 @@
+﻿@using TripAgency.EF
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title TraWebClick - Flights </title>
+    <meta name="keywords" content="TripAgency, html, premium, themeforest" />
+    <meta name="description" content="Traveler - Premium template for travel companies">
+    <meta name="author" content="Anibal">
+    @Styles.Render("~/Content/clientcss")
+    @{
+        TripAgencyEntities db = new TripAgencyEntities();
+    }
+</head>
+<body>
+    <header id="main-header">
+        <div class="header-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <a class="logo" href="@Url.Action("Index", "MainApp")">
+                            <img src="~/Content/images/client/logo.png" alt="Image Alternative text" title="Image Title" />
+                        </a>
+                    </div>
+                    <div class="col-md-3 col-md-offset-2">
+                        <form class="main-header-search">
+                            <div class="form-group form-group-icon-left">
+                                <i class="fa fa-search input-icon"></i>
+                                <input type="text" class="form-control">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="top-user-area clearfix">
+                            <ul class="top-user-area-list list list-horizontal list-border icon-list">
+                                <li>
+                                    <a href="#"><i class="fa fa-info-circle"></i>ABOUT US</a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-envelope-o"></i>CONTACT US</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="nav">
+                <ul class="slimmenu" id="slimmenu">
+                    <li>
+                        <a href="@Url.Action("Index","MainApp")">Home</a>
+                    </li>
+                    <li class="active">
+                        <a href="@Url.Action("Flights","MainApp")">Flights</a>
+                    </li>
+                    <li>
+                        <a>Destinations</a>
+                        <ul>
+                            @foreach (var item in db.Destino)
+                            {
+                                <li>
+                                    <a href=@Url.Action("Destiny", "MainApp", new { destiny = @item.destino1 })>@item.destino1</a>
+                                </li>
+                            }
+                        </ul>
+                    </li>
+                    <li>
+                        <a>Hotels</a>
+                        <ul>
+                            @foreach (var item in db.Destino)
+                            {
+                                <li>
+                                    <a href=@Url.Action("Hotels", "MainApp", new { destiny = @item.destino1 })>Hotels in @item.destino1</a>
+                                </li>
+                            }
+                        </ul>
+                    </li>
+                    <li>
+                        <a>Cars</a>
+                        <ul>
+                            @foreach (var item in db.Tipologia_Carro)
+                            {
+                                <li>
+                                    <a href=@Url.Action("Cars", "MainApp", new { category = @item.nombre })>@item.nombre</a>
+                                </li>
+                            }
+                        </ul>
+                    </li>
+                    <li>
+                        <a>Transfers</a>
+                        <ul>
+                            @foreach (var item in db.OrigenRental)
+                            {
+                                <li>
+                                    <a href=@Url.Action("Transfers", "MainApp", new { origin = @item.nombre })>From @item.nombre</a>
+                                </li>
+                            }
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">Tours</a>
+                        <ul>
+                            @foreach (var item in db.Destino)
+                            {
+                                if (item.Excursion.Count != 0)
+                                {
+                                    <li>
+                                        <a href=@Url.Action("ExcursionsSubDestinies", "MainApp", new { subdestiny = @item.destino1 })>In @item.destino1</a>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Packages","MainApp")">Packages</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    @RenderBody()
+
+    <footer id="main-footer">
+        <div class="container">
+            <div class="row row-wrap">
+                <div class="col-md-3">
+                    <a class="logo" href="@Url.Action("Index", "MainApp")">
+                        <img src="~/Content/images/client/logo.png" alt="Image Alternative text" title="Image Title" />
+                    </a>
+                    <p class="mb20">Booking, reviews and advices on hotels, resorts, flights, vacation rentals, travel packages, and lots more!</p>
+                    <ul class="list list-horizontal list-space">
+                        <li>
+                            <a class="fa fa-facebook box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
+                        </li>
+                        <li>
+                            <a class="fa fa-twitter box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
+                        </li>
+                        <li>
+                            <a class="fa fa-google-plus box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
+                        </li>
+                        <li>
+                            <a class="fa fa-linkedin box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
+                        </li>
+                        <li>
+                            <a class="fa fa-pinterest box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3">
+                    <h4>Newsletter</h4>
+                    <form>
+                        <label>Enter your E-mail Address</label>
+                        <input type="text" class="form-control">
+                        <p class="mt5">
+                            <small>*We Never Send Spam</small>
+                        </p>
+                        <input type="submit" class="btn btn-primary" value="Subscribe">
+                    </form>
+                </div>
+                <div class="col-md-2">
+                    <ul class="list list-footer">
+                        <li>
+                            <a href="#">About US</a>
+                        </li>
+                        <li>
+                            <a href="#">Best Price Guarantee</a>
+                        </li>
+                        <li>
+                            <a href="#">Privacy Policy</a>
+                        </li>
+                        <li>
+                            <a href="#">Terms of Use</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h4>Have Questions?</h4>
+                    <h4 class="text-color">+535-765-0173</h4>
+                    <h4><a href="#" class="text-color">support@TRAWEBQLICK.com</a></h4>
+                    <p>24/7 Dedicated Customer Support</p>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+    @Scripts.Render("~/bundles/clientjs")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

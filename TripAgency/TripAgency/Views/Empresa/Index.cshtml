@@ -1,0 +1,83 @@
+﻿@model PagedList.IPagedList<TripAgency.EF.Empresa>
+@using PagedList.Mvc;
+@Styles.Render("~/Content/pagedlist")
+@Scripts.Render("~/bundles/new")
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Empresa</h2>
+<p>
+    @Html.ActionLink("Añadir nuevo", "Create")
+</p>
+<br />
+<div class="row">
+    <div class="col-md-3">
+        <form action="#" method="get">
+            <div class="input-group">
+                <!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
+                <input class="form-control" id="system-search" name="Search_Data" placeholder="Buscar por" required="">
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-default">
+                        <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                </span>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-9">
+        <table class="table table-hover table-list-search">
+            <tr>
+                <th>
+                    @Html.ActionLink("Nombre", "Index", new { Sorting_Order = ViewBag.SortingNombre })
+                </th>
+                <th>
+                    @Html.DisplayName("Servicios que oferta")
+                </th>
+                <th>
+                    @Html.DisplayName("Imagen")
+                </th>
+                <th>
+                    @Html.DisplayName("Teléfono")
+                </th>
+                <th>
+                    @Html.DisplayName("Dirección")
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nombre_empresa)
+                    </td>
+                    <td>
+                        @{
+                foreach (var course in item.Empresa_TipoEmpresa)
+                {
+                    @course.Tipo_Empresa.nombre <br />
+                }
+                        }
+                    </td>
+                    <td>
+                        <img height="50" src="@item.foto_empresa" width="50" alt=@item.foto_empresa />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.telefono_empresa)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.direccion_empresa)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "Edit", new { id = item.idEmpresa }) |
+                        @Html.ActionLink("Borrar", "Delete", new { id = item.idEmpresa })
+                    </td>
+                </tr>
+            }
+        </table>
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        @Html.PagedListPager(Model, Page_No => Url.Action("Index", new { Page_No, Sorting_Order = ViewBag.CurrentSortOrder, Filter_Value = ViewBag.FilterValue }))
+    </div>
+</div>

@@ -1,0 +1,90 @@
+﻿@model TripAgency.EF.Hotel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Hotel</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre_hotel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre_hotel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.descripcion_hotel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descripcion_hotel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.direccion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.direccion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.foto_hotel1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.foto_hotel1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.foto_hote2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.foto_hote2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.foto_hotel3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.foto_hotel3)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cadena.cadena_)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cadena.cadena_)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Categoria.categoria1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Categoria.categoria1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Destino.destino1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Destino.destino1)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idHotel }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

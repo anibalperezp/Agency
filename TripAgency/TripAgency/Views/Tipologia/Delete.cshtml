@@ -1,0 +1,31 @@
+﻿@model TripAgency.EF.Tipologia
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Borrar</h2>
+
+<h3>Está seguro que desea borrar este elemento?</h3>
+<div>
+    <h4>Tipología</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Tipología")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipologia1)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Borrar" class="btn btn-default" /> |
+            @Html.ActionLink("Ir Atrás", "Index")
+        </div>
+    }
+</div>

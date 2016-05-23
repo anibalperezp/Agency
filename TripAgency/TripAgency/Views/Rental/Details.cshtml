@@ -1,0 +1,58 @@
+﻿@model TripAgency.EF.Rental
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Rental</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.foto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.foto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrigenRental.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrigenRental.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DestinoRental.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DestinoRental.nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idRental }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

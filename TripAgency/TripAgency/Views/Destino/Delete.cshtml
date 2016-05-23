@@ -1,0 +1,64 @@
+﻿@model TripAgency.EF.Destino
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Borrar</h2>
+
+<h3>Está seguro que desea borrar este elemento?</h3>
+<div>
+    <h4>Destino</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Nombre")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.destino1)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Descripción")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.decripcion_destino)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Imagen 1")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.foto_destino1)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Imagen 2")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.foto_destino2)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("País")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pai.pais)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Borrar" class="btn btn-default" /> |
+            @Html.ActionLink("Ir atrás", "Index")
+        </div>
+    }
+</div>

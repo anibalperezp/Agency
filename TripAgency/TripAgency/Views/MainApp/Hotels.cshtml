@@ -1,0 +1,343 @@
+﻿@using TripAgency.EF
+@using TripAgency.Models
+@model PagedList.IPagedList<TripAgency.EF.Hotel>
+@using PagedList.Mvc;
+@Styles.Render("~/Content/pagedlist")
+@{
+    Layout = "~/Views/Shared/_Layout_Hotels.cshtml";
+    ViewBag.Title = "Results: Hotels ";
+    string destiny1 = ViewBag.destiny;
+    string word = "";
+    string desc1 = ViewBag.desc;
+    string photo = ViewBag.photo;
+    var db = new TripAgencyEntities();
+    var counthot = 0;
+    var counthot5 = 0;
+    var counthot4 = 0;
+    var counthot3 = 0;
+    
+    foreach (var v in db.Hotel)
+    {
+        if (v.Destino.destino1.Equals(destiny1))
+        {
+            counthot++;
+        }
+        if (v.Destino.destino1.Equals(destiny1) && v.Categoria.categoria1.Equals("5"))
+        {
+            counthot5++;
+        }
+        if (v.Destino.destino1.Equals(destiny1) && v.Categoria.categoria1.Equals("4"))
+        {
+            counthot4++;
+        }
+        if (v.Destino.destino1.Equals(destiny1) && v.Categoria.categoria1.Equals("3"))
+        {
+            counthot3++;
+        }
+    }
+    
+}
+@Scripts.Render("~/bundles/jqueryCost")
+
+<script language="JavaScript" type="text/JavaScript">
+
+    $(document).ready(function () {
+        $("#namehot").change(function () {
+            if ($("#namehot").val() != "Choose One") {
+                $("#btnsearchhotels").attr('disabled', false);
+            }else
+                if ($("#namehot").val() == "Choose One") {
+                    $("#btnsearchhotels").attr('disabled', true);
+                }
+        });
+    });
+
+    function GetHrefs(id) {
+        var r = "";
+        var firstLink = document.getElementsByTagName('a');
+        if (firstLink != null) {
+            for (var i = 0; i < firstLink.length; i++) {
+                var ires = firstLink[i].getAttribute('id');
+                if (ires != null) {
+                    if (ires == id) {
+                        r = firstLink[i].href;
+                    }
+                }
+            }
+        } else {
+        }
+        return r;
+    };
+
+    function GetImgs(id) {
+        var r = "";
+        var firstLink = document.getElementsByTagName('img');
+        if (firstLink != null) {
+            for (var i = 0; i < firstLink.length; i++) {
+                var ires = firstLink[i].getAttribute('id');
+                if (ires != null) {
+                    if (ires == id) {
+                        r = firstLink[i].src;
+                    }
+                }
+            }
+        } else {
+        }
+        return r;
+    };
+
+    function CategoryStars(vate) {
+        var x = "";
+        if(vate== "3") {
+            x = "<li><i class='fa fa-star'></i></li><li><i class='fa fa-star'></i></li><li><i class='fa fa-star'></i></li>";
+        }
+        if (vate == "4") {
+            x = "<li><i class='fa fa-star'></i></li><li><i class='fa fa-star'></i></li><li><i class='fa fa-star'></i></li><li><i class='fa fa-star'></i></li>";
+        }
+        if (vate == "5") {
+            x = "<li><i class='fa fa-star'></i></li><li><i class='fa fa-star'></i></li><li><i class='fa fa-star'></i></li><li><i class='fa fa-star'></i></li><li><i class='fa fa-star'></i></li>";
+        }
+        return x;
+    }
+
+    function onHotStarsFiltr(id,destiny) {
+        var countryOptions = {};
+        countryOptions.url = "/TripAgency/MainApp/hotelstarsjson";
+        countryOptions.type = "POST";
+        countryOptions.data = JSON.stringify({
+            idstars: id,
+            destiny1: destiny
+        });
+        countryOptions.datatype = "json";
+        countryOptions.contentType = "application/json";
+        countryOptions.success = function(statesList) {
+                var row = "";
+                $.each(statesList, function(index, item) {
+                    var idfl = GetHrefs(item.IdHotel);
+                    var categ = CategoryStars(item.Categoria);
+                    row += "<ul class='booking-list'>";
+                    row += "<li><form method='POST'>";
+                    row += "<a id=" + item.IdHotel + " class='booking-item' href=" + idfl.toString() + ">";
+                    row += "<div class='row'>";
+                    row += "<div class='col-md-3'><div class='booking-item-img-wrap'><img src='" + item.Foto + "' alt='" + item.Foto + "' title=" + item.Nombre + " ><div class='booking-item-img-num'><i class='fa fa-picture-o'></i>" + item.Tipologias + " </div></div></div>";
+                    row += "<div class='col-md-6'><div class='booking-item-rating'><ul class='icon-group booking-item-rating-stars'>" + categ.toString() + "</ul><spanclass='booking-item-rating-number'> " + item.Cadena + "</span></div><h5 class='booking-item-title'> Hotel - " + item.Nombre + "</h5><p class='booking-item-address'><i class='fa fa-map-marker'></i> " + item.Destino + "</p><small class = 'booking-item-last-booked'> Category: " + item.Categoria + " of <b> 5 </b></small><br /><span class = 'text-small lh1em text-color'> Description:</span><small>" + item.Descripcion + " </small></div>";
+                    row += "<div class='col-md-3'><br /><span class='booking-item-price-from'>from </span><span class='booking-item-price'>$" + item.Precio + " </span><span>/ night</span><button class='btn btn-primary' type='submit' id='nameh' name='nameh' value=" + item.Nombre + ">Select This</button></div>";
+                row += "</div>";
+                row += "</a>";
+                row += "</form></li></ul>";
+            });
+                $("#listhl").empty();
+                $("#listhl").html(row);
+        };
+        $.ajax(countryOptions);
+    };
+
+</script>
+<br />
+<div class="container">
+    <br />
+    <ul class="breadcrumb">
+        <li>
+            <a href="@Url.Action("Index","MainApp")">Home</a>
+        </li>
+        <li>
+            <a href="@Url.Action("Destinies","MainApp")">@Html.DisplayName(destiny1)</a>
+        </li>
+        <li class="active">@Html.DisplayName(destiny1) - Hotels</li>
+    </ul>
+    <br />
+    <div class="mfp-with-anim mfp-hide mfp-dialog mfp-search-dialog" id="search-dialog">
+        <h2>Search and Save on Hotels</h2>
+        <form method="POST">
+            <div class="input-daterange" data-date-format="MM/dd/yyyy">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="form-group form-group-lg form-group-icon-left">
+                            <i class="fa fa-globe input-icon input-icon-highlight"></i>
+                            <label>Hotels in @destiny1</label>
+                            <select id="namehot" name="nameh" class="form-control">
+                                <option selected="selected">Choose One</option>
+                                @foreach (var item in db.Hotel)
+                                {
+                                    if (item.Destino.destino1.Equals(destiny1))
+                                    {
+                                        <option>@item.nombre_hotel</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group form-group-lg form-group-icon-left">
+                            <i class="fa fa-calendar input-icon input-icon-highlight"></i>
+                            <label>Check-in</label>
+                            <input class="form-control" name="start" type="text" id="inh" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group form-group-lg form-group-icon-left">
+                            <i class="fa fa-calendar input-icon input-icon-highlight"></i>
+                            <label>Check-out</label>
+                            <input class="form-control" name="end" type="text" id="outh" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-primary btn-lg" type="submit" id="btnsearchhotels" disabled="disabled" >Search for Hotels</button>
+        </form>
+    </div>
+    <h3 class="booking-title">@counthot Hotels in @destiny1, Cuba<small><a class="popup-text" href="#search-dialog" data-effect="mfp-zoom-out">Search</a></small></h3>
+    <div class="row">
+        <div class="col-md-3">
+            <aside class="booking-filters text-white">
+                <h3>Information</h3>
+                <ul class="list booking-filters-list">
+                    <li>
+                        <h5 class="booking-filters-title">Filter By: Categories</h5>
+                    </li>
+                    <li>
+                        <ul class="icon-list list-category">
+                            <li>
+                                <a id="three" href="javascript:onHotStarsFiltr('three','@destiny1');"> <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><small> 3 Starts   (@counthot3)</small></a>
+                            </li>
+                            <li>
+                                <a id="four" href="javascript:onHotStarsFiltr('four','@destiny1');"> <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><small> 4 Starts   (@counthot4)</small></a>
+                            </li>
+                            <li>
+                                <a id="five" href="javascript:onHotStarsFiltr('five','@destiny1');"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><small> 5 Starts   (@counthot5)</small></a>
+                            </li>
+                            <li>
+                                <a href=@Url.Action("Hotels", "MainApp", new { destiny = @destiny1 })><i class="fa fa-angle-right"> </i> <small> All Hotels </small></a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h5 class="booking-filters-title">Destiny: @Html.DisplayName(destiny1)</h5>
+                    <li>
+                        <img src="@photo" alt="@destiny1" height="90" />
+                    <li>
+                        <h5>Description: </h5><label> @desc1 </label>
+                    </li>
+                    </ul>
+            </aside>
+        </div>
+        <div class="col-md-9" id="listhl">
+            <ul class="booking-list">
+                @foreach (var item in Model)
+                {
+                    <li>
+                        <form method="POST">
+                            <a id="@item.idHotel" class="booking-item" href="@Url.Action("Hotel", "MainApp", new { namehD = @item.nombre_hotel})">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="booking-item-img-wrap">
+                                            <img id="@item.idHotel.ToString()img" src="@item.foto_hotel1" alt=@item.nombre_hotel title=@item.nombre_hotel>
+                                            <div class="booking-item-img-num"><i class="fa fa-picture-o"></i>@item.Tipol_HotelTipol.Count</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="booking-item-rating">
+                                            <ul class="icon-group booking-item-rating-stars">
+                                                @{
+                                                    int categ = int.Parse(item.Categoria.categoria1);
+                                                    if (categ == 1)
+                                                    {
+                                                        <li>
+                                                            <i class="fa fa-star"></i>
+                                                        </li>
+                                                    }
+                                                        if (categ == 2)
+                                                        {
+                                                            <li>
+                                                                <i class="fa fa-star"></i>
+                                                            </li>
+                                                            <li>
+                                                                <i class="fa fa-star"></i>
+                                                            </li>
+                                                    }
+                                                    if (categ == 3)
+                                                    {
+                                                        <li>
+                                                            <i class="fa fa-star"></i>
+                                                        </li>
+                                                                                    <li>
+                                                                                        <i class="fa fa-star"></i>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <i class="fa fa-star"></i>
+                                                                                    </li>
+                                                    }
+                                                    else
+                                                        if (categ == 4)
+                                                        {
+                                                            <li>
+                                                                <i class="fa fa-star"></i>
+                                                            </li>
+                                                                                    <li>
+                                                                                        <i class="fa fa-star"></i>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <i class="fa fa-star"></i>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <i class="fa fa-star"></i>
+                                                                                    </li>
+                                                        }
+                                                        else
+                                                            if (categ == 5)
+                                                            {
+                                                                <li>
+                                                                    <i class="fa fa-star"></i>
+                                                                </li>
+                                                                                    <li>
+                                                                                        <i class="fa fa-star"></i>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <i class="fa fa-star"></i>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <i class="fa fa-star"></i>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <i class="fa fa-star"></i>
+                                                                                    </li>
+                                                            }
+                                                }
+                                            </ul>
+                                            <span class="booking-item-rating-number">@item.Cadena.cadena_ </span>
+                                        </div>
+                                        <h5 class="booking-item-title">Hotel - @item.nombre_hotel</h5>
+                                        <p class="booking-item-address"><i class="fa fa-map-marker"></i> @item.Destino.destino1</p>
+                                        <small class="booking-item-last-booked">Category: @item.Categoria.categoria1 of <b>5</b></small>
+                                        <br />
+                                        @{
+                                            var submodel = new DestinoModel();
+                                            word = submodel.GetDescSplitingHotel(@item.descripcion_hotel);
+                                        }
+                                        <span class="text-small lh1em text-color">Description:</span><small> @word</small>
+                                    </div>
+                                    <div class="col-md-3">
+                                        @{
+                                            var hotel = new HotelModel();
+                                            var price = hotel.Min(@item.idHotel, DateTime.Now);
+                                            <br />
+                                            <span class="booking-item-price-from">from </span><span class="booking-item-price">$@price </span><span>/ night</span>
+                                            <button class="btn btn-primary" type="submit" id="nameh" name="nameh" value="@item.nombre_hotel">Select This</button>
+                                        }
+                                    </div>
+                                </div>
+                            </a>
+
+                        </form>
+                    </li>
+                }
+            </ul>
+            <center>
+                Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                @Html.PagedListPager(Model, Page_No => Url.Action("Hotels", new { Page_No, Sorting_Order = ViewBag.CurrentSortOrder, Filter_Value = ViewBag.FilterValue }))
+            </center>
+        </div>
+
+    </div>
+    <div class="gap"></div>
+</div>

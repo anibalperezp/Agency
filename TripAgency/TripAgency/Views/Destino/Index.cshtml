@@ -1,0 +1,80 @@
+﻿@model PagedList.IPagedList<TripAgency.EF.Destino>
+@using PagedList.Mvc;
+@Styles.Render("~/Content/pagedlist")
+@Scripts.Render("~/bundles/new")
+
+@{
+    ViewBag.Title = "Destinos";
+}
+
+<h2>Destinos</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<br />
+<div class="row">
+    <div class="col-md-3">
+        <form action="#" method="get">
+            <div class="input-group">
+                <!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
+                <input class="form-control" id="system-search" name="Search_Data" placeholder="Buscar por" required="">
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-default">
+                        <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                </span>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-9">
+        <table class="table table-hover table-list-search">
+            <tr>
+                <th>
+                    @Html.ActionLink("Nombre", "Index", new { Sorting_Order = ViewBag.SortingNombre })
+                </th>
+                <th>
+                    @Html.DisplayName("Descripción")
+                </th>
+                <th>
+                    @Html.DisplayName("Imagen")
+                </th>
+                <th>
+                    @Html.DisplayName("Imagen")
+                </th>
+                <th>
+                    @Html.DisplayName("País")
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.destino1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.decripcion_destino)
+                    </td>
+                    <td>
+                        <img height="50" src="@item.foto_destino1" width="50" alt=@item.foto_destino1 />
+                    </td>
+                    <td>
+                        <img height="50" src="@item.foto_destino2" width="50" alt=@item.foto_destino2 />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Pai.pais)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "Edit", new { id = item.idDestino })
+                        @Html.ActionLink("Borrar", "Delete", new { id = item.idDestino })
+                    </td>
+                </tr>
+            }
+
+        </table>
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        @Html.PagedListPager(Model, Page_No => Url.Action("Index", new { Page_No, Sorting_Order = ViewBag.CurrentSortOrder, Filter_Value = ViewBag.FilterValue }))
+    </div>
+</div>

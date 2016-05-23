@@ -1,0 +1,201 @@
+﻿@model List<TripAgency.EF.TemporadaPaquete>
+
+@{
+    ViewBag.Title = "Tarifa Paquete";
+}
+@Scripts.Render("~/bundles/jqueryCost")
+<script language="JavaScript" type="text/JavaScript">
+    var cl = "'alert alert-danger alert-dismissable'";
+    var sus = "'alert alert-success alert-dismissable'";
+    function doSomethingHead() {
+        var anno = $("#idanno").val();
+        var est = $("#idEstacion").val();
+        var paq = $("#idEmpresa").val();
+        if (paq != "" && anno != "" && est != "") {
+            var countryOptions = {};
+            countryOptions.url = "/TripAgency/TemporadaPaquete/periodos";
+            countryOptions.type = "POST";
+            countryOptions.data = JSON.stringify({
+                idEmpresa: $("#idEmpresa").val(),
+                idanno: $("#idanno").val(),
+                idEstacion: $("#idEstacion").val()
+            });
+            countryOptions.datatype = "json";
+            countryOptions.contentType = "application/json";
+            countryOptions.success = function (statesList) {
+                var row = "";
+                if (statesList.length != 0) {
+                    $("#alert1").empty();
+                    $("#matrix").prop("hidden", false);
+                    $("#updtar").prop("hidden", false);
+                    row += "<tr><th>Per/Paq</th>";
+                    for (var i = 0; i < statesList.length; i++) {
+                        row += "<th>" + statesList[i] + "</th>";
+                    }
+                    row += "</tr>";
+                } else if (statesList.length == 0) {
+                    $("#alert1").append("<div class=" + cl + "><button type=button class=close data-dismiss=alert aria-hidden=true> &times; </button> Error ! No existen tarifas para ésta búsqueda!! \nDebe añadir al menos un período.</div>");
+                    $("#matrix").prop("hidden", true);
+                    $("#updtar").prop("hidden", true);
+                }
+                $("#State2").html(row);
+            };
+            $.ajax(countryOptions);
+        } else if ($("#idEmpresa").val() == "" || $("#idanno").val() == "" || $("#idEstacion").val() == "") {
+            $("#alert1").append("<div class=" + cl + "><button type=button class=close data-dismiss=alert aria-hidden=true> &times; </button> Error ! Existen elementos sin seleccionar!! \nPor favor, seleccione los correspondientes.</div>");
+            $("#matrix").prop("hidden", true);
+            $("#updtar").prop("hidden", true);
+        }
+    };
+
+    function doSomethingBody() {
+        var anno = $("#idanno").val();
+        var est = $("#idEstacion").val();
+        var paq = $("#idEmpresa").val();
+        if (paq != "" && anno != "" && est != "") {
+            var countryOptions = {};
+            countryOptions.url = "/TripAgency/TemporadaPaquete/paqtarifa";
+            countryOptions.type = "POST";
+            countryOptions.data = JSON.stringify({
+                idEmpresa: $("#idEmpresa").val(),
+                idanno: $("#idanno").val(),
+                idEstacion: $("#idEstacion").val()
+            });
+            countryOptions.datatype = "json";
+            countryOptions.contentType = "application/json";
+            countryOptions.success = function (statesList) {
+                var row1 = "";
+                if (statesList.length != 0) {
+                    for (var j = 0; j < statesList.length; j++) {
+                        var word = statesList[j];
+                        if (word.length > 6) {
+                            row1 += "<tr>";
+                            row1 += "<td>" + word + "</td>";
+                        } else
+                        if (word.length <= 6) {
+                            row1 += "<td contenteditable=true>" + word + "</td>";
+                        }
+                    }
+                    row1 += "</tr>";
+                } else if (statesList.length == 0) {
+                }
+                $("#State").html(row1);
+            };
+            $.ajax(countryOptions);
+        }
+    };
+
+    function doSomething() {
+        doSomethingHead();
+        doSomethingBody();
+    };
+
+    function fillListTarifaPaq() {
+        var anno = $("#idanno").val();
+        var est = $("#idEstacion").val();
+        var paq = $("#idEmpresa").val();
+        if (paq != "" && anno != "" && est != "") {
+            var tumadre = [];
+            var col = $("#State td");
+            if (col.length != 0) {
+                for (var d = 0; d < col.length; d++) {
+                    tumadre[d] = col[d].innerHTML;
+                }
+            } else
+            if (col.length == 0) {
+            }
+            var countryOptions = {};
+            countryOptions.url = "/TripAgency/TemporadaPaquete/updateTarifa";
+            countryOptions.type = "POST";
+            countryOptions.data = JSON.stringify({ tarifas: tumadre });
+            countryOptions.datatype = "json";
+            countryOptions.contentType = "application/json";
+            countryOptions.success = function (statesList) {
+                if (statesList.length != 0) {
+                    $("#alert1").empty();
+                    $("#suss1").empty();
+                    $("#matrix").prop("hidden", true);
+                    $("#updtar").prop("hidden", true);
+                    $("#suss1").append("<div class=" + sus + "><button type=button class=close data-dismiss=alert aria-hidden=true> &times; </button> " + statesList + "</div>");
+                } else if (statesList.length == 0) {
+                    $("#alert1").append("<div class=" + cl + "><button type=button class=close data-dismiss=alert aria-hidden=true> &times; </button> Error ! No modifico el valor de la tarifa,comuniquese con el administrador.</div>");
+                }
+            };
+            $.ajax(countryOptions);
+        }
+    }
+
+</script>
+    <h2>Paquetes</h2>
+
+    <form method="post" enctype="multipart/form-data">
+
+        @using (Html.BeginForm())
+        {
+       
+             @Html.AntiForgeryToken()
+            <div id="alert1">
+
+            </div>
+            
+
+            <div id="suss1">
+
+            </div>
+            
+        <div class="form-horizontal">
+                <h4>Tarifa de Paquete</h4>
+                <hr />
+                @Html.ValidationSummary(true)
+
+                <div class="form-group">
+                    @Html.Label("Año", new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("idanno", "")
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Estación", new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("idEstacion", "")
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Empresa", new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("idEmpresa", "")
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <button type="button" class="btn btn-info" onclick="doSomething();" id="helloButton">Tarifa</button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <table class="table table-bordered" id="matrix" hidden="true">
+                        <thead id="State2"></thead>
+                        <tbody id="State"></tbody>
+                    </table>
+                </div>
+            
+            <div class="form-group" id="updtar" hidden="true">
+                <div class="col-md-offset-0 col-md-1">
+                    <button type="button" onclick="fillListTarifaPaq();" class="btn btn-danger">Salvar</button>
+                </div>
+            </div>
+        </div>
+    }
+
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }
+
+
+        <div>
+            @Html.ActionLink("Mostrar Períodos de Paquetes", "Index","TemporadaPaquete")
+        </div>
+</form>

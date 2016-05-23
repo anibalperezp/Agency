@@ -1,0 +1,121 @@
+﻿@model PagedList.IPagedList<TripAgency.EF.Avion>
+@using PagedList.Mvc;
+@Styles.Render("~/Content/pagedlist")
+@Scripts.Render("~/bundles/new")
+
+@{
+    ViewBag.Title = "Aviones";
+}
+
+<h2>Aviones</h2>
+
+<p>
+    @Html.ActionLink("Añadir nuevo", "Create")
+</p>
+<br />
+<div class="row">
+    <div class="col-md-2">
+        <form action="#" method="get">
+            <div class="input-group">
+                <!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
+                <input class="form-control" id="system-search" name="Search_Data" placeholder="Buscar por" required="">
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-default">
+                        <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                </span>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-10">
+        <table class="table table-hover table-list-search">
+            <tr>
+                <th>
+                    @Html.ActionLink("Empresa", "Index", new { Sorting_Order = ViewBag.SortingNombre })
+                </th>
+                <th>
+                    @Html.DisplayName("TipoVuelo")
+                </th>
+                <th>
+                    @Html.DisplayName("Nombre")
+                </th>
+                <th>
+                    @Html.DisplayName("Clase")
+                </th>
+                <th>
+                    @Html.DisplayName("Avión")
+                </th>
+                <th>
+                    @Html.DisplayName("Destino Salida")
+                </th>
+                <th>
+                    @Html.DisplayName("Fecha Salida")
+                </th>
+                <th>
+                    @Html.DisplayName("Hora Salida")
+                </th>
+                <th>
+                    @Html.DisplayName("Destino Llegada")
+                </th>
+                <th>
+                    @Html.DisplayName("Fecha Llegada")
+                </th>
+                <th>
+                    @Html.DisplayName("Hora Llegada")
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Empresa.nombre_empresa)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.numVuelo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nombre)
+                    </td>
+                    <td>
+                        @{
+                            foreach (var course in item.NomAvionClase)
+                            {
+                                @course.Clase.nombre <br />
+                            }
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TipoAvion.nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OrigenVuelo.nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayName(item.tsalida.ToString("d"))
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.horasalida)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DestinoVuelo.nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayName(item.tllegada.ToString("d"))
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.horallegada)
+                    </td>
+
+                    <td>
+                        @Html.ActionLink("Editar", "Edit", new { id = item.idVuelo }) 
+                        @Html.ActionLink("Borrar", "Delete", new { id = item.idVuelo })
+                    </td>
+                </tr>
+            }
+        </table>
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        @Html.PagedListPager(Model, Page_No => Url.Action("Index", new { Page_No, Sorting_Order = ViewBag.CurrentSortOrder, Filter_Value = ViewBag.FilterValue }))
+    </div>
+</div>

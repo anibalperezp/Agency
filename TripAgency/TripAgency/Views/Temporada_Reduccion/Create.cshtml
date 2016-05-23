@@ -1,0 +1,97 @@
+﻿@model TripAgency.EF.Temporada_Reduccion
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Añadir</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Período de Reducción</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.periodo, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.periodo)
+                @Html.ValidationMessageFor(model => model.periodo)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.inicio, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.inicio)
+                @Html.ValidationMessageFor(model => model.inicio)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.fin, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.fin)
+                @Html.ValidationMessageFor(model => model.fin)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.idtemporada, "idtemporada", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("idtemporada", String.Empty)
+                @Html.ValidationMessageFor(model => model.idtemporada)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.idanno, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.idanno)
+                @Html.ValidationMessageFor(model => model.idanno)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.valor, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.valor)
+                @Html.ValidationMessageFor(model => model.valor)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.idhotel, "idhotel", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("idhotel", String.Empty)
+                @Html.ValidationMessageFor(model => model.idhotel)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.idEstacion, "idEstacion", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("idEstacion", String.Empty)
+                @Html.ValidationMessageFor(model => model.idEstacion)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

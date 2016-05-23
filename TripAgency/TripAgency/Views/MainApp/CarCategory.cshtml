@@ -1,0 +1,208 @@
+﻿@using TripAgency.Models
+@model TripAgency.EF.Carro
+@{
+    Layout = "~/Views/Shared/_Layout_Cars.cshtml";
+    ViewBag.Title = "Car";
+    string oficB = ViewBag.ofice1;
+    string oficE = ViewBag.ofice2;
+    int count = ViewBag.countDay;
+    DateTime dS = ViewBag.DS;
+    DateTime dE = ViewBag.DE;
+    string date1 = "";
+    string date2 = "";
+    int rPrice = 0;
+    var hotel = new TarifaCarroModel();
+    var price = int.Parse(hotel.priceInADay(@Model.Empresa.idEmpresa, DateTime.Now, count));
+}
+
+<div class="container">
+
+    <br />
+    <ul class="breadcrumb">
+        <li>
+            <a href="@Url.Action("Index","MainApp")">Home</a>
+        </li>
+        <li>
+            <a href=@Url.Action("Cars", "MainApp", new { category = @Model.Tipologia_Carro.nombre })>@Model.Tipologia_Carro.nombre</a>
+        </li>
+        <li class="active">@Model.name</li>
+    </ul>
+    <br />
+    <div class="booking-item-details">
+        <header class="booking-item-header">
+            <div class="row">
+                <div class="col-md-9">
+                    <h2 class="lh1em">@Model.name</h2>
+                    <ul class="list list-inline text-small">
+                        <li>
+                            @Model.Tipologia_Carro.nombre
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    @{
+                        <p class="booking-item-header-price"><small>price</small>  <span class="text-lg">$@price.ToString()</span>/day</p>
+                    }
+                </div>
+            </div>
+        </header>
+        <div class="gap gap-small"></div>
+        <div class="row row-wrap">
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="col-md-5">
+                        <img src="@Model.foto_carro1" alt="@Model.foto_carro1" title=@Model.name>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="booking-item-price-calc">
+                            <div class="row row-wrap">
+                                <div class="col-md-6">
+                                    <!--Poner foto de la narca que lo provee-->
+                                </div>
+                                <div class="col-md-5">
+                                    <ul class="list">
+                                        <li>
+                                            @{
+                                                <p>
+                                                    Price Per Day <span>$@price.ToString()</span>
+                                                </p>
+                                            }
+
+                                        </li>
+                                        <li>
+                                            @{
+                                                rPrice = @count * @price;
+                                                date1 = @dS.ToString("M");
+                                                date2 = @dE.ToString("M");
+                                                <p>
+                                                    Days <span>@Html.DisplayName(count.ToString()) days</span>
+                                                </p>
+
+                                                <small>@Html.DisplayName(count.ToString()) days (@date1 - @date2)</small>
+                                            }
+                                        </li>
+                                        <li>
+                                            @{
+                                                <p>
+                                                    Calculating <span>@Html.DisplayName(count.ToString()) days X $@price.ToString()</span>
+                                                </p>
+                                            }
+                                        </li>
+                                        <li>
+                                            <p>
+                                                Rental Tolal <span>$<span id="car-total" data-value=@rPrice.ToString()>@rPrice.ToString()</span></span>
+                                            </p>
+                                        </li>
+                                    </ul>
+                                    <a href="@Url.Action("PaymentHotel", "Payment", new { carM = @Model.idCarro, price = @rPrice, d1 = @dE, d2 = @dS })" class="btn btn-primary">Checkout</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row row-wrap">
+                    <div class="col-md-10">
+                        <h5>Car Features</h5>
+                        <p>
+                            <span class="text-lg lh1em text-color">Description:</span> @Model.descripcion_carro
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="booking-item-deails-date-location">
+                    <ul>
+                        <li>
+                            <h5>Information:</h5>
+                        </li>
+                        <li>
+                            <h5>Pick Up:</h5>
+                            <span class="text-small lh1em text-color">Office rentar car:</span><small> @Html.DisplayName(oficB)</small>
+                            <br />
+                            <span class="text-small lh1em text-color">Date:</span><small> @dS.ToString("D")</small>
+                        </li>
+                        <li>
+                            <h5>Drop Off:</h5>
+                            <span class="text-small lh1em text-color">Office rentar car:</span><small> @Html.DisplayName(oficE)</small>
+                            <span class="text-small lh1em text-color">Date:</span><small> @dE.ToString("D")</small>
+
+                        </li>
+                    </ul>
+                    <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#@Model.idCarro">Change Location &amp; Date</a>
+
+                </div>
+                <div class="modal fade" id="@Model.idCarro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <form method="POST">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title" id="myModalLabel">Search for @Model.name</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group form-group-lg form-group-icon-left">
+                                                <i class="fa fa-map-marker input-icon"></i>
+                                                <label>Pick-up Location</label>
+                                                <select class="form-control" name="ofice1">
+                                                    <option selected="selected">Choose One</option>
+                                                    @foreach (var item1 in @Model.OficPerCar)
+                                                    {
+                                                        <option>@item1.OficinaRenta.nombre</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group form-group-lg form-group-icon-left">
+                                                <i class="fa fa-map-marker input-icon"></i>
+                                                <label>Drop-off Location</label>
+                                                <select class="form-control" name="ofice2">
+                                                    <option selected="selected">Choose One</option>
+                                                    @foreach (var item1 in @Model.OficPerCar)
+                                                    {
+                                                        <option>@item1.OficinaRenta.nombre</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="input-daterange" data-date-format="MM/dd/yyyy">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group form-group-lg form-group-icon-left">
+                                                    <i class="fa fa-calendar input-icon input-icon-highlight"></i>
+                                                    <label>Pick-up Date</label>
+                                                    <input type="text" class="form-control" name="start" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group form-group-lg form-group-icon-left">
+                                                    <i class="fa fa-calendar input-icon input-icon-highlight"></i>
+                                                    <label>Drop-off Date</label>
+                                                    <input type="text" class="form-control" name="end" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close </button>
+                                    <button class="btn btn-primary" type="submit" id="namec" name="namec" value="@Model.name">Select</button>
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </form>
+                </div><!-- /.modal -->
+                <script>
+                    $(function () {
+                        $('#@Model.idCarro').modal({ keyboard: true });
+                    });
+                </script>
+                <div class="gap gap-small"></div>
+            </div>
+        </div>
+    </div>
+</div>
+

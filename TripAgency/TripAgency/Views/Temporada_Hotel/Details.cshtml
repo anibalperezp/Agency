@@ -1,0 +1,117 @@
+﻿@model TripAgency.EF.Temporada_Hotel
+
+@{
+    ViewBag.Title = "Copia de la Temporada";
+}
+
+<h2>@Model.Hotel.nombre_hotel</h2>
+<form method="post" enctype="multipart/form-data">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div>
+            <h4>@Model.periodo</h4>
+            <hr/>
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayName("Nombre de Período")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.periodo)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Fecha de Inicio")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.inicio)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Fecha de Fin")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.fin)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Descripción")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.descripcion_periodo)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Año")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Anno.anno1)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Estación")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Estacion.estacion1)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Nombre de Hotel")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Hotel.nombre_hotel)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Temporada")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Temporada.nombre)
+                </dd>
+            </dl>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <table class="table table-hover" id="dev-table">
+                        <thead>
+                            <tr>
+                                <th>Cadenas de Hoteles</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                int cn = 0;
+                                List<TripAgency.Models.Cadena_Asigned> suplements = ViewBag.Cadenas;
+                                foreach (var supl in suplements)
+                                {
+                                    @:<tr style="display: table-row">
+                                    @:<td> 
+                                          <input type="checkbox" name="selectedCadenas" value="@supl.idCadena" @(Html.Raw(supl.assigned ? "checked=\"checked\"" : "")) />
+                                          @: @supl.cadena1 <br />
+                                        @:</td>
+                                    @:</tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Ejecutar Copia" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+        <p>
+            @Html.ActionLink("Editar", "Edit", new {id = Model.idTemporadaHotel}) |
+            @Html.ActionLink("Ir atrás", "Index")
+        </p>
+    }
+</form>

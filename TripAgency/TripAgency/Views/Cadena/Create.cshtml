@@ -1,0 +1,58 @@
+﻿@model TripAgency.EF.Cadena
+
+@{
+    ViewBag.Title = "Añadir";
+}
+
+<h2>Añadir elemento</h2>
+
+<form method="post" enctype="multipart/form-data">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Cadena</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.Label("Nombre", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.cadena_, new { @class = "form-control", @placeholder = "Nombre de la Cadena" })
+                @Html.ValidationMessageFor(model => model.cadena_)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Imagen", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="picture" />
+                @Html.ValidationMessageFor(model => model.logo_cadena)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Descripción", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.descrpcion_cadena, new { @class = "col-md-2", @placeholder = "Descripción" })
+                @Html.ValidationMessageFor(model => model.descrpcion_cadena)
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+    }
+
+    <div>
+        @Html.ActionLink("Ir atrás", "Index")
+    </div>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+    </form>

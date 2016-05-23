@@ -1,0 +1,178 @@
+﻿@using TripAgency.EF
+@using TripAgency.Models
+@model IEnumerable<TripAgency.EF.Destino>
+
+@{
+    TripAgencyEntities db=new TripAgencyEntities();
+    Layout = "~/Views/Shared/_Layout_Destinies.cshtml";
+    ViewBag.Title = "TrawebQlick-Sub Destinies";
+    string counth = ViewBag.counth;
+    string counte = ViewBag.counte;
+    string count = ViewBag.count;
+    int co = 0;
+}
+
+<div class="container">
+
+    <br />
+
+    <ul class="breadcrumb">
+        <li>
+            <a href="@Url.Action("Index","MainApp")">Home</a>
+        </li>
+    </ul>
+
+    <!--------------------------------------------------------------------------------------->
+    <br />
+    <div class="row">
+        <div class="col-md-3">
+            <aside class="booking-filters text-white">
+                <h3>Information:</h3>
+                <ul class="list booking-filters-list">
+                    <li>
+                        <h5 class="booking-filters-title">Cuba</h5>
+
+                    </li>
+                    <li>
+                        <img height="90" width="30" src="/TripAgency/Content/images/Cuba.png" alt="Image Alternative text" title="Cuba's Flat" />
+                    <li>
+                        <h6>Description: </h6><label>Su capital y ciudad más poblada es La Habana. Es la más grande de las Antillas Mayores. Ademas forman parte del archipiélago la Isla de la Juventud y una multitud de cayos o pequeñas islas que rodean a las antes mencionadas, entre estos cayos destacan: Cayo Coco, Cayo Guillermo, Cayo Largo del Sur, Cayo Jutía, entre otros. Los valores anuales van desde los 24 °C hasta 34 °C.</label>
+                        <label>Destinations: @Html.DisplayName(count)</label>
+                        <label>Hotels: @Html.DisplayName(counth)</label>
+                        <label>Excursions: @Html.DisplayName(counte)</label>
+                    </li>
+
+                </ul>
+            </aside>
+        </div>
+        <div class="col-md-9">
+            <h3 class="mb20">Cuba´s Destinations</h3>
+            <div class="row row-wrap">
+
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-4">
+                        <div class="thumb">
+                            <a class="hover-img" href="@Url.Action("Destiny", "MainApp", new { destiny = @item.destino1 })">
+                                <input type="submit" hidden="true" name="@item.destino1" />
+                                <img src="@item.foto_destino1" alt=" image alternative text" title=@item.destino1>
+                                <div class="hover-inner hover-inner-block hover-inner-bottom hover-inner-bg-black hover-hold">
+                                    <div class="text-small">
+                                        <h5 class="thumb-title">@item.destino1</h5>
+                                        <p class="mb0 text-darken">
+                                            <span class="text-lg lh1em text-color">@item.Subdestino.Count</span><small> subdestinations</small>
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="thumb-caption">
+                                <p class="mb0 text-darken">
+                                    @{
+                                        var submodel = new DestinoModel();
+                                        var word = submodel.GetDescSpliting(@item.decripcion_destino);
+                                        <span class="text-small lh1em text-color">Desc:</span><small> @word</small>
+                                    }
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!--------------------------------------------------------------------------------------->
+    
+    
+
+    <!--Aqui hacer top para hoteles-->
+
+    <div class="gap"></div>
+    <h3 class="mb20">Top Deals</h3>
+    <div class="row row-wrap">
+        @foreach (var hotelTop in db.Hotel.ToList())
+        {
+            if (co < 4)
+            {
+                <div class="col-md-3">
+                    <div class="thumb">
+                        <header class="thumb-header">
+                            <a class="hover-img" href="@Url.Action("Hotel", "MainApp", new { namehD = @hotelTop.nombre_hotel })">
+                                <img src="@hotelTop.foto_hotel1" alt=@hotelTop.nombre_hotel title=@hotelTop.nombre_hotel>
+                                <h5 class="hover-title-center">Book Now</h5>
+                            </a>
+                        </header>
+                        <div class="thumb-caption">
+                            <ul class="icon-group text-tiny text-color">
+                                @{
+                int catego = int.Parse(@hotelTop.Categoria.categoria1);
+                if (catego == 3)
+                {
+                    <li>
+                        <i class="fa fa-star"></i>
+                    </li>
+                                    <li>
+                                        <i class="fa fa-star"></i>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-star"></i>
+                                    </li>
+                }
+                else
+                    if (catego == 4)
+                    {
+                        <li>
+                            <i class="fa fa-star"></i>
+                        </li>
+                                    <li>
+                                        <i class="fa fa-star"></i>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-star"></i>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-star"></i>
+                                    </li>
+                    }
+                    else
+                        if (catego == 5)
+                        {
+                            <li>
+                                <i class="fa fa-star"></i>
+                            </li>
+                                    <li>
+                                        <i class="fa fa-star"></i>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-star"></i>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-star"></i>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-star"></i>
+                                    </li>
+                        }
+                                }
+                            </ul>
+                            <h5 class="thumb-title"><a class="text-darken" href="@Url.Action("Hotel", "MainApp", new { namehD = @hotelTop.nombre_hotel })">@hotelTop.nombre_hotel</a></h5>
+                            <p class="mb0">
+                                <small><i class="fa fa-map-marker"></i> @hotelTop.direccion , @hotelTop.Destino.destino1</small>
+                            </p>
+                            <p class="mb0 text-darken">
+                                @{
+                                    var hotel = new HotelModel();
+                                    var priceH = hotel.Min(@hotelTop.idHotel, DateTime.Now);
+                                    <span class="text-lg lh1em text-color">$@priceH</span><small> avg/night</small>
+                                }
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                co++;
+            }
+        }
+    </div>
+
+    <div class="gap gap-small"></div>
+</div>

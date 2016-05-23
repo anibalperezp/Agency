@@ -1,0 +1,131 @@
+﻿@model PagedList.IPagedList<TripAgency.EF.TarifaCarro>
+@using PagedList.Mvc;
+@Styles.Render("~/Content/pagedlist")
+@Scripts.Render("~/bundles/new")
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Tarifa de Empresa Transportista</h2>
+
+<p>
+    @Html.ActionLink("Añadir nuevo", "Create")
+</p>
+<br />
+<div class="row">
+    <div class="col-md-2">
+        <form action="#" method="get">
+            <div class="input-group">
+                <!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
+                <input class="form-control" id="system-search" name="Search_Data" placeholder="Buscar por" required="">
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-default">
+                        <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                </span>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-10">
+        <table class="table table-hover table-list-search">
+            <tr>
+                <th>
+                    @Html.ActionLink("Empresa", "Index", new { Sorting_Order = ViewBag.SortingNombre })
+                </th>
+                <th>
+                    @Html.DisplayName("Año")
+                </th>
+                <th>
+                    @Html.DisplayName("Temporada")
+                </th>
+                <th>
+                    @Html.DisplayName("Inicio")
+                </th>
+                <th>
+                    @Html.DisplayName("Fin")
+                </th>
+                <th>
+                    @Html.DisplayName("Categoría")
+                </th>
+                <th>
+                    @Html.DisplayName("Rangos")
+                </th>
+                <th>
+                    @Html.DisplayName("Tarifas")
+                </th>
+                <th>
+                    @Html.DisplayName("Valor")
+                </th>
+                <th>
+                    @Html.DisplayName("Seguro")
+                </th>
+                <th>
+                    @Html.DisplayName("Depósito")
+                </th>
+                <th>
+                    @Html.DisplayName("Descripción")
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td align="center">
+                        @Html.DisplayFor(modelItem => item.Empresa.nombre_empresa)
+                    </td>
+                    <td align="center">
+                        @Html.DisplayFor(modelItem => item.Anno.anno1)
+                    </td>
+                    <td align="center">
+                        @Html.DisplayFor(modelItem => item.Temporada.nombre)
+                    </td>
+                    <td align="center">
+                        @Html.DisplayFor(modelItem => item.TemporadaEmpresa.inicio)
+                    </td>
+                    <td align="center">
+                        @Html.DisplayFor(modelItem => item.TemporadaEmpresa.fin)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Tipologia_Carro.nombre)
+                    </td>
+                    <td>
+                        @{
+                foreach (var course in item.Rangos_Tarifa)
+                {
+                    @course.Rango.rango1 <br />
+                }
+                        }
+                    </td>
+                    <td align="center">
+                        @{
+                foreach (var course in item.Rangos_Tarifa)
+                {
+                    @course.tarifa <br />
+                }
+                        }
+                    </td>
+                    <td align="center">
+                        @Html.DisplayFor(modelItem => item.valor)
+                    </td>
+                    <td align="center">
+                        @Html.DisplayFor(modelItem => item.seguro)
+                    </td>
+                    <td align="center">
+                        @Html.DisplayFor(modelItem => item.deposito)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.descripcion)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "Edit", new { id = item.idcondtarifa })
+                        @Html.ActionLink("Borrar", "Delete", new { id = item.idcondtarifa })
+                    </td>
+                </tr>
+            }
+        </table>
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        @Html.PagedListPager(Model, Page_No => Url.Action("Index", new { Page_No, Sorting_Order = ViewBag.CurrentSortOrder, Filter_Value = ViewBag.FilterValue }))
+    </div>
+</div>

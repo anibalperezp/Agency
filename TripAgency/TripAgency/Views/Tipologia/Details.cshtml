@@ -1,0 +1,25 @@
+﻿@model TripAgency.EF.Tipologia
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Tipologia</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Tipologia")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipologia1)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.idTiologia }) |
+    @Html.ActionLink("Ir Atras", "Index")
+</p>

@@ -1,0 +1,75 @@
+﻿@model TripAgency.EF.Carro
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Carro</h4>
+	<hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.foto_carro1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.foto_carro1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.foto_carro2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.foto_carro2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.foto_carro3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.foto_carro3)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.descripcion_carro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descripcion_carro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Empresa.nombre_empresa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Empresa.nombre_empresa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tipologia_Carro.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tipologia_Carro.nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idCarro }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

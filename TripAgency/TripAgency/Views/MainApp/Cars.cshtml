@@ -1,0 +1,345 @@
+﻿@using TripAgency.EF
+@using TripAgency.Models
+@model PagedList.IPagedList<TripAgency.EF.Carro>
+@using PagedList.Mvc;
+@Styles.Render("~/Content/pagedlist")
+@{
+    Layout = "~/Views/Shared/_Layout_Cars.cshtml";
+    ViewBag.Title = "Cars";
+    string name = ViewBag.name;
+    string desc1 = ViewBag.desc;
+    string count = ViewBag.countcar;
+    var db = new TripAgencyEntities();
+    var mycount = 0;
+}
+@Scripts.Render("~/bundles/jqueryCost")
+
+<script language="JavaScript" type="text/JavaScript">
+
+    $(document).ready(function () {
+        $("#namec").change(function () {
+            if ($("#namec").val() != "Choose One" && $("#ofice1").val() != "Choose One" && $("#ofice2").val() != "Choose One") {
+                $("#btnsearchcars").attr('disabled', false);
+            } else
+                if ($("#namec").val() == "Choose One" || $("#ofice1").val() == "Choose One" || $("#ofice2").val() == "Choose One") {
+                    $("#btnsearchcars").attr('disabled', true);
+                }
+        });
+    });
+
+    $(document).ready(function () {
+        $("#ofice1").change(function () {
+            if ($("#namec").val() != "Choose One" && $("#ofice1").val() != "Choose One" && $("#ofice2").val() != "Choose One") {
+                $("#btnsearchcars").attr('disabled', false);
+            } else
+                if ($("#namec").val() == "Choose One" || $("#ofice1").val() == "Choose One" || $("#ofice2").val() == "Choose One") {
+                    $("#btnsearchcars").attr('disabled', true);
+                }
+        });
+    });
+
+    $(document).ready(function () {
+        $("#ofice2").change(function () {
+            if ($("#namec").val() != "Choose One" && $("#ofice1").val() != "Choose One" && $("#ofice2").val() != "Choose One") {
+                $("#btnsearchcars").attr('disabled', false);
+            } else
+                if ($("#namec").val() == "Choose One" || $("#ofice1").val() == "Choose One" || $("#ofice2").val() == "Choose One") {
+                    $("#btnsearchcars").attr('disabled', true);
+                }
+        });
+    });
+
+    function OnChVal(francisco) {
+        var of1 = "";
+        var of2 = "";
+        if (francisco[francisco.length - 1] == 'a') {
+            of1 = $("#" + francisco).val();
+            var sec = francisco.replace('a', 'b');
+            of2 = $("#" + sec).val();
+            if (of1 == "Choose One" || of2 == "Choose One") {
+                var but = francisco.replace('a', 't');
+                $("#" + but).attr('disabled', true);
+            } else
+                if(of1 != "Choose One" && of2 != "Choose One") {
+                    var but = francisco.replace('a', 't');
+                    $("#" + but).attr('disabled', false);
+            }
+        }
+        if (francisco[francisco.length - 1] == 'b') {
+            of2 = $("#" + francisco).val();
+            var sec = francisco.replace('b', 'a');
+            of1 = $("#" + sec).val();
+            if (of1 == "Choose One" || of2 == "Choose One") {
+                var but = francisco.replace('b', 't');
+                $("#" + but).attr('disabled', true);
+            } else
+                if (of1 != "Choose One" && of2 != "Choose One") {
+                    var but = francisco.replace('b', 't');
+                    $("#" + but).attr('disabled',false);;
+                }
+        }
+    };
+
+    function GetHrefs(id) {
+        var r = "";
+        var firstLink = document.getElementsByTagName('a');
+        if (firstLink != null) {
+            for (var i = 0; i < firstLink.length; i++) {
+                var ires = firstLink[i].getAttribute('id');
+                if (ires != null) {
+                    if (ires == id) {
+                        r = firstLink[i].href;
+                    }
+                }
+            }
+        } else {
+        }
+        return r;
+    };
+
+    function onCarPassengFiltr(id, categor) {
+        var countryOptions = {};
+        countryOptions.url = "/TripAgency/MainApp/carscatrgjson";
+        countryOptions.type = "POST";
+        countryOptions.data = JSON.stringify({
+            id: id,
+            categor: categor
+        });
+        countryOptions.datatype = "json";
+        countryOptions.contentType = "application/json";
+        countryOptions.success = function(statesList) {
+            var row = "";
+            if (statesList.length != 0) {
+                row += "<ul class='booking-list'>";
+                $.each(statesList, function(index, item) {
+                    var idfl = GetHrefs(item.IdCarro);
+                    var noJSmsg = document.getElementById('datemod');
+                    var datemodal = noJSmsg.innerHTML;
+                    row += "<li><a class='booking-item'>";
+                    row += "<div class='row'><div class='col-md-3'><div class='booking-item-car-img'><img src=" + item.Foto + " alt=" + item.Nombre + " title=" + item.Nombre + "><p class='booking-item-car-title'>" + item.Nombre + "</p></div></div><div class='col-md-6'><div class='row'><div class='col-md-12'><h5 class='booking-item-title'>Information about the car:</h5><span class='text-small lh1em text-color'>Transmition: </span><small>" + item.Transmision + "</small><br /><span class='text-small lh1em text-color'>Passengers: </span><small>" + item.Pasajeros + " </small><br /><span class='text-small lh1em text-color'>Description: </span><small>" + item.Descripcion + "</small></div></div></div><div class='col-md-3'><p class=' booking-item-car-title'>" + item.Categoria + "</p><br /><span class='booking-item-price-from'></span><span class='booking-item-price'>$" + item.Precio + "</span><span>/day</span><button class='btn btn-primary' data-toggle='modal' data-target='#" + item.IdCarro + "'> Show More </button></div></div>";
+                    row += "<div class='modal fade' id='" + item.IdCarro + "' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'><form method='POST'><div class='modal-dialog'><div class='modal-content'><div class='modal-header'><h4 class='modal-title' id='myModalLabel'>Search for '" + item.Nombre + "'</h4></div><div class='modal-body'><div class='row'><div class='col-md-6'><div class='form-group form-group-lg form-group-icon-left'><i class='fa fa-map-marker input-icon'></i><label>Pick-up Location</label><select class='form-control' name='ofice1'><option selected='selected'>Choose One</option>" + item.Oficinas + "</select></div></div><div class='col-md-6'><div class='form-group form-group-lg form-group-icon-left'><i class='fa fa-map-marker input-icon'></i><label>Drop-off Location</label><select class='form-control' name='ofice2'><option selected='selected'>Choose One</option>" + item.Oficinas + "</select></div></div></div><div id='datemod'>" + datemodal + "</div></div><div class='modal-footer'><button type='button' class='btn btn-default' data-dismiss='modal'>Close </button><button class='btn btn-primary' type='submit' id='namec' name='namec' value='" + item.Nombre + "'>Select</button></div></div></div></form></div>";
+                    row += "</a></li>";
+                });
+                row += "</ul>";
+                $("#listcl").empty();
+                $("#listcl").html(row);
+            }
+        };
+        $.ajax(countryOptions);
+    };
+</script>
+
+<div class="container">
+
+    <ul class="breadcrumb">
+        <li>
+            <a href="@Url.Action("Index","MainApp")">Home</a>
+        </li>
+        <li class="active">Cars @Html.DisplayName(name)</li>
+    </ul>
+
+    <div class="mfp-with-anim mfp-hide mfp-dialog mfp-search-dialog" id="search-dialog">
+        <h3>Search for Car</h3>
+        <form method="POST">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group form-group-lg">
+                        <label>Select Car</label>
+                        <select class="form-control" id="namec" name="namec">
+                            <option selected="selected">Choose One</option>
+                            @foreach (var item in db.Carro)
+                            {
+                                if (item.Tipologia_Carro.nombre.Equals(name))
+                                {
+                                    <option>@item.name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group form-group-lg form-group-icon-left">
+                        <i class="fa fa-map-marker input-icon"></i>
+                        <label>Pick-up Location</label>
+                        <select class="form-control" id="ofice1" name="ofice1">
+                            <option selected="selected">Choose One</option>
+                            @foreach (var item in db.OficinaRenta)
+                            {
+                                <option>@item.nombre</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group form-group-lg form-group-icon-left">
+                        <i class="fa fa-map-marker input-icon"></i>
+                        <label>Drop-off Location</label>
+                        <select class="form-control" id="ofice2" name="ofice2">
+                            <option selected="selected">Choose One</option>
+                            @foreach (var item in db.OficinaRenta)
+                            {
+                                <option>@item.nombre</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="input-daterange" data-date-format="MM/dd/yyyy">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group form-group-lg form-group-icon-left">
+                            <i class="fa fa-calendar input-icon input-icon-highlight"></i>
+                            <label>Pick-up Date</label>
+                            <input type="text" class="form-control" name="start" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group form-group-lg form-group-icon-left">
+                            <i class="fa fa-calendar input-icon input-icon-highlight"></i>
+                            <label>Drop-off Date</label>
+                            <input type="text" class="form-control" name="end" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-primary btn-lg" type="submit" disabled="disabled" id="btnsearchcars">Search for Rental Cars</button>
+        </form>
+
+    </div>
+
+    <h3 class="booking-title">@Html.DisplayName(count) Rental Cars - Category: @Html.DisplayName(name)<small><a class="popup-text" href="#search-dialog" data-effect="mfp-zoom-out"> Search</a></small></h3>
+
+    <div class="row">
+        <div class="col-md-3">
+            <aside class="booking-filters text-white">
+                <h3>Filter By:</h3>
+                <ul class="list booking-filters-list">
+                    <li>
+                        <h5 class="booking-filters-title">Category: @Html.DisplayName(name)</h5>
+                    </li>
+                    <li>
+                        <h6>Description: </h6><label> @Html.DisplayName(desc1) </label>
+                    </li>
+                </ul>
+            </aside>
+        </div>
+        <div class="col-md-9">
+            <div id="listcl">
+                <ul class="booking-list">
+                    @foreach (var item in Model)
+                    {
+                        <li>
+                            <a class="booking-item">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="booking-item-car-img">
+                                            <img src="@item.foto_carro1" alt=@item.name title=@item.name>
+                                            <p class="booking-item-car-title">@item.name</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <h5 class="booking-item-title">Information about the car:</h5>
+                                                @{
+                                                    var submodel = new DestinoModel();
+                                                    var word = submodel.GetDescSplitingHotel(@item.descripcion_carro);
+                                                    <span class="text-small lh1em text-color">Transmition: </span><small> @item.transmision </small>
+                                                    <br/>
+                                                    <span class="text-small lh1em text-color">Passengers: </span><small> @item.pasajeros </small>
+                                                    <br/>
+                                                    <span class="text-small lh1em text-color">Description: </span><small> @word</small>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <p class=" booking-item-car-title">@item.Tipologia_Carro.nombre </p>
+                                        <br/>
+                                        @{
+                                            var hotel = new TarifaCarroModel();
+                                            var price = hotel.price(@item.Empresa.idEmpresa, DateTime.Now);
+                                            <span class="booking-item-price-from"></span>
+                                            <span class="booking-item-price">$@price</span>
+                                            <span>/day</span>
+                                            <button class="btn btn-primary" data-toggle="modal" data-target="#@item.idCarro"> Show More </button>
+                                        }
+                                    </div>
+                                </div>
+                                <div class="modal fade" id="@item.idCarro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <form method="POST">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title" id="myModalLabel">Search for @item.name</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group form-group-lg form-group-icon-left">
+                                                                <i class="fa fa-map-marker input-icon"></i>
+                                                                <label>Pick-up Location</label>
+                                                                <select class="form-control" name="ofice1" onchange="OnChVal(this.id);" id="@mycount.ToString()a">
+                                                                    <option selected="selected">Choose One</option>
+                                                                    @foreach (var item1 in @item.OficPerCar)
+                                                                    {
+                                                                        <option>@item1.OficinaRenta.nombre</option>
+                                                                    }
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group form-group-lg form-group-icon-left">
+                                                                <i class="fa fa-map-marker input-icon"></i>
+                                                                <label>Drop-off Location</label>
+                                                                <select class="form-control" name="ofice2" onchange="OnChVal(this.id);" id="@mycount.ToString()b">
+                                                                    <option selected="selected">Choose One</option>
+                                                                    @foreach (var item1 in @item.OficPerCar)
+                                                                    {
+                                                                        <option>@item1.OficinaRenta.nombre</option>
+                                                                    }
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-daterange" data-date-format="MM/dd/yyyy">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group form-group-lg form-group-icon-left">
+                                                                    <i class="fa fa-calendar input-icon input-icon-highlight"></i>
+                                                                    <label>Pick-up Date</label>
+                                                                    <input type="text" class="form-control" name="start"/>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group form-group-lg form-group-icon-left">
+                                                                    <i class="fa fa-calendar input-icon input-icon-highlight"></i>
+                                                                    <label>Drop-off Date</label>
+                                                                    <input type="text" class="form-control" name="end"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close </button>
+                                                    <button class="btn btn-primary" type="submit" disabled="disabled" id="@mycount.ToString()t" name="namec" value="@item.name">Select</button>
+                                                </div>
+                                            </div><!-- /.modal-content -->
+                                        </div><!-- /.modal-dialog -->
+                                    </form>
+                                </div><!-- /.modal -->
+                            </a>
+                        </li>
+                        mycount++;
+                    }
+                </ul>
+                <center>
+                    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                    @Html.PagedListPager(Model, Page_No => Url.Action("Cars", new { Page_No, Sorting_Order = ViewBag.CurrentSortOrder, Filter_Value = ViewBag.FilterValue }))
+                </center>
+            </div>
+        </div>
+    </div>
+</div>
+

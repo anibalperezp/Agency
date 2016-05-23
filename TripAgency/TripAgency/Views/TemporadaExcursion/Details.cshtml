@@ -1,0 +1,90 @@
+﻿@model TripAgency.EF.TemporadaExcursion
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TemporadaExcursion</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.periodo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.periodo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.inicio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.inicio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.descripcion_periodo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descripcion_periodo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.precio_tarifa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.precio_tarifa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Anno.anno1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Anno.anno1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estacion.estacion1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estacion.estacion1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Excursion.nombre_excursion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Excursion.nombre_excursion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Temporada.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Temporada.nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idtemporadaexcursion }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

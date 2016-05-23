@@ -1,0 +1,100 @@
+﻿@model TripAgency.EF.Empresa
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Añadir elemento</h2>
+
+<form method="post" enctype="multipart/form-data">
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Empresa</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.Label("Nombre", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.nombre_empresa, new { @class = "form-control", @placeholder = "Nombre de la Empresa" })
+                @Html.ValidationMessageFor(model => model.nombre_empresa)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Imagen", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="picture" />
+                @Html.ValidationMessageFor(model => model.foto_empresa)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Dirección", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.direccion_empresa, new { @class = "col-md-2", @placeholder = "Dirección, Municipio, Provincia" })
+                @Html.ValidationMessageFor(model => model.direccion_empresa)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Teléfono", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.telefono_empresa, new { @class = "form-control", @placeholder = "Número de Tel." })
+                @Html.ValidationMessageFor(model => model.telefono_empresa)
+            </div>
+        </div>
+        
+        <!------------------------------------------------------------------------------------------------------------------------------>
+
+        <div class="form-group">
+            @Html.Label("Servicios que oferta", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <table>
+                    <tr>
+                        @{
+                            int cnt = 0;
+                            List<TripAgency.Models.Tipo_Empresa_Asigned> courses = ViewBag.TipoEmpresa;
+                            foreach (var course in courses)
+                            {
+                                if (cnt++ % 3 == 0)
+                                {
+                                    @:</tr><tr>
+                                }
+                                @:<td>
+                                <input type="checkbox"
+                                name="selectedTipos"
+                                value="@course.idTipoEmpresa"
+                                @(Html.Raw(course.assigned ? "checked=\"checked\"" : "")) />
+                                @: @course.tipoempresa
+                                @:</td>
+                            }
+                            @:</tr>
+                         }
+                    </table>
+                </div>
+            </div>
+
+            <!------------------------------------------------------------------------------------------------------------------------------>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+    }
+
+    <div>
+        @Html.ActionLink("Ir atrás", "Index")
+    </div>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+</form>

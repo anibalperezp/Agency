@@ -1,0 +1,81 @@
+﻿@model TripAgency.EF.Temporada_Reduccion
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Borrar</h2>
+
+<h3>Está seguro que desea borrar este elemento?</h3>
+<div>
+    <h4>Período de Reducción</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Período")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.periodo)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Inicio")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.inicio)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Fin")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fin)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Año")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Anno.anno1)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Estación")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estacion.estacion1)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Hotel")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hotel.nombre_hotel)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Temporada")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Temporada.nombre)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Ir atrás", "Index")
+        </div>
+    }
+</div>

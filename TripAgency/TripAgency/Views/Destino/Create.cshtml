@@ -1,0 +1,74 @@
+﻿@model TripAgency.EF.Destino
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Añadir destino</h2>
+
+<form method="post" enctype="multipart/form-data">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Destino</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.Label("Nombre", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.destino1, new { @class = "form-control", @placeholder = "Nombre de Destino" })
+                @Html.ValidationMessageFor(model => model.destino1)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Descripción", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.decripcion_destino, new { @class = "col-md-2", @placeholder = "Descripción" })
+                @Html.ValidationMessageFor(model => model.decripcion_destino)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Imagen", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="picture" />
+                @Html.ValidationMessageFor(model => model.foto_destino1)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Imagen", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="picture2" />
+                @Html.ValidationMessageFor(model => model.foto_destino2)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("País", "idpais", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("idpais", String.Empty)
+                @Html.ValidationMessageFor(model => model.idpais)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+    }
+
+    <div>
+        @Html.ActionLink("Ir atrás", "Index")
+    </div>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+</form>

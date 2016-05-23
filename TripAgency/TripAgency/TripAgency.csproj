@@ -1,0 +1,1467 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{141E88E0-5ACB-4C27-B626-8A522279591D}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TripAgency</RootNamespace>
+    <AssemblyName>TripAgency</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PublishDatabaseSettings>
+      <Objects>
+      </Objects>
+    </PublishDatabaseSettings>
+    <IncludeIisSettings>true</IncludeIisSettings>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.0.0\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.1\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.0.0\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <Private>True</Private>
+      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.1.0.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.1.0.0\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.1.0.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.2.0.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.2.0.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.2.0.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.2.0.0\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.2.0.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.2.0.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.2.0.0\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.2.0.0\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.2.0.0\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AnnoController.cs" />
+    <Compile Include="Controllers\AvionController.cs" />
+    <Compile Include="Controllers\CadenaController.cs" />
+    <Compile Include="Controllers\CarroController.cs" />
+    <Compile Include="Controllers\CategoriaController.cs" />
+    <Compile Include="Controllers\CategTarifAvionController.cs" />
+    <Compile Include="Controllers\ClaseController.cs" />
+    <Compile Include="Controllers\DestinoController.cs" />
+    <Compile Include="Controllers\DestinoRentalController.cs" />
+    <Compile Include="Controllers\DestinoVueloController.cs" />
+    <Compile Include="Controllers\EmpresaController.cs" />
+    <Compile Include="Controllers\EstacionController.cs" />
+    <Compile Include="Controllers\ExcursionController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HotelController.cs" />
+    <Compile Include="Controllers\MainAppController.cs" />
+    <Compile Include="Controllers\OficinaRentaController.cs" />
+    <Compile Include="Controllers\OrigenRentalController.cs" />
+    <Compile Include="Controllers\OrigenVueloController.cs" />
+    <Compile Include="Controllers\PaisController.cs" />
+    <Compile Include="Controllers\PaqueteController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
+    <Compile Include="Controllers\RangoController.cs" />
+    <Compile Include="Controllers\ReduccionController.cs" />
+    <Compile Include="Controllers\RentalController.cs" />
+    <Compile Include="Controllers\SubdestinoController.cs" />
+    <Compile Include="Controllers\SuplementoController.cs" />
+    <Compile Include="Controllers\TarifaCarroController.cs" />
+    <Compile Include="Controllers\TarificacionController.cs" />
+    <Compile Include="Controllers\TemporadaAvionController.cs" />
+    <Compile Include="Controllers\TemporadaController.cs" />
+    <Compile Include="Controllers\TemporadaEmpresaController.cs" />
+    <Compile Include="Controllers\TemporadaExcursionController.cs" />
+    <Compile Include="Controllers\TemporadaPaqueteController.cs" />
+    <Compile Include="Controllers\TemporadaRentalController.cs" />
+    <Compile Include="Controllers\Temporada_HotelController.cs" />
+    <Compile Include="Controllers\Temporada_ReduccionController.cs" />
+    <Compile Include="Controllers\Temporada_SuplementoController.cs" />
+    <Compile Include="Controllers\TipoAvionController.cs" />
+    <Compile Include="Controllers\TipologiaController.cs" />
+    <Compile Include="Controllers\Tipologia_CarroController.cs" />
+    <Compile Include="Controllers\Tipo_EmpresaController.cs" />
+    <Compile Include="Controllers\Tipo_TarifaController.cs" />
+    <Compile Include="EF\Anno.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\AspNetRoles.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\AspNetUserClaims.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\AspNetUserLogins.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\AspNetUsers.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Avion.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Cadena.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Carro.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Categoria.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\CategTarifAvion.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Clase.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\C__MigrationHistory.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Destino.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\DestinoRental.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\DestinoVuelo.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Empresa.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Empresa_TipoEmpresa.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Estacion.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Excursion.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Hotel.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="EF\NomAvionClase.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\NomClaseCatTarAvi.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\NomTempAvionClase.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\NomTempRedHotel.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\NomTempSupHotel.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\NomTempTipHotel.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\OficinaRenta.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\OficPerCar.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\OrigenRental.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\OrigenVuelo.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Pai.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Paquete.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Rango.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Rangos_Tarifa.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Reduccion.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Reduccion_Hotel.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Rental.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Subdestino.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Suplemento.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Suplemento_Hotel.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\TarifaCarro.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Tarificacion.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Temporada.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\TemporadaAvion.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\TemporadaEmpresa.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\TemporadaExcursion.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\TemporadaPaquete.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\TemporadaRental.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Temporada_Hotel.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Temporada_Reduccion.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Temporada_Suplemento.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\TipoAvion.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Tipologia.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Tipologia_Carro.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Tipol_HotelTipol.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Tipo_Empresa.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Tipo_Tarifa.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AlojamientoCarModel.cs" />
+    <Compile Include="Models\AnnosModel.cs" />
+    <Compile Include="Models\Cadena_Asigned.cs" />
+    <Compile Include="Models\CategoriaTarifaAvionModel.cs" />
+    <Compile Include="Models\ClaseModel.cs" />
+    <Compile Include="Models\DestinoModel.cs" />
+    <Compile Include="Models\Empresa_Asigned.cs" />
+    <Compile Include="Models\EstacionModel.cs" />
+    <Compile Include="Models\FlightModel.cs" />
+    <Compile Include="Models\HotelModel.cs" />
+    <Compile Include="Models\Htarifa.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Reduccion_Hotel_Asigned.cs" />
+    <Compile Include="Models\ScriptCalc.cs" />
+    <Compile Include="Models\SubModel.cs" />
+    <Compile Include="Models\Suplemento_Hotel_Asigned.cs" />
+    <Compile Include="Models\TarifaCarroModel.cs" />
+    <Compile Include="Models\TarifaExcModel.cs" />
+    <Compile Include="Models\TarifaHotelModel.cs" />
+    <Compile Include="Models\TarifaPaqueteModel.cs" />
+    <Compile Include="Models\TarifaRentaModel.cs" />
+    <Compile Include="Models\TarifaVueloModel.cs" />
+    <Compile Include="Models\Tarifa_Rangos_Asigned.cs" />
+    <Compile Include="Models\TemporadaExc.cs" />
+    <Compile Include="Models\TemporadaModel.cs" />
+    <Compile Include="Models\TemporadaPaq.cs" />
+    <Compile Include="Models\Tipol_HotelTipol.cs" />
+    <Compile Include="Models\Tipo_Empresa_Asigned.cs" />
+    <Compile Include="Models\TransferModel.cs" />
+    <Compile Include="Models\Util.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\admin\layout\css\custom.css" />
+    <Content Include="Content\admin\layout\css\layout.css" />
+    <Content Include="Content\admin\layout\css\themes\darkblue.css" />
+    <Content Include="Content\admin\layout\css\themes\default.css" />
+    <Content Include="Content\admin\layout\img\ajax-loading.gif" />
+    <Content Include="Content\admin\layout\img\ajax-modal-loading.gif" />
+    <Content Include="Content\admin\layout\img\arrow-down.png" />
+    <Content Include="Content\admin\layout\img\avatar.png" />
+    <Content Include="Content\admin\layout\img\avatar1.jpg" />
+    <Content Include="Content\admin\layout\img\avatar10.jpg" />
+    <Content Include="Content\admin\layout\img\avatar11.jpg" />
+    <Content Include="Content\admin\layout\img\avatar1_small.jpg" />
+    <Content Include="Content\admin\layout\img\avatar2.jpg" />
+    <Content Include="Content\admin\layout\img\avatar3.jpg" />
+    <Content Include="Content\admin\layout\img\avatar3_small.jpg" />
+    <Content Include="Content\admin\layout\img\avatar4.jpg" />
+    <Content Include="Content\admin\layout\img\avatar6.jpg" />
+    <Content Include="Content\admin\layout\img\avatar7.jpg" />
+    <Content Include="Content\admin\layout\img\avatar8.jpg" />
+    <Content Include="Content\admin\layout\img\avatar9.jpg" />
+    <Content Include="Content\admin\layout\img\bg-opacity.png" />
+    <Content Include="Content\admin\layout\img\bg-white-lock.png" />
+    <Content Include="Content\admin\layout\img\bg-white.png" />
+    <Content Include="Content\admin\layout\img\bg\1.jpg" />
+    <Content Include="Content\admin\layout\img\bg\2.jpg" />
+    <Content Include="Content\admin\layout\img\bg\3.jpg" />
+    <Content Include="Content\admin\layout\img\bg\4.jpg" />
+    <Content Include="Content\admin\layout\img\blog\1.jpg" />
+    <Content Include="Content\admin\layout\img\blog\10.jpg" />
+    <Content Include="Content\admin\layout\img\blog\11.jpg" />
+    <Content Include="Content\admin\layout\img\blog\12.jpg" />
+    <Content Include="Content\admin\layout\img\blog\13.jpg" />
+    <Content Include="Content\admin\layout\img\blog\14.jpg" />
+    <Content Include="Content\admin\layout\img\blog\15.jpg" />
+    <Content Include="Content\admin\layout\img\blog\16.jpg" />
+    <Content Include="Content\admin\layout\img\blog\17.jpg" />
+    <Content Include="Content\admin\layout\img\blog\18.jpg" />
+    <Content Include="Content\admin\layout\img\blog\19.jpg" />
+    <Content Include="Content\admin\layout\img\blog\2.jpg" />
+    <Content Include="Content\admin\layout\img\blog\20.jpg" />
+    <Content Include="Content\admin\layout\img\blog\3.jpg" />
+    <Content Include="Content\admin\layout\img\blog\4.jpg" />
+    <Content Include="Content\admin\layout\img\blog\5.jpg" />
+    <Content Include="Content\admin\layout\img\blog\6.jpg" />
+    <Content Include="Content\admin\layout\img\blog\7.jpg" />
+    <Content Include="Content\admin\layout\img\blog\8.jpg" />
+    <Content Include="Content\admin\layout\img\blog\9.jpg" />
+    <Content Include="Content\admin\layout\img\datatable-row-openclose.png" />
+    <Content Include="Content\admin\layout\img\flags\ad.png" />
+    <Content Include="Content\admin\layout\img\flags\ae.png" />
+    <Content Include="Content\admin\layout\img\flags\af.png" />
+    <Content Include="Content\admin\layout\img\flags\ag.png" />
+    <Content Include="Content\admin\layout\img\flags\ai.png" />
+    <Content Include="Content\admin\layout\img\flags\al.png" />
+    <Content Include="Content\admin\layout\img\flags\am.png" />
+    <Content Include="Content\admin\layout\img\flags\an.png" />
+    <Content Include="Content\admin\layout\img\flags\ao.png" />
+    <Content Include="Content\admin\layout\img\flags\ar.png" />
+    <Content Include="Content\admin\layout\img\flags\as.png" />
+    <Content Include="Content\admin\layout\img\flags\at.png" />
+    <Content Include="Content\admin\layout\img\flags\au.png" />
+    <Content Include="Content\admin\layout\img\flags\aw.png" />
+    <Content Include="Content\admin\layout\img\flags\ax.png" />
+    <Content Include="Content\admin\layout\img\flags\az.png" />
+    <Content Include="Content\admin\layout\img\flags\ba.png" />
+    <Content Include="Content\admin\layout\img\flags\bb.png" />
+    <Content Include="Content\admin\layout\img\flags\bd.png" />
+    <Content Include="Content\admin\layout\img\flags\be.png" />
+    <Content Include="Content\admin\layout\img\flags\bf.png" />
+    <Content Include="Content\admin\layout\img\flags\bg.png" />
+    <Content Include="Content\admin\layout\img\flags\bh.png" />
+    <Content Include="Content\admin\layout\img\flags\bi.png" />
+    <Content Include="Content\admin\layout\img\flags\bj.png" />
+    <Content Include="Content\admin\layout\img\flags\bm.png" />
+    <Content Include="Content\admin\layout\img\flags\bn.png" />
+    <Content Include="Content\admin\layout\img\flags\bo.png" />
+    <Content Include="Content\admin\layout\img\flags\br.png" />
+    <Content Include="Content\admin\layout\img\flags\bs.png" />
+    <Content Include="Content\admin\layout\img\flags\bt.png" />
+    <Content Include="Content\admin\layout\img\flags\bv.png" />
+    <Content Include="Content\admin\layout\img\flags\bw.png" />
+    <Content Include="Content\admin\layout\img\flags\by.png" />
+    <Content Include="Content\admin\layout\img\flags\bz.png" />
+    <Content Include="Content\admin\layout\img\flags\ca.png" />
+    <Content Include="Content\admin\layout\img\flags\catalonia.png" />
+    <Content Include="Content\admin\layout\img\flags\cc.png" />
+    <Content Include="Content\admin\layout\img\flags\cd.png" />
+    <Content Include="Content\admin\layout\img\flags\cf.png" />
+    <Content Include="Content\admin\layout\img\flags\cg.png" />
+    <Content Include="Content\admin\layout\img\flags\ch.png" />
+    <Content Include="Content\admin\layout\img\flags\ci.png" />
+    <Content Include="Content\admin\layout\img\flags\ck.png" />
+    <Content Include="Content\admin\layout\img\flags\cl.png" />
+    <Content Include="Content\admin\layout\img\flags\cm.png" />
+    <Content Include="Content\admin\layout\img\flags\cn.png" />
+    <Content Include="Content\admin\layout\img\flags\co.png" />
+    <Content Include="Content\admin\layout\img\flags\cr.png" />
+    <Content Include="Content\admin\layout\img\flags\cs.png" />
+    <Content Include="Content\admin\layout\img\flags\cu.png" />
+    <Content Include="Content\admin\layout\img\flags\cv.png" />
+    <Content Include="Content\admin\layout\img\flags\cx.png" />
+    <Content Include="Content\admin\layout\img\flags\cy.png" />
+    <Content Include="Content\admin\layout\img\flags\cz.png" />
+    <Content Include="Content\admin\layout\img\flags\de.png" />
+    <Content Include="Content\admin\layout\img\flags\dj.png" />
+    <Content Include="Content\admin\layout\img\flags\dk.png" />
+    <Content Include="Content\admin\layout\img\flags\dm.png" />
+    <Content Include="Content\admin\layout\img\flags\do.png" />
+    <Content Include="Content\admin\layout\img\flags\dz.png" />
+    <Content Include="Content\admin\layout\img\flags\ec.png" />
+    <Content Include="Content\admin\layout\img\flags\ee.png" />
+    <Content Include="Content\admin\layout\img\flags\eg.png" />
+    <Content Include="Content\admin\layout\img\flags\eh.png" />
+    <Content Include="Content\admin\layout\img\flags\england.png" />
+    <Content Include="Content\admin\layout\img\flags\er.png" />
+    <Content Include="Content\admin\layout\img\flags\es.png" />
+    <Content Include="Content\admin\layout\img\flags\et.png" />
+    <Content Include="Content\admin\layout\img\flags\europeanunion.png" />
+    <Content Include="Content\admin\layout\img\flags\fam.png" />
+    <Content Include="Content\admin\layout\img\flags\fi.png" />
+    <Content Include="Content\admin\layout\img\flags\fj.png" />
+    <Content Include="Content\admin\layout\img\flags\fk.png" />
+    <Content Include="Content\admin\layout\img\flags\fm.png" />
+    <Content Include="Content\admin\layout\img\flags\fo.png" />
+    <Content Include="Content\admin\layout\img\flags\fr.png" />
+    <Content Include="Content\admin\layout\img\flags\ga.png" />
+    <Content Include="Content\admin\layout\img\flags\gb.png" />
+    <Content Include="Content\admin\layout\img\flags\gd.png" />
+    <Content Include="Content\admin\layout\img\flags\ge.png" />
+    <Content Include="Content\admin\layout\img\flags\gf.png" />
+    <Content Include="Content\admin\layout\img\flags\gh.png" />
+    <Content Include="Content\admin\layout\img\flags\gi.png" />
+    <Content Include="Content\admin\layout\img\flags\gl.png" />
+    <Content Include="Content\admin\layout\img\flags\gm.png" />
+    <Content Include="Content\admin\layout\img\flags\gn.png" />
+    <Content Include="Content\admin\layout\img\flags\gp.png" />
+    <Content Include="Content\admin\layout\img\flags\gq.png" />
+    <Content Include="Content\admin\layout\img\flags\gr.png" />
+    <Content Include="Content\admin\layout\img\flags\gs.png" />
+    <Content Include="Content\admin\layout\img\flags\gt.png" />
+    <Content Include="Content\admin\layout\img\flags\gu.png" />
+    <Content Include="Content\admin\layout\img\flags\gw.png" />
+    <Content Include="Content\admin\layout\img\flags\gy.png" />
+    <Content Include="Content\admin\layout\img\flags\hk.png" />
+    <Content Include="Content\admin\layout\img\flags\hm.png" />
+    <Content Include="Content\admin\layout\img\flags\hn.png" />
+    <Content Include="Content\admin\layout\img\flags\hr.png" />
+    <Content Include="Content\admin\layout\img\flags\ht.png" />
+    <Content Include="Content\admin\layout\img\flags\hu.png" />
+    <Content Include="Content\admin\layout\img\flags\id.png" />
+    <Content Include="Content\admin\layout\img\flags\ie.png" />
+    <Content Include="Content\admin\layout\img\flags\il.png" />
+    <Content Include="Content\admin\layout\img\flags\in.png" />
+    <Content Include="Content\admin\layout\img\flags\io.png" />
+    <Content Include="Content\admin\layout\img\flags\iq.png" />
+    <Content Include="Content\admin\layout\img\flags\ir.png" />
+    <Content Include="Content\admin\layout\img\flags\is.png" />
+    <Content Include="Content\admin\layout\img\flags\it.png" />
+    <Content Include="Content\admin\layout\img\flags\jm.png" />
+    <Content Include="Content\admin\layout\img\flags\jo.png" />
+    <Content Include="Content\admin\layout\img\flags\jp.png" />
+    <Content Include="Content\admin\layout\img\flags\ke.png" />
+    <Content Include="Content\admin\layout\img\flags\kg.png" />
+    <Content Include="Content\admin\layout\img\flags\kh.png" />
+    <Content Include="Content\admin\layout\img\flags\ki.png" />
+    <Content Include="Content\admin\layout\img\flags\km.png" />
+    <Content Include="Content\admin\layout\img\flags\kn.png" />
+    <Content Include="Content\admin\layout\img\flags\kp.png" />
+    <Content Include="Content\admin\layout\img\flags\kr.png" />
+    <Content Include="Content\admin\layout\img\flags\kw.png" />
+    <Content Include="Content\admin\layout\img\flags\ky.png" />
+    <Content Include="Content\admin\layout\img\flags\kz.png" />
+    <Content Include="Content\admin\layout\img\flags\la.png" />
+    <Content Include="Content\admin\layout\img\flags\lb.png" />
+    <Content Include="Content\admin\layout\img\flags\lc.png" />
+    <Content Include="Content\admin\layout\img\flags\li.png" />
+    <Content Include="Content\admin\layout\img\flags\lk.png" />
+    <Content Include="Content\admin\layout\img\flags\lr.png" />
+    <Content Include="Content\admin\layout\img\flags\ls.png" />
+    <Content Include="Content\admin\layout\img\flags\lt.png" />
+    <Content Include="Content\admin\layout\img\flags\lu.png" />
+    <Content Include="Content\admin\layout\img\flags\lv.png" />
+    <Content Include="Content\admin\layout\img\flags\ly.png" />
+    <Content Include="Content\admin\layout\img\flags\ma.png" />
+    <Content Include="Content\admin\layout\img\flags\mc.png" />
+    <Content Include="Content\admin\layout\img\flags\md.png" />
+    <Content Include="Content\admin\layout\img\flags\me.png" />
+    <Content Include="Content\admin\layout\img\flags\mg.png" />
+    <Content Include="Content\admin\layout\img\flags\mh.png" />
+    <Content Include="Content\admin\layout\img\flags\mk.png" />
+    <Content Include="Content\admin\layout\img\flags\ml.png" />
+    <Content Include="Content\admin\layout\img\flags\mm.png" />
+    <Content Include="Content\admin\layout\img\flags\mn.png" />
+    <Content Include="Content\admin\layout\img\flags\mo.png" />
+    <Content Include="Content\admin\layout\img\flags\mp.png" />
+    <Content Include="Content\admin\layout\img\flags\mq.png" />
+    <Content Include="Content\admin\layout\img\flags\mr.png" />
+    <Content Include="Content\admin\layout\img\flags\ms.png" />
+    <Content Include="Content\admin\layout\img\flags\mt.png" />
+    <Content Include="Content\admin\layout\img\flags\mu.png" />
+    <Content Include="Content\admin\layout\img\flags\mv.png" />
+    <Content Include="Content\admin\layout\img\flags\mw.png" />
+    <Content Include="Content\admin\layout\img\flags\mx.png" />
+    <Content Include="Content\admin\layout\img\flags\my.png" />
+    <Content Include="Content\admin\layout\img\flags\mz.png" />
+    <Content Include="Content\admin\layout\img\flags\na.png" />
+    <Content Include="Content\admin\layout\img\flags\nc.png" />
+    <Content Include="Content\admin\layout\img\flags\ne.png" />
+    <Content Include="Content\admin\layout\img\flags\nf.png" />
+    <Content Include="Content\admin\layout\img\flags\ng.png" />
+    <Content Include="Content\admin\layout\img\flags\ni.png" />
+    <Content Include="Content\admin\layout\img\flags\nl.png" />
+    <Content Include="Content\admin\layout\img\flags\no.png" />
+    <Content Include="Content\admin\layout\img\flags\np.png" />
+    <Content Include="Content\admin\layout\img\flags\nr.png" />
+    <Content Include="Content\admin\layout\img\flags\nu.png" />
+    <Content Include="Content\admin\layout\img\flags\nz.png" />
+    <Content Include="Content\admin\layout\img\flags\om.png" />
+    <Content Include="Content\admin\layout\img\flags\pa.png" />
+    <Content Include="Content\admin\layout\img\flags\pe.png" />
+    <Content Include="Content\admin\layout\img\flags\pf.png" />
+    <Content Include="Content\admin\layout\img\flags\pg.png" />
+    <Content Include="Content\admin\layout\img\flags\ph.png" />
+    <Content Include="Content\admin\layout\img\flags\pk.png" />
+    <Content Include="Content\admin\layout\img\flags\pl.png" />
+    <Content Include="Content\admin\layout\img\flags\pm.png" />
+    <Content Include="Content\admin\layout\img\flags\pn.png" />
+    <Content Include="Content\admin\layout\img\flags\pr.png" />
+    <Content Include="Content\admin\layout\img\flags\ps.png" />
+    <Content Include="Content\admin\layout\img\flags\pt.png" />
+    <Content Include="Content\admin\layout\img\flags\pw.png" />
+    <Content Include="Content\admin\layout\img\flags\py.png" />
+    <Content Include="Content\admin\layout\img\flags\qa.png" />
+    <Content Include="Content\admin\layout\img\flags\re.png" />
+    <Content Include="Content\admin\layout\img\flags\readme.txt" />
+    <Content Include="Content\admin\layout\img\flags\ro.png" />
+    <Content Include="Content\admin\layout\img\flags\rs.png" />
+    <Content Include="Content\admin\layout\img\flags\ru.png" />
+    <Content Include="Content\admin\layout\img\flags\rw.png" />
+    <Content Include="Content\admin\layout\img\flags\sa.png" />
+    <Content Include="Content\admin\layout\img\flags\sb.png" />
+    <Content Include="Content\admin\layout\img\flags\sc.png" />
+    <Content Include="Content\admin\layout\img\flags\scotland.png" />
+    <Content Include="Content\admin\layout\img\flags\sd.png" />
+    <Content Include="Content\admin\layout\img\flags\se.png" />
+    <Content Include="Content\admin\layout\img\flags\sg.png" />
+    <Content Include="Content\admin\layout\img\flags\sh.png" />
+    <Content Include="Content\admin\layout\img\flags\si.png" />
+    <Content Include="Content\admin\layout\img\flags\sj.png" />
+    <Content Include="Content\admin\layout\img\flags\sk.png" />
+    <Content Include="Content\admin\layout\img\flags\sl.png" />
+    <Content Include="Content\admin\layout\img\flags\sm.png" />
+    <Content Include="Content\admin\layout\img\flags\sn.png" />
+    <Content Include="Content\admin\layout\img\flags\so.png" />
+    <Content Include="Content\admin\layout\img\flags\sr.png" />
+    <Content Include="Content\admin\layout\img\flags\st.png" />
+    <Content Include="Content\admin\layout\img\flags\sv.png" />
+    <Content Include="Content\admin\layout\img\flags\sy.png" />
+    <Content Include="Content\admin\layout\img\flags\sz.png" />
+    <Content Include="Content\admin\layout\img\flags\tc.png" />
+    <Content Include="Content\admin\layout\img\flags\td.png" />
+    <Content Include="Content\admin\layout\img\flags\tf.png" />
+    <Content Include="Content\admin\layout\img\flags\tg.png" />
+    <Content Include="Content\admin\layout\img\flags\th.png" />
+    <Content Include="Content\admin\layout\img\flags\tj.png" />
+    <Content Include="Content\admin\layout\img\flags\tk.png" />
+    <Content Include="Content\admin\layout\img\flags\tl.png" />
+    <Content Include="Content\admin\layout\img\flags\tm.png" />
+    <Content Include="Content\admin\layout\img\flags\tn.png" />
+    <Content Include="Content\admin\layout\img\flags\to.png" />
+    <Content Include="Content\admin\layout\img\flags\tr.png" />
+    <Content Include="Content\admin\layout\img\flags\tt.png" />
+    <Content Include="Content\admin\layout\img\flags\tv.png" />
+    <Content Include="Content\admin\layout\img\flags\tw.png" />
+    <Content Include="Content\admin\layout\img\flags\tz.png" />
+    <Content Include="Content\admin\layout\img\flags\ua.png" />
+    <Content Include="Content\admin\layout\img\flags\ug.png" />
+    <Content Include="Content\admin\layout\img\flags\um.png" />
+    <Content Include="Content\admin\layout\img\flags\us.png" />
+    <Content Include="Content\admin\layout\img\flags\uy.png" />
+    <Content Include="Content\admin\layout\img\flags\uz.png" />
+    <Content Include="Content\admin\layout\img\flags\va.png" />
+    <Content Include="Content\admin\layout\img\flags\vc.png" />
+    <Content Include="Content\admin\layout\img\flags\ve.png" />
+    <Content Include="Content\admin\layout\img\flags\vg.png" />
+    <Content Include="Content\admin\layout\img\flags\vi.png" />
+    <Content Include="Content\admin\layout\img\flags\vn.png" />
+    <Content Include="Content\admin\layout\img\flags\vu.png" />
+    <Content Include="Content\admin\layout\img\flags\wales.png" />
+    <Content Include="Content\admin\layout\img\flags\wf.png" />
+    <Content Include="Content\admin\layout\img\flags\ws.png" />
+    <Content Include="Content\admin\layout\img\flags\ye.png" />
+    <Content Include="Content\admin\layout\img\flags\yt.png" />
+    <Content Include="Content\admin\layout\img\flags\za.png" />
+    <Content Include="Content\admin\layout\img\flags\zm.png" />
+    <Content Include="Content\admin\layout\img\flags\zw.png" />
+    <Content Include="Content\admin\layout\img\gallery\image1.jpg" />
+    <Content Include="Content\admin\layout\img\gallery\image2.jpg" />
+    <Content Include="Content\admin\layout\img\gallery\image3.jpg" />
+    <Content Include="Content\admin\layout\img\gallery\image4.jpg" />
+    <Content Include="Content\admin\layout\img\gallery\image5.jpg" />
+    <Content Include="Content\admin\layout\img\gallery\item_img.jpg" />
+    <Content Include="Content\admin\layout\img\gallery\item_img1.jpg" />
+    <Content Include="Content\admin\layout\img\gallery\preview_02.png" />
+    <Content Include="Content\admin\layout\img\gallery\preview_03.png" />
+    <Content Include="Content\admin\layout\img\gallery\preview_04.png" />
+    <Content Include="Content\admin\layout\img\gallery\preview_05.png" />
+    <Content Include="Content\admin\layout\img\gallery\preview_06.png" />
+    <Content Include="Content\admin\layout\img\gallery\preview_07.png" />
+    <Content Include="Content\admin\layout\img\gallery\preview_08.png" />
+    <Content Include="Content\admin\layout\img\gallery\preview_09.png" />
+    <Content Include="Content\admin\layout\img\gallery\preview_10.png" />
+    <Content Include="Content\admin\layout\img\gallery\preview_11.png" />
+    <Content Include="Content\admin\layout\img\gallery\preview_12.png" />
+    <Content Include="Content\admin\layout\img\gallery\preview_13.png" />
+    <Content Include="Content\admin\layout\img\gallery\preview_14.png" />
+    <Content Include="Content\admin\layout\img\gallery\preview_15.png" />
+    <Content Include="Content\admin\layout\img\gallery\preview_16.png" />
+    <Content Include="Content\admin\layout\img\gallery\preview_17.png" />
+    <Content Include="Content\admin\layout\img\gallery\preview_18.png" />
+    <Content Include="Content\admin\layout\img\hor-menu-red-arrow.png" />
+    <Content Include="Content\admin\layout\img\hor-menu-search-close-white.png" />
+    <Content Include="Content\admin\layout\img\hor-menu-search-close.png" />
+    <Content Include="Content\admin\layout\img\hor-menu-search.jpg" />
+    <Content Include="Content\admin\layout\img\hor-menu-search.png" />
+    <Content Include="Content\admin\layout\img\icon-color-close.png" />
+    <Content Include="Content\admin\layout\img\icon-color.png" />
+    <Content Include="Content\admin\layout\img\icon-img-down.png" />
+    <Content Include="Content\admin\layout\img\icon-img-up.png" />
+    <Content Include="Content\admin\layout\img\inbox-nav-arrow-blue.png" />
+    <Content Include="Content\admin\layout\img\input-spinner.gif" />
+    <Content Include="Content\admin\layout\img\invoice\walmart.png" />
+    <Content Include="Content\admin\layout\img\loading.gif" />
+    <Content Include="Content\admin\layout\img\logo-big.png" />
+    <Content Include="Content\admin\layout\img\logo.png" />
+    <Content Include="Content\admin\layout\img\menu-toggler.png" />
+    <Content Include="Content\admin\layout\img\overlay-icon.png" />
+    <Content Include="Content\admin\layout\img\pages\2.jpg" />
+    <Content Include="Content\admin\layout\img\pages\3.jpg" />
+    <Content Include="Content\admin\layout\img\pages\earth.jpg" />
+    <Content Include="Content\admin\layout\img\pages\img.png" />
+    <Content Include="Content\admin\layout\img\pages\img1.png" />
+    <Content Include="Content\admin\layout\img\pages\img1_2.png" />
+    <Content Include="Content\admin\layout\img\pages\img2.png" />
+    <Content Include="Content\admin\layout\img\pages\img3.jpg" />
+    <Content Include="Content\admin\layout\img\pages\img3.png" />
+    <Content Include="Content\admin\layout\img\pages\img4.png" />
+    <Content Include="Content\admin\layout\img\photo1.jpg" />
+    <Content Include="Content\admin\layout\img\photo2.jpg" />
+    <Content Include="Content\admin\layout\img\portlet-collapse-icon-white.png" />
+    <Content Include="Content\admin\layout\img\portlet-collapse-icon.png" />
+    <Content Include="Content\admin\layout\img\portlet-config-icon-white.png" />
+    <Content Include="Content\admin\layout\img\portlet-config-icon.png" />
+    <Content Include="Content\admin\layout\img\portlet-expand-icon-white.png" />
+    <Content Include="Content\admin\layout\img\portlet-expand-icon.png" />
+    <Content Include="Content\admin\layout\img\portlet-reload-icon-white.png" />
+    <Content Include="Content\admin\layout\img\portlet-reload-icon.png" />
+    <Content Include="Content\admin\layout\img\portlet-remove-icon-white.png" />
+    <Content Include="Content\admin\layout\img\portlet-remove-icon.png" />
+    <Content Include="Content\admin\layout\img\profile\portfolio\logo_azteca.jpg" />
+    <Content Include="Content\admin\layout\img\profile\portfolio\logo_conquer.jpg" />
+    <Content Include="Content\admin\layout\img\profile\portfolio\logo_metronic.jpg" />
+    <Content Include="Content\admin\layout\img\profile\profile-img.jpg" />
+    <Content Include="Content\admin\layout\img\profile\profile-img.png" />
+    <Content Include="Content\admin\layout\img\profile\profile.jpg" />
+    <Content Include="Content\admin\layout\img\remove-icon-small.png" />
+    <Content Include="Content\admin\layout\img\search-icon-blue.png" />
+    <Content Include="Content\admin\layout\img\search-icon-brown.png" />
+    <Content Include="Content\admin\layout\img\search-icon-purple.png" />
+    <Content Include="Content\admin\layout\img\search-icon-red.png" />
+    <Content Include="Content\admin\layout\img\search-icon-white.png" />
+    <Content Include="Content\admin\layout\img\search-icon.png" />
+    <Content Include="Content\admin\layout\img\search\1.jpg" />
+    <Content Include="Content\admin\layout\img\search\2.jpg" />
+    <Content Include="Content\admin\layout\img\search\img1.jpg" />
+    <Content Include="Content\admin\layout\img\search\img2.jpg" />
+    <Content Include="Content\admin\layout\img\search\img3.jpg" />
+    <Content Include="Content\admin\layout\img\select-caret.png" />
+    <Content Include="Content\admin\layout\img\sidebar-menu-arrow-green-right.png" />
+    <Content Include="Content\admin\layout\img\sidebar-menu-arrow-green.png" />
+    <Content Include="Content\admin\layout\img\sidebar-menu-arrow-reverse.png" />
+    <Content Include="Content\admin\layout\img\sidebar-menu-arrow-right.png" />
+    <Content Include="Content\admin\layout\img\sidebar-menu-arrow-rtl.png" />
+    <Content Include="Content\admin\layout\img\sidebar-menu-arrow.png" />
+    <Content Include="Content\admin\layout\img\sidebar-search-close-blue.png" />
+    <Content Include="Content\admin\layout\img\sidebar-search-close-brown.png" />
+    <Content Include="Content\admin\layout\img\sidebar-search-close-light.png" />
+    <Content Include="Content\admin\layout\img\sidebar-search-close-purple.png" />
+    <Content Include="Content\admin\layout\img\sidebar-search-close.png" />
+    <Content Include="Content\admin\layout\img\sidebar-toggler-blue.jpg" />
+    <Content Include="Content\admin\layout\img\sidebar-toggler-brown.jpg" />
+    <Content Include="Content\admin\layout\img\sidebar-toggler-light.jpg" />
+    <Content Include="Content\admin\layout\img\sidebar-toggler-purple.jpg" />
+    <Content Include="Content\admin\layout\img\sidebar-toggler.jpg" />
+    <Content Include="Content\admin\layout\img\sidebar-toggler.png" />
+    <Content Include="Content\admin\layout\img\sidebar_inline_toggler_icon_default.jpg" />
+    <Content Include="Content\admin\layout\img\sidebar_toggler_icon_default.png" />
+    <Content Include="Content\admin\layout\img\social\amazon.png" />
+    <Content Include="Content\admin\layout\img\social\behance.png" />
+    <Content Include="Content\admin\layout\img\social\blogger.png" />
+    <Content Include="Content\admin\layout\img\social\deviantart.png" />
+    <Content Include="Content\admin\layout\img\social\dribbble.png" />
+    <Content Include="Content\admin\layout\img\social\dropbox.png" />
+    <Content Include="Content\admin\layout\img\social\evernote.png" />
+    <Content Include="Content\admin\layout\img\social\facebook.png" />
+    <Content Include="Content\admin\layout\img\social\forrst.png" />
+    <Content Include="Content\admin\layout\img\social\github.png" />
+    <Content Include="Content\admin\layout\img\social\googleplus.png" />
+    <Content Include="Content\admin\layout\img\social\instagram.png" />
+    <Content Include="Content\admin\layout\img\social\jolicloud.png" />
+    <Content Include="Content\admin\layout\img\social\last-fm.png" />
+    <Content Include="Content\admin\layout\img\social\linkedin.png" />
+    <Content Include="Content\admin\layout\img\social\picasa.png" />
+    <Content Include="Content\admin\layout\img\social\pintrest.png" />
+    <Content Include="Content\admin\layout\img\social\reddit.png" />
+    <Content Include="Content\admin\layout\img\social\rss.png" />
+    <Content Include="Content\admin\layout\img\social\skype.png" />
+    <Content Include="Content\admin\layout\img\social\spotify.png" />
+    <Content Include="Content\admin\layout\img\social\stumbleupon.png" />
+    <Content Include="Content\admin\layout\img\social\tumblr.png" />
+    <Content Include="Content\admin\layout\img\social\twitter.png" />
+    <Content Include="Content\admin\layout\img\social\vimeo.png" />
+    <Content Include="Content\admin\layout\img\social\vk.png" />
+    <Content Include="Content\admin\layout\img\social\wordpress.png" />
+    <Content Include="Content\admin\layout\img\social\xing.png" />
+    <Content Include="Content\admin\layout\img\social\yahoo.png" />
+    <Content Include="Content\admin\layout\img\social\youtube.png" />
+    <Content Include="Content\admin\layout\img\syncfusion-icons-white.png" />
+    <Content Include="Content\admin\layout\img\syncfusion-icons.png" />
+    <Content Include="Content\admin\layout\img\works\img1.jpg" />
+    <Content Include="Content\admin\layout\img\works\img2.jpg" />
+    <Content Include="Content\admin\layout\img\works\img3.jpg" />
+    <Content Include="Content\admin\layout\img\works\img4.jpg" />
+    <Content Include="Content\admin\layout\img\works\img5.jpg" />
+    <Content Include="Content\admin\layout\img\works\img6.jpg" />
+    <Content Include="Content\admin\layout\scripts\demo.js" />
+    <Content Include="Content\admin\layout\scripts\layout.js" />
+    <Content Include="Content\admin\layout\scripts\quick-sidebar.js" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\font-awesome.css" />
+    <Content Include="Content\css\font-awesome.min.css" />
+    <Content Include="Content\ctt041ca\bootstrap.css" />
+    <Content Include="Content\ctt041ca\brick-red.css" />
+    <Content Include="Content\ctt041ca\bright-turquoise.css" />
+    <Content Include="Content\ctt041ca\cerise.css" />
+    <Content Include="Content\ctt041ca\de-york.css" />
+    <Content Include="Content\ctt041ca\denim.css" />
+    <Content Include="Content\ctt041ca\font-awesome.css" />
+    <Content Include="Content\ctt041ca\green-smoke.css" />
+    <Content Include="Content\ctt041ca\hippie-blue.css" />
+    <Content Include="Content\ctt041ca\horizon.css" />
+    <Content Include="Content\ctt041ca\icomoon.css" />
+    <Content Include="Content\ctt041ca\leather.css" />
+    <Content Include="Content\ctt041ca\mandy.css" />
+    <Content Include="Content\ctt041ca\mystyles.css" />
+    <Content Include="Content\ctt041ca\salem.css" />
+    <Content Include="Content\ctt041ca\scarlet.css" />
+    <Content Include="Content\ctt041ca\shamrock.css" />
+    <Content Include="Content\ctt041ca\studio.css" />
+    <Content Include="Content\ctt041ca\styles.css" />
+    <Content Include="Content\ctt041ca\switcher.css" />
+    <Content Include="Content\ctt041ca\turkish-rose.css" />
+    <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\images\accordion-plusminus.png" />
+    <Content Include="Content\images\car.jpg" />
+    <Content Include="Content\images\client\amaze_40x40.jpg" />
+    <Content Include="Content\images\client\cay.JPG" />
+    <Content Include="Content\images\client\Cuba.png" />
+    <Content Include="Content\images\client\Cuba2.png" />
+    <Content Include="Content\images\client\de.png" />
+    <Content Include="Content\images\client\fr.png" />
+    <Content Include="Content\images\client\hab.JPG" />
+    <Content Include="Content\images\client\it.png" />
+    <Content Include="Content\images\client\jp.png" />
+    <Content Include="Content\images\client\kr.png" />
+    <Content Include="Content\images\client\lllll\4_strokes_of_fun_100x100.jpg" />
+    <Content Include="Content\images\client\lllll\a_dreamy_jump_100x100.jpg" />
+    <Content Include="Content\images\client\lllll\b_and_w_camera_100x100.jpg" />
+    <Content Include="Content\images\client\lllll\good_job_100x100.jpg" />
+    <Content Include="Content\images\client\lllll\happy_bokeh_day_100x100.jpg" />
+    <Content Include="Content\images\client\lllll\me_with_the_uke_100x100.jpg" />
+    <Content Include="Content\images\client\lllll\spidy_100x100.jpg" />
+    <Content Include="Content\images\client\lllll\sunny_wood_100x100.jpg" />
+    <Content Include="Content\images\client\lllll\the_big_showoff-take_2_100x100.jpg" />
+    <Content Include="Content\images\client\logo-invert.png" />
+    <Content Include="Content\images\client\logo.png" />
+    <Content Include="Content\images\client\pin.JPG" />
+    <Content Include="Content\images\client\ru.png" />
+    <Content Include="Content\images\client\TempCars\Audi-S8.png" />
+    <Content Include="Content\images\client\TempCars\BMW-X6-facelift.png" />
+    <Content Include="Content\images\client\TempCars\Chevrolet-Camaro.png" />
+    <Content Include="Content\images\client\TempCars\Honda-Civic.png" />
+    <Content Include="Content\images\client\TempCars\Lamborghini-Mansory-Aventador.png" />
+    <Content Include="Content\images\client\TempCars\Land-Rover-Range-Rover-Evoque.png" />
+    <Content Include="Content\images\client\TempCars\Maserati-GranTurismo-Sport-facelift.png" />
+    <Content Include="Content\images\client\TempCars\Mercedes-Benz-Clasa-G-facelift.png" />
+    <Content Include="Content\images\client\TempCars\Mitsubishi-Outlander_2013.png" />
+    <Content Include="Content\images\client\TempCars\Nissan-GT-R.png" />
+    <Content Include="Content\images\client\TempCars\Porsche-Cayenne-Turbo-S.png" />
+    <Content Include="Content\images\client\TempCars\Toyota-Prius-Plus.png" />
+    <Content Include="Content\images\client\TempCars\Volkswagen-Polo-BlueGT.png" />
+    <Content Include="Content\images\client\TempCars\Volkswagen-Touareg-Edition-X.png" />
+    <Content Include="Content\images\client\TempCars\Volvo-V40.png" />
+    <Content Include="Content\images\client\TempCentralPark\arrow-down.png" />
+    <Content Include="Content\images\client\TempCentralPark\cb_scout2_hdpi.png" />
+    <Content Include="Content\images\client\TempCentralPark\google_white2_hdpi.png" />
+    <Content Include="Content\images\client\TempCentralPark\hotel_1_800x600.jpg" />
+    <Content Include="Content\images\client\TempCentralPark\hotel_2_800x600.jpg" />
+    <Content Include="Content\images\client\TempCentralPark\hotel_eden_mar_suite_800x600.jpg" />
+    <Content Include="Content\images\client\TempCentralPark\hotel_porto_bay_liberdade_800x600.jpg" />
+    <Content Include="Content\images\client\TempCentralPark\hotel_porto_bay_rio_internacional_de_luxe_800x600.jpg" />
+    <Content Include="Content\images\client\TempCentralPark\hotel_porto_bay_rio_internacional_rooftop_pool_800x600.jpg" />
+    <Content Include="Content\images\client\TempCentralPark\hotel_porto_bay_serra_golf_living_room_800x600.jpg" />
+    <Content Include="Content\images\client\TempCentralPark\hotel_porto_bay_serra_golf_suite2_800x600.jpg" />
+    <Content Include="Content\images\client\TempCentralPark\hotel_the_cliff_bay_spa_suite_800x600.jpg" />
+    <Content Include="Content\images\client\TempCentralPark\lhotel_porto_bay_sao_paulo_lobby_800x600.jpg" />
+    <Content Include="Content\images\client\TempCentralPark\lhotel_porto_bay_sao_paulo_luxury_suite_800x600.jpg" />
+    <Content Include="Content\images\client\TempCentralPark\lhotel_porto_bay_sao_paulo_suite_lhotel_living_room_800x600.jpg" />
+    <Content Include="Content\images\client\TempCentralPark\the_pool_800x600.jpg" />
+    <Content Include="Content\images\client\tempdestinations\196_365_800x600.jpg" />
+    <Content Include="Content\images\client\tempdestinations\el_inevitable_paso_del_tiempo_800x600.jpg" />
+    <Content Include="Content\images\client\tempdestinations\gaviota_en_el_top_800x600.jpg" />
+    <Content Include="Content\images\client\tempdestinations\hotel_1_800x600.jpg" />
+    <Content Include="Content\images\client\tempdestinations\hotel_porto_bay_rio_internacional_de_luxe_800x600.jpg" />
+    <Content Include="Content\images\client\tempdestinations\hotel_porto_bay_serra_golf_library_800x600.jpg" />
+    <Content Include="Content\images\client\tempdestinations\hotel_porto_bay_serra_golf_living_room_800x600.jpg" />
+    <Content Include="Content\images\client\tempdestinations\hotel_porto_bay_serra_golf_suite2_800x600.jpg" />
+    <Content Include="Content\images\client\tempdestinations\hotel_porto_bay_serra_golf_suite_800x600.jpg" />
+    <Content Include="Content\images\client\tempdestinations\hotel_the_cliff_bay_spa_suite_800x600.jpg" />
+    <Content Include="Content\images\client\tempdestinations\lack_of_blue_depresses_me_800x600.jpg" />
+    <Content Include="Content\images\client\tempdestinations\lhotel_porto_bay_sao_paulo_lobby_800x600.jpg" />
+    <Content Include="Content\images\client\tempdestinations\new_york_at_an_angle_800x600.jpg" />
+    <Content Include="Content\images\client\tempdestinations\street_800x600.jpg" />
+    <Content Include="Content\images\client\tempdestinations\sydney_harbour_800x600.jpg" />
+    <Content Include="Content\images\client\tempdestinations\the_best_mode_of_transport_here_in_maldives_800x600.jpg" />
+    <Content Include="Content\images\client\tempdestinations\the_journey_home_400x300.jpg" />
+    <Content Include="Content\images\client\tempdestinations\upper_lake_in_new_york_central_park_800x600.jpg" />
+    <Content Include="Content\images\client\tempdestinations\viva_las_vegas_800x600.jpg" />
+    <Content Include="Content\images\client\tempdestinations\waipio_valley_800x600.jpg" />
+    <Content Include="Content\images\client\tempHotels\hotel_1_800x600.jpg" />
+    <Content Include="Content\images\client\tempHotels\hotel_2_800x600.jpg" />
+    <Content Include="Content\images\client\tempHotels\hotel_eden_mar_suite_800x600.jpg" />
+    <Content Include="Content\images\client\tempHotels\hotel_porto_bay_liberdade_800x600.jpg" />
+    <Content Include="Content\images\client\tempHotels\hotel_porto_bay_rio_internacional_de_luxe_800x600.jpg" />
+    <Content Include="Content\images\client\tempHotels\hotel_porto_bay_rio_internacional_rooftop_pool_800x600.jpg" />
+    <Content Include="Content\images\client\tempHotels\hotel_porto_bay_serra_golf_library_800x600.jpg" />
+    <Content Include="Content\images\client\tempHotels\hotel_porto_bay_serra_golf_living_room_800x600.jpg" />
+    <Content Include="Content\images\client\tempHotels\hotel_porto_bay_serra_golf_suite2_800x600.jpg" />
+    <Content Include="Content\images\client\tempHotels\hotel_porto_bay_serra_golf_suite_800x600.jpg" />
+    <Content Include="Content\images\client\tempHotels\hotel_the_cliff_bay_spa_suite_800x600.jpg" />
+    <Content Include="Content\images\client\tempHotels\lhotel_porto_bay_sao_paulo_lobby_800x600.jpg" />
+    <Content Include="Content\images\client\tempHotels\lhotel_porto_bay_sao_paulo_luxury_suite_800x600.jpg" />
+    <Content Include="Content\images\client\tempHotels\lhotel_porto_bay_sao_paulo_suite_lhotel_living_room_800x600.jpg" />
+    <Content Include="Content\images\client\tempHotels\the_pool_800x600.jpg" />
+    <Content Include="Content\images\client\uk.png" />
+    <Content Include="Content\images\client\var1.JPG" />
+    <Content Include="Content\images\Cuba.png" />
+    <Content Include="Content\images\datatable-row-openclose.png" />
+    <Content Include="Content\images\empresa.jpg" />
+    <Content Include="Content\images\excursion.jpg" />
+    <Content Include="Content\images\Home\60x60.jpg" />
+    <Content Include="Content\images\Home\60x60_002.JPG" />
+    <Content Include="Content\images\Home\60x60_008.jpg" />
+    <Content Include="Content\images\Home\60x60_2.JPG" />
+    <Content Include="Content\images\Home\60x60_3.jpg" />
+    <Content Include="Content\images\Home\60x60_4.JPG" />
+    <Content Include="Content\images\Home\73_003.jpg" />
+    <Content Include="Content\images\Home\73_2.JPG" />
+    <Content Include="Content\images\Home\barley.jpg" />
+    <Content Include="Content\images\Home\vara.JPG" />
+    <Content Include="Content\images\hoteles.jpg" />
+    <Content Include="Content\images\input-spinner.gif" />
+    <Content Include="Content\images\loading-spinner-grey.gif" />
+    <Content Include="Content\images\Morro3.JPG" />
+    <Content Include="Content\images\paquete.jpg" />
+    <Content Include="Content\images\paypal.png" />
+    <Content Include="Content\images\portlet-collapse-icon-white.png" />
+    <Content Include="Content\images\portlet-collapse-icon.png" />
+    <Content Include="Content\images\portlet-config-icon-white.png" />
+    <Content Include="Content\images\portlet-config-icon.png" />
+    <Content Include="Content\images\portlet-expand-icon-white.png" />
+    <Content Include="Content\images\portlet-expand-icon.png" />
+    <Content Include="Content\images\portlet-reload-icon-white.png" />
+    <Content Include="Content\images\portlet-reload-icon.png" />
+    <Content Include="Content\images\portlet-remove-icon-white.png" />
+    <Content Include="Content\images\portlet-remove-icon.png" />
+    <Content Include="Content\images\remove-icon-small.png" />
+    <Content Include="Content\images\syncfusion-icons-white.png" />
+    <Content Include="Content\images\syncfusion-icons.png" />
+    <Content Include="Content\images\Varadero.JPG" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="EF\Model1.edmx.sql" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\flexslider-icon.svg" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="fonts\flexslider-icon.eot" />
+    <Content Include="fonts\flexslider-icon.ttf" />
+    <Content Include="fonts\flexslider-icon.woff" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\fonts\FontAwesome.otf" />
+    <Content Include="Content\less\animated.less" />
+    <Content Include="Content\less\bordered-pulled.less" />
+    <Content Include="Content\less\core.less" />
+    <Content Include="Content\less\fixed-width.less" />
+    <Content Include="Content\less\font-awesome.less" />
+    <Content Include="Content\less\icons.less" />
+    <Content Include="Content\less\larger.less" />
+    <Content Include="Content\less\list.less" />
+    <Content Include="Content\less\mixins.less" />
+    <Content Include="Content\less\path.less" />
+    <Content Include="Content\less\rotated-flipped.less" />
+    <Content Include="Content\less\stacked.less" />
+    <Content Include="Content\less\variables.less" />
+    <Content Include="Content\scss\font-awesome.scss" />
+    <Content Include="Content\scss\_animated.scss" />
+    <Content Include="Content\scss\_bordered-pulled.scss" />
+    <Content Include="Content\scss\_core.scss" />
+    <Content Include="Content\scss\_fixed-width.scss" />
+    <Content Include="Content\scss\_icons.scss" />
+    <Content Include="Content\scss\_larger.scss" />
+    <Content Include="Content\scss\_list.scss" />
+    <Content Include="Content\scss\_mixins.scss" />
+    <Content Include="Content\scss\_path.scss" />
+    <Content Include="Content\scss\_rotated-flipped.scss" />
+    <Content Include="Content\scss\_stacked.scss" />
+    <Content Include="Content\scss\_variables.scss" />
+    <Content Include="Content\admin\layout\img\blog\Thumbs.db" />
+    <Content Include="Content\admin\layout\img\pages\Thumbs.db" />
+    <Content Include="Content\admin\layout\img\social\Thumbs.db" />
+    <EntityDeploy Include="EF\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="EF\Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="EF\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
+    <Content Include="EF\Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
+    <None Include="Properties\PublishProfiles\thing.pubxml" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.11.0.min.js" />
+    <Content Include="Scripts\jquery.blockui.min.js" />
+    <Content Include="Scripts\metronic.js" />
+    <Content Include="Scripts\valocd.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\js\bootstrap-datepicker.js" />
+    <Content Include="Scripts\js\bootstrap-timepicker.js" />
+    <Content Include="Scripts\js\bootstrap.js" />
+    <Content Include="Scripts\js\card-payment.js" />
+    <Content Include="Scripts\js\common.js" />
+    <Content Include="Scripts\js\countdown.js" />
+    <Content Include="Scripts\js\custom.js" />
+    <Content Include="Scripts\js\dropit.js" />
+    <Content Include="Scripts\js\fitvids.js" />
+    <Content Include="Scripts\js\fotorama.js" />
+    <Content Include="Scripts\js\gridrotator.js" />
+    <Content Include="Scripts\js\icheck.js" />
+    <Content Include="Scripts\js\ionrangeslider.js" />
+    <Content Include="Scripts\js\jquery.js" />
+    <Content Include="Scripts\js\magnific.js" />
+    <Content Include="Scripts\js\modernizr.js" />
+    <Content Include="Scripts\js\nicescroll.js" />
+    <Content Include="Scripts\js\owl-carousel.js" />
+    <Content Include="Scripts\js\sdk.js" />
+    <Content Include="Scripts\js\slimmenu.js" />
+    <Content Include="Scripts\js\stats.js" />
+    <Content Include="Scripts\js\switcher.js" />
+    <Content Include="Scripts\js\tweet.js" />
+    <Content Include="Scripts\js\typeahead.js" />
+    <Content Include="Scripts\js\util.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\secidjfg34\bootstrap.js" />
+    <Content Include="Scripts\secidjfg34\jquery-1.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\_RemoveAccountPartial.cshtml" />
+    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Manage.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Anno\Create.cshtml" />
+    <Content Include="Views\Anno\Delete.cshtml" />
+    <Content Include="Views\Anno\Details.cshtml" />
+    <Content Include="Views\Anno\Edit.cshtml" />
+    <Content Include="Views\Anno\Index.cshtml" />
+    <Content Include="Views\Tipologia\Create.cshtml" />
+    <Content Include="Views\Tipologia\Delete.cshtml" />
+    <Content Include="Views\Tipologia\Details.cshtml" />
+    <Content Include="Views\Tipologia\Edit.cshtml" />
+    <Content Include="Views\Tipologia\Index.cshtml" />
+    <Content Include="Views\Pais\Create.cshtml" />
+    <Content Include="Views\Pais\Delete.cshtml" />
+    <Content Include="Views\Pais\Details.cshtml" />
+    <Content Include="Views\Pais\Edit.cshtml" />
+    <Content Include="Views\Pais\Index.cshtml" />
+    <Content Include="Views\Cadena\Create.cshtml" />
+    <Content Include="Views\Cadena\Delete.cshtml" />
+    <Content Include="Views\Cadena\Details.cshtml" />
+    <Content Include="Views\Cadena\Edit.cshtml" />
+    <Content Include="Views\Cadena\Index.cshtml" />
+    <Content Include="Views\Estacion\Create.cshtml" />
+    <Content Include="Views\Estacion\Delete.cshtml" />
+    <Content Include="Views\Estacion\Details.cshtml" />
+    <Content Include="Views\Estacion\Edit.cshtml" />
+    <Content Include="Views\Estacion\Index.cshtml" />
+    <Content Include="Views\Destino\Create.cshtml" />
+    <Content Include="Views\Destino\Delete.cshtml" />
+    <Content Include="Views\Destino\Details.cshtml" />
+    <Content Include="Views\Destino\Edit.cshtml" />
+    <Content Include="Views\Destino\Index.cshtml" />
+    <Content Include="Views\Subdestino\Create.cshtml" />
+    <Content Include="Views\Subdestino\Delete.cshtml" />
+    <Content Include="Views\Subdestino\Details.cshtml" />
+    <Content Include="Views\Subdestino\Edit.cshtml" />
+    <Content Include="Views\Subdestino\Index.cshtml" />
+    <Content Include="Views\Categoria\Create.cshtml" />
+    <Content Include="Views\Categoria\Delete.cshtml" />
+    <Content Include="Views\Categoria\Details.cshtml" />
+    <Content Include="Views\Categoria\Edit.cshtml" />
+    <Content Include="Views\Categoria\Index.cshtml" />
+    <Content Include="Views\Suplemento\Create.cshtml" />
+    <Content Include="Views\Suplemento\Delete.cshtml" />
+    <Content Include="Views\Suplemento\Details.cshtml" />
+    <Content Include="Views\Suplemento\Edit.cshtml" />
+    <Content Include="Views\Suplemento\Index.cshtml" />
+    <Content Include="Views\Paquete\Create.cshtml" />
+    <Content Include="Views\Paquete\Delete.cshtml" />
+    <Content Include="Views\Paquete\Details.cshtml" />
+    <Content Include="Views\Paquete\Edit.cshtml" />
+    <Content Include="Views\Paquete\Index.cshtml" />
+    <Content Include="Views\Tipo_Tarifa\Create.cshtml" />
+    <Content Include="Views\Tipo_Tarifa\Delete.cshtml" />
+    <Content Include="Views\Tipo_Tarifa\Details.cshtml" />
+    <Content Include="Views\Tipo_Tarifa\Edit.cshtml" />
+    <Content Include="Views\Tipo_Tarifa\Index.cshtml" />
+    <Content Include="Views\Empresa\Create.cshtml" />
+    <Content Include="Views\Empresa\Delete.cshtml" />
+    <Content Include="Views\Empresa\Details.cshtml" />
+    <Content Include="Views\Empresa\Edit.cshtml" />
+    <Content Include="Views\Empresa\Index.cshtml" />
+    <Content Include="Views\Tipo_Empresa\Create.cshtml" />
+    <Content Include="Views\Tipo_Empresa\Delete.cshtml" />
+    <Content Include="Views\Tipo_Empresa\Details.cshtml" />
+    <Content Include="Views\Tipo_Empresa\Edit.cshtml" />
+    <Content Include="Views\Tipo_Empresa\Index.cshtml" />
+    <Content Include="Views\Reduccion\Create.cshtml" />
+    <Content Include="Views\Reduccion\Delete.cshtml" />
+    <Content Include="Views\Reduccion\Details.cshtml" />
+    <Content Include="Views\Reduccion\Edit.cshtml" />
+    <Content Include="Views\Reduccion\Index.cshtml" />
+    <Content Include="Views\Excursion\Create.cshtml" />
+    <Content Include="Views\Excursion\Delete.cshtml" />
+    <Content Include="Views\Excursion\Details.cshtml" />
+    <Content Include="Views\Excursion\Edit.cshtml" />
+    <Content Include="Views\Excursion\Index.cshtml" />
+    <Content Include="Views\Carro\Create.cshtml" />
+    <Content Include="Views\Carro\Delete.cshtml" />
+    <Content Include="Views\Carro\Details.cshtml" />
+    <Content Include="Views\Carro\Edit.cshtml" />
+    <Content Include="Views\Carro\Index.cshtml" />
+    <Content Include="Views\Rango\Create.cshtml" />
+    <Content Include="Views\Rango\Delete.cshtml" />
+    <Content Include="Views\Rango\Details.cshtml" />
+    <Content Include="Views\Rango\Edit.cshtml" />
+    <Content Include="Views\Rango\Index.cshtml" />
+    <Content Include="Views\Hotel\Create.cshtml" />
+    <Content Include="Views\Hotel\Delete.cshtml" />
+    <Content Include="Views\Hotel\Details.cshtml" />
+    <Content Include="Views\Hotel\Edit.cshtml" />
+    <Content Include="Views\Hotel\Index.cshtml" />
+    <Content Include="Views\Temporada_Hotel\Create.cshtml" />
+    <Content Include="Views\Temporada_Hotel\Delete.cshtml" />
+    <Content Include="Views\Temporada_Hotel\Details.cshtml" />
+    <Content Include="Views\Temporada_Hotel\Edit.cshtml" />
+    <Content Include="Views\Temporada_Hotel\Index.cshtml" />
+    <Content Include="Views\TemporadaExcursion\Create.cshtml" />
+    <Content Include="Views\TemporadaExcursion\Delete.cshtml" />
+    <Content Include="Views\TemporadaExcursion\Details.cshtml" />
+    <Content Include="Views\TemporadaExcursion\Edit.cshtml" />
+    <Content Include="Views\TemporadaExcursion\Index.cshtml" />
+    <Content Include="Views\TemporadaPaquete\Create.cshtml" />
+    <Content Include="Views\TemporadaPaquete\Delete.cshtml" />
+    <Content Include="Views\TemporadaPaquete\Details.cshtml" />
+    <Content Include="Views\TemporadaPaquete\Edit.cshtml" />
+    <Content Include="Views\TemporadaPaquete\Index.cshtml" />
+    <Content Include="Views\Temporada_Suplemento\Create.cshtml" />
+    <Content Include="Views\Temporada_Suplemento\Delete.cshtml" />
+    <Content Include="Views\Temporada_Suplemento\Details.cshtml" />
+    <Content Include="Views\Temporada_Suplemento\Edit.cshtml" />
+    <Content Include="Views\Temporada_Suplemento\Index.cshtml" />
+    <Content Include="Views\Temporada_Reduccion\Create.cshtml" />
+    <Content Include="Views\Temporada_Reduccion\Delete.cshtml" />
+    <Content Include="Views\Temporada_Reduccion\Details.cshtml" />
+    <Content Include="Views\Temporada_Reduccion\Edit.cshtml" />
+    <Content Include="Views\Temporada_Reduccion\Index.cshtml" />
+    <Content Include="Views\Temporada_Hotel\Tarifa_Hotel.cshtml" />
+    <Content Include="Views\TemporadaPaquete\Tarifa_Paquete.cshtml" />
+    <Content Include="Views\TemporadaExcursion\Tarifa_Excursion.cshtml" />
+    <Content Include="Views\Temporada\Create.cshtml" />
+    <Content Include="Views\Temporada\Delete.cshtml" />
+    <Content Include="Views\Temporada\Details.cshtml" />
+    <Content Include="Views\Temporada\Edit.cshtml" />
+    <Content Include="Views\Temporada\Index.cshtml" />
+    <Content Include="Views\Tipologia_Carro\Create.cshtml" />
+    <Content Include="Views\Tipologia_Carro\Delete.cshtml" />
+    <Content Include="Views\Tipologia_Carro\Details.cshtml" />
+    <Content Include="Views\Tipologia_Carro\Edit.cshtml" />
+    <Content Include="Views\Tipologia_Carro\Index.cshtml" />
+    <Content Include="Views\TarifaCarro\Create.cshtml" />
+    <Content Include="Views\TarifaCarro\Delete.cshtml" />
+    <Content Include="Views\TarifaCarro\Details.cshtml" />
+    <Content Include="Views\TarifaCarro\Edit.cshtml" />
+    <Content Include="Views\TarifaCarro\Index.cshtml" />
+    <Content Include="Views\TemporadaEmpresa\Create.cshtml" />
+    <Content Include="Views\TemporadaEmpresa\Delete.cshtml" />
+    <Content Include="Views\TemporadaEmpresa\Details.cshtml" />
+    <Content Include="Views\TemporadaEmpresa\Edit.cshtml" />
+    <Content Include="Views\TemporadaEmpresa\Index.cshtml" />
+    <Content Include="Views\MainApp\Index.cshtml" />
+    <Content Include="Views\Shared\_Layout_MainApp.cshtml" />
+    <Content Include="Views\MainApp\Hotels.cshtml" />
+    <Content Include="Views\Shared\_Layout_Hotels.cshtml" />
+    <Content Include="Views\Shared\_Layout_Cars.cshtml" />
+    <Content Include="Views\MainApp\Cars.cshtml" />
+    <Content Include="Views\Shared\_Layout_Excursion.cshtml" />
+    <Content Include="Views\MainApp\Excursion.cshtml" />
+    <Content Include="Views\MainApp\Destinies.cshtml" />
+    <Content Include="Views\MainApp\Hotel.cshtml" />
+    <Content Include="Views\MainApp\Destiny.cshtml" />
+    <Content Include="Views\OficinaRenta\Create.cshtml" />
+    <Content Include="Views\OficinaRenta\Delete.cshtml" />
+    <Content Include="Views\OficinaRenta\Details.cshtml" />
+    <Content Include="Views\OficinaRenta\Edit.cshtml" />
+    <Content Include="Views\OficinaRenta\Index.cshtml" />
+    <Content Include="Views\MainApp\Car.cshtml" />
+    <Content Include="Views\Shared\_Layout_Destinies.cshtml" />
+    <Content Include="Views\MainApp\Excursions.cshtml" />
+    <Content Include="Views\MainApp\ExcursionsSubDestinies.cshtml" />
+    <Content Include="Views\Clase\Create.cshtml" />
+    <Content Include="Views\Clase\Delete.cshtml" />
+    <Content Include="Views\Clase\Details.cshtml" />
+    <Content Include="Views\Clase\Edit.cshtml" />
+    <Content Include="Views\Clase\Index.cshtml" />
+    <Content Include="Views\MainApp\Flights.cshtml" />
+    <Content Include="Views\Shared\_Layout_Flights.cshtml" />
+    <Content Include="Views\CategTarifAvion\Create.cshtml" />
+    <Content Include="Views\CategTarifAvion\Delete.cshtml" />
+    <Content Include="Views\CategTarifAvion\Details.cshtml" />
+    <Content Include="Views\CategTarifAvion\Edit.cshtml" />
+    <Content Include="Views\CategTarifAvion\Index.cshtml" />
+    <Content Include="Views\Avion\Create.cshtml" />
+    <Content Include="Views\Avion\Delete.cshtml" />
+    <Content Include="Views\Avion\Details.cshtml" />
+    <Content Include="Views\Avion\Edit.cshtml" />
+    <Content Include="Views\Avion\Index.cshtml" />
+    <Content Include="Views\TipoAvion\Create.cshtml" />
+    <Content Include="Views\TipoAvion\Delete.cshtml" />
+    <Content Include="Views\TipoAvion\Details.cshtml" />
+    <Content Include="Views\TipoAvion\Edit.cshtml" />
+    <Content Include="Views\TipoAvion\Index.cshtml" />
+    <Content Include="Views\TemporadaAvion\Create.cshtml" />
+    <Content Include="Views\TemporadaAvion\Delete.cshtml" />
+    <Content Include="Views\TemporadaAvion\Details.cshtml" />
+    <Content Include="Views\TemporadaAvion\Edit.cshtml" />
+    <Content Include="Views\TemporadaAvion\Index.cshtml" />
+    <Content Include="Views\TemporadaAvion\Tarifa_Avion.cshtml" />
+    <Content Include="Views\DestinoRental\Create.cshtml" />
+    <Content Include="Views\DestinoRental\Delete.cshtml" />
+    <Content Include="Views\DestinoRental\Details.cshtml" />
+    <Content Include="Views\DestinoRental\Edit.cshtml" />
+    <Content Include="Views\DestinoRental\Index.cshtml" />
+    <Content Include="Views\OrigenRental\Create.cshtml" />
+    <Content Include="Views\OrigenRental\Delete.cshtml" />
+    <Content Include="Views\OrigenRental\Details.cshtml" />
+    <Content Include="Views\OrigenRental\Edit.cshtml" />
+    <Content Include="Views\OrigenRental\Index.cshtml" />
+    <Content Include="Views\Rental\Create.cshtml" />
+    <Content Include="Views\Rental\Delete.cshtml" />
+    <Content Include="Views\Rental\Details.cshtml" />
+    <Content Include="Views\Rental\Edit.cshtml" />
+    <Content Include="Views\Rental\Index.cshtml" />
+    <Content Include="Views\TemporadaRental\Create.cshtml" />
+    <Content Include="Views\TemporadaRental\Delete.cshtml" />
+    <Content Include="Views\TemporadaRental\Details.cshtml" />
+    <Content Include="Views\TemporadaRental\Edit.cshtml" />
+    <Content Include="Views\TemporadaRental\Index.cshtml" />
+    <Content Include="Views\TemporadaRental\Tarifa_Rental.cshtml" />
+    <Content Include="Views\MainApp\Transfers.cshtml" />
+    <Content Include="Views\Shared\_Layout_Transfer.cshtml" />
+    <Content Include="Views\DestinoVuelo\Create.cshtml" />
+    <Content Include="Views\DestinoVuelo\Delete.cshtml" />
+    <Content Include="Views\DestinoVuelo\Details.cshtml" />
+    <Content Include="Views\DestinoVuelo\Edit.cshtml" />
+    <Content Include="Views\DestinoVuelo\Index.cshtml" />
+    <Content Include="Views\OrigenVuelo\Create.cshtml" />
+    <Content Include="Views\OrigenVuelo\Delete.cshtml" />
+    <Content Include="Views\OrigenVuelo\Details.cshtml" />
+    <Content Include="Views\OrigenVuelo\Edit.cshtml" />
+    <Content Include="Views\OrigenVuelo\Index.cshtml" />
+    <Content Include="Views\Tarificacion\Create.cshtml" />
+    <Content Include="Views\Tarificacion\Delete.cshtml" />
+    <Content Include="Views\Tarificacion\Details.cshtml" />
+    <Content Include="Views\Tarificacion\Edit.cshtml" />
+    <Content Include="Views\Tarificacion\Index.cshtml" />
+    <Content Include="Views\MainApp\Packages.cshtml" />
+    <Content Include="Views\Shared\_Layout_Package.cshtml" />
+    <Content Include="Views\MainApp\_PartialFlightList.cshtml" />
+    <Content Include="Views\MainApp\Package.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Account\Remove.cshtml" />
+    <Content Include="Views\Shared\_Layout_Login.cshtml" />
+    <Content Include="Views\MainApp\CarCategory.cshtml" />
+    <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\Payment\PaymentHotel.cshtml" />
+    <Content Include="Views\Payment\PaymentCar.cshtml" />
+    <Content Include="Views\Payment\PaymentTour.cshtml" />
+    <Content Include="Views\Payment\PaymentFlight.cshtml" />
+    <Content Include="Views\Payment\PaymentTransfer.cshtml" />
+    <Content Include="Views\Payment\PaymentPackage.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Content\upload\brand\" />
+    <Folder Include="Content\upload\destination\" />
+    <Folder Include="Content\upload\empresa\" />
+    <Folder Include="Content\upload\excursion\" />
+    <Folder Include="Content\upload\hotel\" />
+    <Folder Include="Content\upload\oficina\" />
+    <Folder Include="Content\upload\pais\" />
+    <Folder Include="Content\upload\paq\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>1339</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost/TripAgency</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

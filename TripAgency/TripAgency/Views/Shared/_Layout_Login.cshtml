@@ -1,0 +1,35 @@
+﻿@using TripAgency.EF
+<!DOCTYPE html>
+<html class="full">
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title TraWebClick - Login</title>
+    <meta name="keywords" content="TripAgency, html, premium, themeforest" />
+    <meta name="description" content="Traveler - Premium template for travel companies">
+    <meta name="author" content="Anibal">
+    @Styles.Render("~/Content/clientcss")
+    @{
+        var db = new TripAgencyEntities();
+    }
+</head>
+<body class="full">
+    <div class="global-wrap">
+        <div class="full-page">
+            <div class="bg-holder full">
+                <div class="bg-mask"></div>
+                <div class="bg-img" style="background-image: url(/TripAgency/Content/images/Morro3.JPG);"></div>
+                <div class="bg-holder-content full text-white">
+                    <div class="full-center">
+                        <div class="container">
+                            @RenderBody()
+                        </div>
+                    </div>
+               </div>
+            </div>
+        </div>
+     </div>
+     @Scripts.Render("~/bundles/clientjs")
+     @RenderSection("scripts", required: false)
+</body>
+</html>

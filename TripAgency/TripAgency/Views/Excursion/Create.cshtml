@@ -1,0 +1,82 @@
+﻿@model TripAgency.EF.Excursion
+
+@{
+    ViewBag.Title = "Añadir Excursión";
+}
+
+<h2>Añadir elemento</h2>
+
+<form method="post" enctype="multipart/form-data">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Excursión</h4>
+            <br />
+            @Html.ValidationSummary(true)
+            
+            <div class="form-group">
+                @Html.Label("Empresa", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("idempresa", String.Empty)
+                    @Html.ValidationMessageFor(model => model.idempresa)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Destino", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("idDestino", String.Empty)
+                    @Html.ValidationMessageFor(model => model.idDestino)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Nombre", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.nombre_excursion, new { @class = "form-control", @placeholder = "Nombre de Excursión" })
+                    @Html.ValidationMessageFor(model => model.nombre_excursion)
+                </div>
+            </div>
+            
+            <div class="form-group">
+                @Html.Label("Imagen", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="file" name="picture" />
+                    @Html.ValidationMessageFor(model => model.foto1)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Imagen", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="file" name="picture2" />
+                    @Html.ValidationMessageFor(model => model.foto2)
+                </div>
+            </div>
+            
+            <div class="form-group">
+                @Html.Label("Descripción", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.descrpcion_excursion, new { @class = "col-md-2", @placeholder = "Descripción" })
+                    @Html.ValidationMessageFor(model => model.descrpcion_excursion)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+    </form>

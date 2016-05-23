@@ -1,0 +1,58 @@
+﻿@model TripAgency.EF.Subdestino
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Subdestino</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.subdestino1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.subdestino1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.descripcion_subdestino)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descripcion_subdestino)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.foto_sub1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.foto_sub1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.foto_sub2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.foto_sub2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Destino.destino1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Destino.destino1)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idSubdestino }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
